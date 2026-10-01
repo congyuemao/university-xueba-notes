@@ -1,39 +1,53 @@
-# Shared content and language rules
+# 内容与语言
 
-## Knowledge and repeated reading
+## 完整知识与阅读负担
 
-Organise a chapter as continuous foundational explanation → expanded terminology → full English worked applications → readable recap → optional self-tests with complete answers. Let knowledge determine page count. Keep prerequisite order, definitions and notation stable.
+保留整门课程的基础知识、推导和应用。以读者能够从头重新学习为标准，允许篇幅随课程范围增长。将内容分配到短解释、定义、条件、公式、图解、小表格和例题步骤中，并说明各部分的关系。正文不再要求连续说明文。
 
-Include motivation, definitions, conditions, intuition, canonical examples, reasoning or derivation, applications and connections. Keep essential facts in the body even when margins reinforce them. Cover the whole supplied syllabus and refresh prerequisites where later material uses them.
+每个概念至少考虑学习动机、定义、符号、适用条件、直觉、典型例子、必要推导和相关概念。按学科补充证明、过程、反例、因果论证或算法分析。主栏承担必要知识；副栏承担补充解释、提问、辨析和记忆提示。隐藏副栏后，主栏仍应足以理解本节。
 
-## Expanded bilingual entries
+一段通常承担一个解释任务，正文栏内约 2–5 行作为排版观察值，不能为了行数删去必要逻辑。长证明可以用步骤名、方程和连接句分段。连续长段、重复开场白、抽象名词堆积、同义句反复说明会增加阅读负担。检查这些现象并写成具体解释。
 
-Typically use 6–12 substantial entries per core theme, according to the discipline.
+完整例子交代变量、条件、计算和结论的意义。公式附近说明符号与使用前提。易混概念放在小对照表或图中，并保留解释差异的句子。不要用整段粗体代替组织知识。
 
-| Field | Content |
+## 知识关系与反复阅读
+
+维持先修知识顺序。小节之间说明新概念解决什么问题。后续知识使用旧概念时，可以用不同例子恢复必要基础。
+
+章末“基础知识再读”包含关系图或整理表，以及能够恢复推理关系的短解释。支持多次通读的方式包括一致术语、明确条件、稳定编号、可查例子和完整答案。不要用重复原句充当复习设计。
+
+主体篇幅优先基础知识，例题和扩展按学科需求安排。旧版说明、例题、扩展的百分比不再作为分页配额。不要为符合比例增加重复内容。
+
+## 扩展中英术语
+
+一般使用中文讲解和标准英文术语。按主题价值选择条目，常见核心主题可有 6–12 项，允许随范围调整。避免每页都放一张同样的术语表。
+
+| 字段 | 内容 |
 | --- | --- |
-| English term | Standard name, useful abbreviations and related phrasing |
-| 中文含义 | Meaning and role in the course |
-| English definition | One or two full sentences with necessary conditions |
-| Concept relationship | Distinction from or connection to neighbouring concepts |
-| Exam sentence | A full English sentence demonstrating correct use |
+| English term | 标准名称、必要缩写与常见同义表达 |
+| 中文含义 | 概念的含义及在本课程中的作用 |
+| English definition | 一至两句完整英文定义，保留前提和量词 |
+| Concept relationship | 与相邻概念的区别或联系 |
+| Exam sentence | 使用该概念回答问题的完整英文句子 |
 
-Place long entries in central terminology sections and add a book-wide index. Reuse identical terms in solutions. Short margin cues supplement these entries.
+首次出现处放简短术语提示，完整条目放在相关正文或术语专题页，全书收录索引。长定义不得塞入窄批注栏。自写英文采用澳大利亚拼写，原文引述保持原样。
 
-## Complete solutions and answers
+## 完整英文例题与自测答案
 
-Write the full problem and worked solution in English: method, all necessary intermediate steps, reasons, result and meaning. Preserve mathematical quantifiers, domains, units and algorithmic preconditions. Put Chinese intuition alongside this complete solution.
+英语考试默认用完整英语题目与完整英语解答。解答包括方法、必要中间步骤、理由、结果和解释。保留定义域、量词、单位、代入过程，以及相关正确性、终止性、复杂度说明。中文直觉说明可以放在完整解答前后。
 
-Every prompt, including “闭书回忆”, needs a complete matched answer. Questions with (a), (b), (c) need all three answers. Concept answers state definitions and conditions; calculations show substitution and computation; proofs show the argument; explanations state the relationship and its reason. Put answers immediately afterwards or in a clearly named chapter answer section. Keep identifiers stable across editions.
+所有自测、所有小问和“闭书回忆”均配完整答案，编号严格对应。定义题写定义与条件，计算题写代入和计算，证明题写完整论证，解释题写关系与原因。提示、答案关键词或“略”不能替代完整答案。答案可以紧随题目，也可以放在有明确页码的答案区。
 
-## Direct learning prose
+用户指定中文考试或其他语言政策时，以用户要求为准。
 
-Explain knowledge, reasons, conditions and applications. Keep defensive wording, AI meta-commentary and production instructions out of the course manuscript. Keep genuine assumptions and boundary conditions with their corresponding knowledge. Omit specific teacher-PPT page numbers; use an end reference section for source works.
+## 信息来源与书内内容
 
-Use concrete subject names for running labels. Show large chapter digits and the long green strip only at a new chapter, and extend continuation body and margins into the removed title zone.
+以提供的课程材料为主要知识来源。保留命名定理、定义和事实的来源意义。新增例题按教学用途编写，不伪装成原课练习。需要核实的事实使用主要来源，冲突在相关知识处说明。
 
-## A pleasant short footer on every content page
+书末可以有学习参考文献与术语来源。具体课件页码、制作流程、生图提示词、排版参数、模型声明和资源许可证不占用知识正文。资源许可证保留在制作文件中。
 
-Use a quote, trivia item or joke, including material unrelated to the course. Rotate types naturally and avoid repeats. Prefer one line and permit two including attribution. Use a roughly 10 mm strip, 8.5 pt type and 11.2 pt leading; leave at least 7 mm above it. Jokes usually need only 15–45 Chinese characters.
+## 每页短页脚
 
-Verify factual trivia and quotation attribution. Keep names and sources concise; put full references at the end. Keep production and licence notices in the repository rather than the learning footer.
+每个正文内容页放一则名言、常识或短笑话，优先一行，连同署名最多两行。页脚约 10 mm 高，上方留至少 7 mm。建议字号 8.5 pt、行距 11.2 pt，按字体调整。封面、故意空白页和独立折页不要求趣味页脚。
+
+题材可以与课程无关。核实常识与名言归属，不编造作者。找不到可靠出处时换用原创短笑话。避免重复和占据大块正文空间。

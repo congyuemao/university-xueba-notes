@@ -1,13 +1,13 @@
 interface:
   display_name: "大学学霸笔记 University Xueba Notes"
-  short_description: "将大学课程整理为完整知识笔记，支持打印外侧批注和电脑平板双侧批注"
-  icon_small: "assets/icon.svg"
-  icon_large: "assets/icon.svg"
-  default_prompt: "使用 $artifact-template-university-xueba-notes，把这门大学课程整理成完整笔记，并提供打印后手写或电脑平板批注的选择。"
+  short_description: "复刻系列教辅的页面、讲解与手绘风格，支持完整知识、双语例题及纸本电子批注"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  default_prompt: "使用 $artifact-template-university-xueba-notes，把课程材料编成同系列教辅风格的完整大学学霸笔记，配图解、浅彩手绘漫画和知识速查，并沿用我的批注版本。"
 policy:
   allow_implicit_invocation: true
   products:
-  - "chatgpt"
-  - "codex"
-  - "api"
-  - "atlas"
+    - "chatgpt"
+    - "codex"
+    - "api"
+    - "atlas"

@@ -17,7 +17,7 @@ Keep the complete 20 mm inner margin blank, including rules, backgrounds, bars, 
 
 Start body and annotations at y = 35 on new chapter pages, and y = 16 on continuation pages; end by y = 268. Use pale rules every 5.2 mm.
 
-Only on new chapter pages, use a green bar at y = 16, height 13, width 178, starting at x = 20 odd / 12 even. Show the next chapter number and title. On continuation pages let body and annotations occupy the former title zone.
+Only on chapter openings, reserve y = 16–29 within the 178 mm content span, starting at x = 20 odd / 12 even, for the black chapter heading and a green or yellow-green section stroke. Follow the series title hierarchy; do not impose the old solid green title block. On continuation pages let body and annotations occupy the former title zone.
 
 Use a short actual-subject header around y = 11. Place one short quote, trivia item or joke in a 10 mm strip at y = 275–285, inside the 178 mm content span. Permit at most two lines including attribution. Leave 7 mm above the footer. Put page numbers at y = 292.
 
@@ -25,6 +25,10 @@ Allow wide tables to span 178 mm if needed, retaining the binding margin. Resume
 
 ## Cover parity
 
-Keep body page 1 on the right when a separately drawn cover with blank reverse precedes it. Do not add a cover automatically. If a PDF includes a cover, include its blank reverse or correctly paired front matter so logical odd body pages still print on the right. Count physical pages separately from displayed body numbers and verify the duplex sequence.
+Keep body page 1 on the right when a separately drawn cover with blank reverse precedes it. Include a subject front cover for a whole-book request; do not add one to a chapter or sample unless requested. If a PDF includes a cover, include its blank reverse or correctly paired front matter so logical odd body pages still print on the right. Count physical pages separately from displayed body numbers and verify the duplex sequence.
 
 Reference: `assets/examples/print-reference.pdf`.
+
+## Active visual rules
+
+Use `series-contract.md` and `visual-system.md` for current paper, hierarchy, short teaching units, handwritten notes and pastel educational comics. The older reference PDF demonstrates geometry only. Put a black chapter heading and a brush-like section strip within the opening title area; do not require the old oversized white chapter digit on a solid green block. Preserve ordinary-page coordinates. A wider teaching spread may vary internal composition while retaining usable annotation areas and the edition's binding rules.

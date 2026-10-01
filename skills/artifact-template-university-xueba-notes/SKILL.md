@@ -1,79 +1,99 @@
 ---
 name: artifact-template-university-xueba-notes
-description: "Create a complete rereadable university study book using the 大学学霸笔记 University Xueba Notes template and retained reference. Use when the user selects this template or personal skill, names 大学学霸笔记, or asks to turn courses, lectures, textbooks or a syllabus into substantial knowledge notes with annotation margins, generated illustrations, expanded bilingual terminology, full English worked solutions and answered self-tests. Offer a print edition with mirrored outer annotations or a digital edition with two annotation columns. Keep the central knowledge text complete rather than reducing it to a cheat sheet or flashcards."
+description: "Create complete rereadable university study books in the 大学学霸笔记 visual family: ruled notebook paper, short teaching units, tables, precise diagrams, pastel sidebar comics, handwritten annotations, varied page types, subject covers and wide knowledge-reference foldouts. Use when the user selects this template, names 大学学霸笔记 or 学霸笔记, asks to reproduce supplied study-book layouts, or turns course materials into substantial illustrated notes. Support mirrored outer annotations for print and fixed dual columns for digital, expanded bilingual terminology, full English worked solutions and fully answered self-tests."
 ---
 
 # 大学学霸笔记 University Xueba Notes
 
-Create a coherent university study book that the learner can read from beginning to end repeatedly. Use continuous foundational explanations, precise conditions, useful illustrations and complete worked applications.
+Create a substantial study book that teaches foundations completely and remains comfortable to reread. Use short explanations, entries, tables, labelled formulas, working diagrams and worked steps as the main teaching units. Preserve prerequisite order and necessary reasoning through local connections between those units. Do not require continuous explanatory prose or the former uniform absurd-cartoon style.
 
-## Select the writing medium first
+## Resolve scope and edition
 
-Resolve the edition from the user's current request and previous choice. Recognise printing, binding, paper and handwritten paper notes as `print`; recognise computer, tablet, stylus, PDF annotation and electronic reading as `digital`. Keep that choice across chapter batches.
+Use the user's current instruction and established choices. Treat printing, binding and paper handwriting as `print`; treat tablet, computer and PDF annotation as `digital`. Preserve the selected edition across batches. When unspecified, offer once:
 
-When the medium is unspecified, ask once before final pagination:
+1. 打印后手写批注：one merged outer column, odd body pages right and even body pages left, blank inner binding margin.
+2. 在电脑或平板上批注：two separate fixed annotation columns, one on each side of the central text.
 
-**“你准备怎样使用这份笔记？”**
+Continue source reading while an optional answer is pending. If no answer arrives, state the assumption and use `print`. If both are requested, create one source manuscript and paginate two editions with the same knowledge, terminology and answer IDs. Do not replace the established digital dual columns with a single right column merely because a reference book uses one.
 
-1. **“打印后手写批注”** — generate `print`: one merged outer annotation column; odd pages right, even pages left; blank inner binding margin.
-2. **“在电脑或平板上批注”** — generate `digital`: central body with separate left and right annotation columns on every page.
+For a whole book, include the front cover, navigable contents, volume overview, chapter pages, complete examples, answered exercises, glossary and a subject-specific wide knowledge-reference sheet. For a chapter or sample request, respect the smaller scope. Omit copyright pages, advertisements, publisher brands, commercial slogans, ISBNs, QR codes and scan watermarks from learner deliverables. Retain dependency licences with production resources.
 
-Use the available choice UI when suitable; otherwise ask the same concise question in text. Do not mark either edition as universally better. If the user requests both, prepare one knowledge manuscript and paginate two named files. If no answer arrives and work must continue, state the assumption and default to `print`. Continue source reading and drafting while waiting for an optional answer.
+## Read the active references
 
-Read the selected [print layout](references/layout-print.md) or [digital layout](references/layout-digital.md). For either edition read [shared editorial rules](references/content-and-language.md), [illustration 103 prompts](references/illustration-103.md) and [production workflow](references/production.md).
+Read before drafting:
 
-## Use the retained template
+- [Content and language](references/content-and-language.md): complete knowledge in readable units, bilingual terminology and full answers.
+- [Series contract](references/series-contract.md): mandatory same-publisher identity and subject-specific variation.
+- [Visual system](references/visual-system.md): paper, colour, hierarchy, handwriting and reference interpretation.
+- [Page types and rhythm](references/page-types.md): overview, knowledge, visual explanation, experiments, worked problems and synthesis pages.
+- Selected [print layout](references/layout-print.md) or [digital layout](references/layout-digital.md).
+- [Production and verification](references/production.md): source mapping, assets, rendering and delivery.
 
-1. Read `artifact-template.json`; resolve its paths relative to this directory.
-2. Open the available Documents or PDF capability and follow its authoring, rendering and verification workflow. Use `assets/reference.docx` as the retained visual source, with the chosen layout reference and this skill's current rules controlling the requested changes.
-3. Keep the original DOCX, preview and manifest intact. Inspect `assets/examples/print-reference.pdf` or `assets/examples/digital-reference.pdf` for the updated layout.
-4. Read the supplied syllabus, slides, textbooks, tutorials and examination material sufficiently to map the complete topic sequence and prerequisites. Use them as the primary content sources.
-5. Create a stable chapter plan and bilingual terminology system. For a whole-course request cover every supplied syllabus topic; use volumes or chapter batches when needed, preserving one coverage map and consistent numbering.
-6. Write and paginate the central manuscript, then place teaching annotations, generated illustrations and generous empty writing areas in the chosen margins.
-7. Render every output page, inspect its image, fix defects and repeat affected checks before delivery.
+Use [reference-page calibration](references/reference-observations.md) when comparing against supplied examples. Read [sidebar comic prompts](references/sidebar-comics.md) before designing or generating small comics. Read [subject visuals](references/subject-visuals.md) when planning diagrams and [cover and foldout](references/cover-and-foldout.md) for whole-book outputs or when either is requested. Read [book plan format](references/book-plan.md) when using the bundled plan validator.
 
-## Build a complete knowledge text
+Keep `artifact-template.json`, `assets/reference.docx`, the original preview and older `assets/examples/` intact as historical layout evidence. They demonstrate earlier geometry and typography; they do not define the current visual target. Current user instructions and active references control new work. The archived [illustration 103](references/illustration-103.md) applies only when explicitly requested.
 
-For each concept include its motivating question, definition, notation, conditions, intuitive explanation and canonical example. Add derivation, proof, causal reasoning, algorithmic steps, representative applications, counterexamples and connections where the discipline requires them. A learner who has forgotten the prerequisites must be able to restart from the central text.
+## Plan knowledge and visuals together
 
-Keep core facts in the central manuscript. Use sidebars to reinforce prerequisites, terminology, misconceptions and connections. Keep symbols, names and translations stable. Reintroduce necessary foundations where later chapters depend on them. End each chapter with readable “基础知识再读” prose that restores the knowledge relationships.
+1. Read the supplied syllabus, lectures, textbooks, exercises and examination material. Build a complete topic-and-prerequisite map; preserve named results, notation and standard translations.
+2. Separate source-supported knowledge from newly authored teaching examples. Verify uncertain or current facts with primary sources. Never fabricate source coverage or quotations.
+3. Plan chapter order, concept IDs, terminology entries, example and answer IDs, page types, and visual teaching jobs before pagination. Allow content to determine length.
+4. For each concept specify its motivating question, definition, symbols, conditions, explanation, canonical example and required reasoning. Add proofs, derivations, counterexamples, processes or connections where needed.
+5. Decide which relationship is easier to understand visually: spatial, temporal, quantitative, causal, comparative, classificatory, procedural or counterintuitive. Map each selected visual to the exact concept it explains.
+6. Use microdiagrams for local distinctions, working diagrams in explanations and solutions, small comics for memory and misconception cues, chapter maps for connections, and large volume scenes for orientation. Allocate generation effort across the teaching sequence.
 
-Spend substantial space on foundations. A useful balance is 55–70% explanation, 20–30% worked applications, and 10–15% extensions, adjusted to the course. Use lists, tables and coloured callouts to support connected prose. Do not replace the book with disconnected boxes or recall cards.
+Use a visual coverage audit rather than a picture quota. Investigate consecutive concept pages with no working visual; add appropriate diagrams or record why prose alone serves those concepts. One polished illustration at the front does not satisfy the rest of the book's visual teaching needs. Do not insert irrelevant drawings to meet a count.
 
-## Support English examinations
+## Write complete, comfortable teaching units
 
-Use Chinese explanations with standard English terminology unless the user specifies another policy. Expand each core terminology entry beyond translation: English name and abbreviation, Chinese meaning, a full English definition with conditions, related-concept explanation, and an English examination sentence. Aim for 6–12 substantial entries per core theme when useful. Put long entries in central terminology sections and add a book-wide index.
+Keep the main text sufficient for learning without the sidebars. Preserve definitions, assumptions, derivation steps and conclusions while presenting them in a brief explanation, compact table, labelled formula, working diagram or worked step. Use local subheadings and transitions to show how those units relate.
 
-Write the complete problem statement and complete worked solution in English. Include the method, intermediate steps, reasons, result and interpretation. Put optional Chinese intuition before or after the full English solution. Retain proof quantifiers, calculation substitution and units, and relevant algorithmic correctness, termination and complexity reasoning.
+Usually give one paragraph one teaching job. Prefer roughly 2–5 lines within the chosen body width, allowing longer arguments when necessary. A sustained proof may occupy substantial space through named steps and equations. Avoid half-page undifferentiated paragraphs, strings of abstract synonyms, repetitive introductory phrases and whole-page bold emphasis. Do not compress foundations into disconnected recall cards.
 
-Attach a complete answer to **every self-test question and every subquestion**, including “闭书回忆”. Match identifiers exactly; include definitions, evidence, intermediate reasoning and final results. Answers may follow immediately or appear in a clearly referenced chapter answer section. Use English answers for an English examination. Never deliver an unanswered recall prompt.
+Keep the chapter learning sequence coherent. Finish with “基础知识再读”: a compact relationship diagram or table accompanied by enough explanation to reconstruct the chapter's reasoning. Reintroduce prerequisites where later knowledge uses them. Do not repeat identical text to simulate repeated-reading support.
 
-## Apply recurring page rules
+Use Chinese explanation and standard English terminology by default. For English examinations, provide the full English problem and full English solution, with method, intermediate steps, reasons, result, interpretation, units and conditions. Add Chinese intuition alongside as useful. Expand core terminology into meaning, English definition, neighbouring concepts and an English examination sentence; distribute entries where they help and collect a book-wide index.
 
-- Use A4 portrait, pale ruled lines, green chapter accents, blue knowledge numbering and selective yellow highlighting. Preserve the reference's textbook feel and handwritten Chinese typography where available.
-- Show the large chapter number, title and long green bar only when a new chapter begins. Increment by chapter, not by page.
-- Remove the entire title block on continuation pages; extend the body and annotation regions upwards into its former space. Keep appropriate blank space wherever there is no new content.
-- Use the actual subject in the page header and optional footer, or omit the running label. Remove generic “大学学霸笔记” and “大学学霸笔记 教辅出版物范式” branding from course-page running labels.
-- Alternate page numbers: odd right, even left. In `print`, put the merged annotation column on the same outer side. In `digital`, keep both annotation columns fixed.
-- Put one short quotation, trivia item or joke at the bottom of **every content page**. Prefer one line; allow at most two including attribution, in a strip about 10 mm high. Any suitable subject is allowed, including material unrelated to the course. Verify quotes and facts; keep jokes concise.
-- Leave about half or more of the annotation area free across a chapter. Reserve the print binding margin completely. Do not fill writing space merely because it is available.
+Give every self-test and every subquestion a complete matched answer, including recall prompts. Keep question IDs stable and point to the answer location. Do not substitute hints for answers. Follow explicit user language policy; use Australian spelling for authored English.
 
-## Generate and embed illustrations
+## Apply the notebook visual system
 
-Use the image-generation capability to make hand-drawn concept illustrations, then embed the resulting asset. Use handraw-style entry **103**, **Minimal Absurd Short-Gag Cartoon**, with the original Chinese traits and bilingual prompts in [illustration-103.md](references/illustration-103.md). Request a transparent background for cutout illustrations.
+- Use warm white paper with very pale blue ruled lines or occasional fine grids. Keep scans sharp, upright and clean.
+- Use black for body text, deep blue for numbered knowledge headings, green or a chosen subject colour for chapter and section strips, yellow marker strokes for selected words, red-orange for handwriting, and cyan-blue for sidebar cues.
+- Give printed knowledge and handwritten teaching marks distinct visual identities. Use a readable handwriting face, modest baseline variation, circles, underlines and short curved arrows. Keep labels and equations exact and legible.
+- Use the observed approximate 6:4 main/teaching-sidebar relationship as a compositional reference, not a mandatory coordinate ratio. Preserve usable writing margins and the edition's specified geometry. Teaching spreads may use a wider explanatory sidebar; ordinary annotation pages retain their writing area.
+- Use varied page types matched to the concept. Keep ordinary pages recognisably related while allowing overview, experiment and synthesis pages their own composition.
+- Use a black chapter heading at openings, a green or yellow-green brush-like section strip, and deep-blue knowledge numbering. Show the chapter opening block only once; extend usable content upwards on continuation pages. A section strip may reappear when a genuinely new section begins.
+- Use the actual subject for running labels. Alternate page numbers odd right / even left; in print, match the annotation side. Keep the 20 mm inner print margin completely blank.
+- Retain a short quote, trivia item or joke at the bottom of every body content page, preferably one line and at most two including attribution. Verify attributed facts and quotations. Exempt covers, deliberate blank reverses and detached foldouts.
+- Leave about half or more of the annotation area free across a chapter. Place relevant teaching annotations near their anchors without consuming the user's writing column.
 
-Choose one teachable idea per illustration and typeset its labels, dialogue and formulas separately. Use exact native drawing or typesetting for diagrams whose geometry or numerical relationships must be precise. Preserve the meaning of supplied course figures. The bundled `assets/illustrations/asymptotic-upper-bound.png` is an existing generated example; create subject-specific assets when a new concept requires them.
+Avoid a repeated white-card interface, large rounded rectangles, shadows, glossy decorations or a uniform title-plus-paragraphs page. Compact blue frames for synthesis problems and small functional tables remain appropriate.
 
-## Write direct learning prose
+## Generate teaching comics and exact diagrams
 
-Explain knowledge, conditions, reasoning and applications directly. Keep defensive disclaimers, AI meta-commentary, process assurances and production notes out of the study book. Put subject-relevant assumptions and genuine boundary conditions alongside their definition or conclusion.
+Use the available image-generation capability for original pastel hand-drawn sidebar comics and appropriate scene illustrations. Follow the reusable [sidebar-comics.md](references/sidebar-comics.md) prompt module. Use rounded simple characters, fine hand-drawn contours, restrained pastel colour, minimal background and concise concept-linked dialogue. Choose concept personification, relationship analogy, student questions, concrete examples or a diagram with a small character. The active default is educational sidebar hand drawing; do not force absurd humour, deadpan expressions, YAGI or entry 103.
 
-Use sources faithfully, preserve named results and notation, and resolve factual conflicts. Collect books, papers and external sources in a readable references section. Omit specific teacher-PPT page numbers from the learner-facing pages.
+Generate assets and actually embed them in relevant pages when a finished book is requested. A list of scripts or image prompts is an intermediate output. Request transparent backgrounds for cutout assets. Typeset dialogue, terms, symbols and formulas separately for accuracy and searchable text. Keep recurring characters consistent within a chapter.
 
-## Check before delivery
+Use native vector drawing, plotting or exact typesetting for graphs, axes, Venn diagrams, force vectors, circuits, maps requiring precise positions, reaction structures and numerical relationships. Add generated characters beside these if helpful. Never entrust mathematical truth to decorative raster generation.
 
-Confirm that the central text teaches foundations fully and reads coherently on repeated passes; every example has a full English solution; every self-test subquestion has a complete answer; expanded terminology includes definitions and use; chapter starts and continuation pages follow the shared rules; every content page has a one- or two-line footer; illustrations are generated and embedded; and the chosen geometry leaves usable writing space.
+Check every analogy's knowledge. Distinguish observation from causal inference, necessary from sufficient conditions, and independence from mutually exclusive events. A correct-looking character cannot compensate for an incorrect relationship.
 
-Inspect all rendered pages for clipping, overlapping annotations, broken formulas, unreadable English wrapping, excessive footers and crowded margins. For `print`, verify odd/right and even/left annotations and page numbers, blank 20 mm inner margins, and cover parity. For `digital`, verify two separate annotation areas on every page and no mirrored binding offset.
+## Build, inspect and deliver
 
-Deliver the requested edition with the subject and edition in the filename. When both are requested, return clearly labelled print and digital files containing the same knowledge and answers.
+Use the Documents or PDF skill for authoring and follow its rendering requirements. Keep content separate from pagination and preserve source diagrams' meaning. Use the legacy builder only for its explicitly gated historical geometry demonstration; adapt drawing primitives or build a current subject manuscript rather than relabelling the old example.
+
+Render every output page and inspect it at full-page scale; inspect dense diagrams, sidebars, English solutions and foldouts at readable zoom. Check layout, teaching meaning and source completeness separately. Correct defects and repeat checks on affected pages.
+
+Before delivery confirm:
+
+1. Every requested topic and prerequisite is taught; examples, terminology and answers are complete.
+2. Page types vary for teaching reasons; the visual coverage audit finds no unexplained gaps.
+3. Paper, colour, highlighting and handwritten annotations are distinct and readable; comics use the active educational style.
+4. Every final illustration is embedded and mapped to its concept; diagrams, labels and numerical relationships are accurate.
+5. The selected edition preserves writing space, page numbers and binding/dual-column rules; print front matter preserves recto parity.
+6. Cover and wide reference sheet are designed for the actual subject, when in scope. The reference sheet remains legible and print tiling is complete where supplied.
+7. Contents, cross-references, answers, bookmarks and searchable text match final pagination. No ads, watermarks or unintended commercial front matter remain.
+
+Deliver requested editions with subject and edition in filenames, plus foldout files when in scope. Save requested artifacts through the available persistent file capability, except externally Git-backed projects and installed skill resources. Report incomplete batches or unavailable generation accurately; do not describe an outline or partial book as complete.

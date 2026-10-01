@@ -1,89 +1,70 @@
 # 大学学霸笔记 · University Xueba Notes
 
-把大学课程整理成可以反复通读的完整知识笔记，并按书写方式选择打印版或电子批注版。
+将大学课程编成可以反复阅读的完整知识笔记，复刻所提供教辅的格式、视觉风格与知识讲解安排，保持同一出版社学科系列的感觉。课程内容依据新资料编写。
 
-正文围绕定义、条件、直觉、推导与应用展开，配合扩展中英术语、完整英文例题、自测与完整答案、手绘概念插图和每页一两行的趣味页脚。
+## 当前规则
 
-## 生成前的两个选项
+正文采用短解释、知识条目、小表格、公式、精确工作图与完整例题步骤。基础知识、条件、推导与答案保持完整。纸面使用暖白底和浅蓝横线，深蓝知识编号、绿色或黄绿笔刷式小节条、黄色荧光关键词、红橙手写批注各有固定用途。
 
-**你准备怎样使用这份笔记？**
+漫画采用浅彩、Q版、简线、低细节、极少背景与短对白的教辅边栏手绘风格。原103号荒诞短漫画已退出默认流程，只作历史资源保留。生成成书时实际制作并嵌入漫画；数值图、公式和精确几何使用原生绘图与排版。
 
-| 选项 | 批注布局 | 适合用途 |
-| --- | --- | --- |
-| 打印后手写批注 | 奇数页右侧、偶数页左侧的一条 45 mm 批注栏；书脊侧留白 20 mm | 双面打印、装订、纸上书写 |
-| 在电脑或平板上批注 | 每页固定左右两个批注栏，宽 22 / 28 mm | PDF 阅读、电脑批注、平板手写 |
+## 批注版本
 
-明确选择后沿用同一模式；需要两版时使用同一份知识稿，分别排版。
-
-## 预览与完整样稿
-
-| 打印版 | 电子批注版 |
+| 用途 | 版式 |
 | --- | --- |
-| ![打印版：外侧单栏](skills/artifact-template-university-xueba-notes/assets/examples/print-preview.png) | ![电子批注版：左右双栏](skills/artifact-template-university-xueba-notes/assets/examples/digital-preview.png) |
-| [打印版规范与连续样稿 PDF](skills/artifact-template-university-xueba-notes/assets/examples/print-reference.pdf) | [电子批注版规范与连续样稿 PDF](skills/artifact-template-university-xueba-notes/assets/examples/digital-reference.pdf) |
+| 打印后手写批注 | 奇数正文页右侧、偶数页左侧单条45 mm外侧批注栏，内侧留白20 mm |
+| 电脑或平板批注 | 每页固定左右两条批注栏，宽22 / 28 mm |
 
-每份 PDF 均为 14 页，包含版式规范和六页连续章节样稿：渐近分析的完整讲解、八项扩展术语及英文例句、完整英文证明、四道自测和逐题完整英文答案。
+沿用用户已选择的版本。需要两版时共用知识、术语、题目与答案ID，分别分页。约6:4的主副栏关系用于教学构图参考，普通批注页保留上述书写几何。
 
-## 核心要求
+## 教学页与全书组成
 
-- 完整、连贯的基础知识正文，适合初学和多次通读。
-- 中文解释配扩展英文术语：名称、含义、英文定义、概念关系、考试表达。
-- 例题题目与完整解答使用英语；每项自测和每个小问都有完整答案。
-- 大章节数字和长绿标题条只在新章节首页出现；续页正文与批注向上延伸。
-- 页码奇右偶左；打印版批注和页码同侧，并保留内侧装订空隙。
-- 页眉页脚采用具体科目名或省略通用名称。
-- 每页一则名言、冷知识或短笑话，最多两行，题材不限于科目。
-- 使用 handraw-style 第 103 项提示词调用生图功能，生成后嵌入笔记；精确公式和图形单独排版。
+按知识需要组合知识页、视觉解释页、实验或过程页、完整例题页、综合理解页和章末关系图。完整书包含学科封面、可导航目录、册级知识总览、完整章节、术语、完整答案与学科独立设计的超宽速查。章节请求按其范围制作。
 
-## 使用这个 skill
+英语考试提供完整英文题目与完整英文解答；每项自测和每个小问配完整答案。保留扩展中英术语、标准条件与例句。正文内容页保留最多两行的短页脚，封面、空白背面与独立速查折页不要求趣味页脚。
 
-完整 skill 位于 [`skills/artifact-template-university-xueba-notes`](skills/artifact-template-university-xueba-notes)。保留整个目录，使参考文档、脚本、插图、布局说明和许可证可以按相对路径找到。
+封面保持同系列标题、科目标牌、人物与学科名层级，按学科换色和图形。去除广告、版权页、ISBN、二维码、出版社商标与扫描水印。速查按学科选择公式、矩阵、关系图或判断流程，保留超宽页；需要常规打印时提供完整分块。
 
-在支持 personal skills 的 AI 助手中导入整个目录，或让助手读取该目录的 `SKILL.md`。同时提供课程大纲、讲义、教材或练习资料，并指定使用方式。例如：
+## 使用
 
-> 使用大学学霸笔记，把这门课的材料整理成可以反复通读的笔记。我会打印装订后手写批注，考试用英语。
+完整skill位于 [skills/artifact-template-university-xueba-notes](skills/artifact-template-university-xueba-notes)。导入整个目录，保留参考、脚本、原始资源和许可证的相对路径。
 
-> 使用大学学霸笔记，整理算法的渐近分析章节。我在平板上写批注，请使用电子批注版。
+> 使用大学学霸笔记，依据这些课程资料制作完整统计学笔记。采用打印批注版，英语考试，页面与漫画保持所提供教辅的系列风格。
 
-> 使用大学学霸笔记，按同一份知识稿生成打印版和电子批注版。
+> 使用大学学霸笔记，制作条件概率章节。我在平板上批注，采用电子双侧批注版。
 
-未指定方式时，skill 会先提供上面的两个选项。根据任务使用相应文档/PDF能力、生图能力和可视化检查流程。
+## 规范入口
 
-## 文件组织
+- [主流程](skills/artifact-template-university-xueba-notes/SKILL.md)
+- [系列一致性](skills/artifact-template-university-xueba-notes/references/series-contract.md)
+- [内容与语言](skills/artifact-template-university-xueba-notes/references/content-and-language.md)
+- [视觉体系](skills/artifact-template-university-xueba-notes/references/visual-system.md)
+- [教学页型](skills/artifact-template-university-xueba-notes/references/page-types.md)
+- [边栏漫画独立提示词](skills/artifact-template-university-xueba-notes/references/sidebar-comics.md)
+- [学科视觉](skills/artifact-template-university-xueba-notes/references/subject-visuals.md)
+- [封面与超宽速查](skills/artifact-template-university-xueba-notes/references/cover-and-foldout.md)
+- [参考页面校准](skills/artifact-template-university-xueba-notes/references/reference-observations.md)
+- [制作与检查](skills/artifact-template-university-xueba-notes/references/production.md)
+- [书稿计划格式](skills/artifact-template-university-xueba-notes/references/book-plan.md)
 
-```text
-skills/artifact-template-university-xueba-notes/
-  SKILL.md                         主流程、两种用途选择与共同要求
-  artifact-template.json           原始模板信息
-  agents/openai.yaml               skill 显示信息与默认提示
-  references/                      打印、电子、内容语言、生图与制作说明
-  scripts/                         样稿生成、字体准备与验证
-  assets/reference.docx            保留的原始文档参考
-  assets/preview.png               保留的原始模板预览
-  assets/examples/                 两版 PDF、页面预览与布局数据
-  assets/illustrations/            已生成并嵌入样稿的概念插图
-  assets/licenses/                 第三方字体与提示词的许可文件
-```
-
-原始参考文档保留不变，新增规范负责说明本次明确修改的版式规则。样稿生成器包含示范课程内容，制作其他科目时由助手根据课程资料写作并重新排版。
-
-## 重建样稿
-
-需要 Python 3.10 或更新版本，安装依赖后在仓库根目录执行：
+## 检查书稿计划
 
 ```sh
-python -m pip install -r requirements.txt
-python skills/artifact-template-university-xueba-notes/scripts/prepare_fonts.py --output-dir .fonts
-python skills/artifact-template-university-xueba-notes/scripts/build_reference.py --edition print --font-dir .fonts --output output/print-reference.pdf
-python skills/artifact-template-university-xueba-notes/scripts/build_reference.py --edition digital --font-dir .fonts --output output/digital-reference.pdf
-python skills/artifact-template-university-xueba-notes/scripts/verify_reference.py output/print-reference.pdf --edition print
-python skills/artifact-template-university-xueba-notes/scripts/verify_reference.py output/digital-reference.pdf --edition digital
+python skills/artifact-template-university-xueba-notes/scripts/validate_book_plan.py /path/to/book-plan.json --stage plan
+python skills/artifact-template-university-xueba-notes/scripts/validate_book_plan.py /path/to/book-plan.json --stage delivery
 ```
 
-字体准备脚本从上游获取 LXGW WenKai、Noto Sans SC 和 DejaVu，并保存对应许可；已有字体时可用 `--source-dir` 离线准备。PDF 内已嵌入所需字体，直接阅读样稿无需下载字体。生成新稿后，还需用 PDF 渲染工具检查所有页面。
+结构检查覆盖主题、概念与图像联系、题目小问答案、页型、默认漫画风格、批注面积与最终资源文件。不能替代知识准确性审查或PDF逐页渲染检查。
 
-## 风格来源
+## 历史样稿
 
-[yang0/handraw-style](https://github.com/yang0/handraw-style) 第 103 项，固定版本 `3737026e2e829540faf5c0627f37251be02b092d`：**Minimal Absurd Short-Gag Cartoon**，参考名 **YAGI**。原始中文特征、中英文提示词和 MIT 许可均已保留。
+assets/examples中的两份14页PDF和预览，以及原reference.docx保留作旧版几何和语言示范。它们的连续说明文和103号漫画不代表当前视觉标准。本次更新skill、参考规范与检查脚本，未将这些旧PDF重绘为新版样稿。
 
-字体与提示词来源及许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+旧生成器需明确使用历史模式：
+
+```sh
+python skills/artifact-template-university-xueba-notes/scripts/build_reference.py --legacy-geometry-demo --edition print --font-dir /path/to/fonts --output old-print-reference.pdf
+python skills/artifact-template-university-xueba-notes/scripts/verify_reference.py old-print-reference.pdf --edition print
+```
+
+字体准备仍可使用prepare_fonts.py及其source-dir离线选项。字体和历史提示词许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。用户提供的整本扫描与截图不加入本公开目录。

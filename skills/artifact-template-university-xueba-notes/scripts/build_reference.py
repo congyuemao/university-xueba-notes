@@ -13,10 +13,13 @@ import argparse
 
 SKILL_ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser(description="Build the University Xueba Notes reference examples.")
+parser.add_argument('--legacy-geometry-demo', action='store_true', help='Explicitly reproduce the archived 3.0 geometry demo; not a current book generator.')
 parser.add_argument('--edition', choices=('print','digital'), required=True)
 parser.add_argument('--font-dir', type=Path, required=True)
 parser.add_argument('--output', type=Path, required=True)
 args = parser.parse_args()
+if not args.legacy_geometry_demo:
+    parser.error("This builder is archived. Supply --legacy-geometry-demo only to reproduce the historical layout; use the active series and sidebar-comics references for new books.")
 EDITION = args.edition
 PATH = args.output.resolve()
 PATH.parent.mkdir(parents=True, exist_ok=True)
