@@ -29,7 +29,7 @@ Read before drafting:
 - Selected [print layout](references/layout-print.md) or [digital layout](references/layout-digital.md).
 - [Production and verification](references/production.md): source mapping, assets, rendering and delivery.
 
-Use [reference-page calibration](references/reference-observations.md) when comparing against supplied examples. Read [sidebar comic prompts](references/sidebar-comics.md) before designing or generating small comics. Read [subject visuals](references/subject-visuals.md) when planning diagrams and [cover and foldout](references/cover-and-foldout.md) for whole-book outputs or when either is requested. Read [book plan format](references/book-plan.md) when using the bundled plan validator.
+Use [reference calibration guidance](references/reference-observations.md) when calibrating against the supplied scans. Read [sidebar comic prompts](references/sidebar-comics.md) before designing or generating small comics. Read [subject visuals](references/subject-visuals.md) when planning diagrams and [cover and foldout](references/cover-and-foldout.md) for whole-book outputs or when either is requested. Read [book plan format](references/book-plan.md) when using the bundled plan validator.
 
 Keep `artifact-template.json`, `assets/reference.docx`, the original preview and older `assets/examples/` intact as historical layout evidence. They demonstrate earlier geometry and typography; they do not define the current visual target. Current user instructions and active references control new work. The archived [illustration 103](references/illustration-103.md) applies only when explicitly requested.
 
@@ -58,7 +58,7 @@ Give every self-test and every subquestion a complete matched answer, including 
 
 ## Apply the notebook visual system
 
-- Use warm white paper with very pale blue ruled lines or occasional fine grids. Keep scans sharp, upright and clean.
+- Use pure white, unfilled paper in print to save ink; use warm white paper in digital. Retain very pale blue ruled lines or occasional fine grids in both. Do not paint a full-page background or tint the blank writing areas in print.
 - Use black for body text, deep blue for numbered knowledge headings, green or a chosen subject colour for chapter and section strips, yellow marker strokes for selected words, red-orange for handwriting, and cyan-blue for sidebar cues.
 - Give printed knowledge and handwritten teaching marks distinct visual identities. Use a readable handwriting face, modest baseline variation, circles, underlines and short curved arrows. Keep labels and equations exact and legible.
 - Use the observed approximate 6:4 main/teaching-sidebar relationship as a compositional reference, not a mandatory coordinate ratio. Preserve usable writing margins and the edition's specified geometry. Teaching spreads may use a wider explanatory sidebar; ordinary annotation pages retain their writing area.

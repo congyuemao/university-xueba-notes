@@ -29,3 +29,7 @@ Reference: `assets/examples/digital-reference.pdf`.
 ## Active visual rules
 
 Use `series-contract.md` and `visual-system.md` for current paper, hierarchy, short teaching units, handwritten notes and pastel educational comics. The older reference PDF demonstrates geometry only. Put a black chapter heading and a brush-like section strip within the opening title area; do not require the old oversized white chapter digit on a solid green block. Preserve ordinary-page coordinates. A wider teaching spread may vary internal composition while retaining usable annotation areas and the edition's binding rules.
+
+## Digital paper
+
+Use warm white paper, approximately #FFFEF8, while keeping the rules subtle and text contrast clear. Keep the same series colours and teaching content as print.

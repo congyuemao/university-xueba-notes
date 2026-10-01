@@ -32,3 +32,7 @@ Reference: `assets/examples/print-reference.pdf`.
 ## Active visual rules
 
 Use `series-contract.md` and `visual-system.md` for current paper, hierarchy, short teaching units, handwritten notes and pastel educational comics. The older reference PDF demonstrates geometry only. Put a black chapter heading and a brush-like section strip within the opening title area; do not require the old oversized white chapter digit on a solid green block. Preserve ordinary-page coordinates. A wider teaching spread may vary internal composition while retaining usable annotation areas and the edition's binding rules.
+
+## Ink-saving paper
+
+Use pure white paper without a full-page background fill. Leave blank writing and binding areas unpainted. Retain very pale rules and selective teaching highlights; avoid large tinted panels. Apply the same ink-saving principle to the print cover: preserve series composition using coloured accents on white rather than a solid coloured page.
