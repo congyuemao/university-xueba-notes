@@ -1,0 +1,337 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "chinese-humor",
+      "title": "SamTseng/Chinese_Humor_MultiLabeled",
+      "url": "https://github.com/SamTseng/Chinese_Humor_MultiLabeled",
+      "revision": "d6ce23497ac9bc50071600c65b465b7e14a861df",
+      "accessed": "2026-10-02",
+      "reuse": "MIT"
+    },
+    {
+      "id": "60s",
+      "title": "jinyiwei2012/60s",
+      "url": "https://github.com/jinyiwei2012/60s",
+      "revision": "e4764328c6391c254970b97793cdb4241a69c620",
+      "accessed": "2026-10-02",
+      "reuse": "MIT"
+    },
+    {
+      "id": "gushiwen",
+      "title": "aopao/chinese-gushiwen",
+      "url": "https://github.com/aopao/chinese-gushiwen",
+      "revision": "c2345d0abf2404b8b3601e4afc2e8fd12f90d6c8",
+      "accessed": "2026-10-02",
+      "reuse": "古代作品原文（公版）；只取原文、作者及篇名，不取现代翻译、赏析。上游仓库未声明整体许可证。"
+    },
+    {
+      "id": "nasa-mercury",
+      "title": "NASA · Mercury Facts",
+      "url": "https://science.nasa.gov/mercury/facts/",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "nasa-venus",
+      "title": "NASA · Venus Facts",
+      "url": "https://science.nasa.gov/venus/venus-facts/",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "nasa-earth",
+      "title": "NASA · Earth Facts",
+      "url": "https://science.nasa.gov/earth/facts/",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "nasa-mars",
+      "title": "NASA · Mars Facts",
+      "url": "https://science.nasa.gov/mars/facts/",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "nasa-jupiter",
+      "title": "NASA · Jupiter Facts",
+      "url": "https://science.nasa.gov/jupiter/jupiter-facts/",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "nasa-saturn",
+      "title": "NASA · Saturn Facts",
+      "url": "https://science.nasa.gov/saturn/facts/",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "nasa-uranus",
+      "title": "NASA · Uranus Facts",
+      "url": "https://science.nasa.gov/uranus/facts/",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "nasa-neptune",
+      "title": "NASA · Neptune Facts",
+      "url": "https://science.nasa.gov/neptune/neptune-facts/",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "nasa-moon",
+      "title": "NASA · Moon Facts",
+      "url": "https://science.nasa.gov/moon/facts/",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "nasa-sun",
+      "title": "NASA · Sun Facts",
+      "url": "https://science.nasa.gov/sun/facts/",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "python-intro",
+      "title": "Python 官方教程 · 基础",
+      "url": "https://docs.python.org/3/tutorial/introduction.html",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "python-data",
+      "title": "Python 官方教程 · 数据结构",
+      "url": "https://docs.python.org/3/tutorial/datastructures.html",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "python-float",
+      "title": "Python 官方教程 · 浮点数",
+      "url": "https://docs.python.org/3/tutorial/floatingpoint.html",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "python-faq",
+      "title": "Python 官方FAQ · 命名与起源",
+      "url": "https://docs.python.org/3/faq/general.html",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "python-types",
+      "title": "Python 官方文档 · 内置类型",
+      "url": "https://docs.python.org/3/library/stdtypes.html",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "stats-center",
+      "title": "OpenStax · 统计学：集中趋势",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/2-5-measures-of-the-center-of-the-data",
+      "accessed": "2026-10-02",
+      "reuse": "CC BY 4.0；依据教材定义重新举例和改写"
+    },
+    {
+      "id": "stats-independent",
+      "title": "OpenStax · 独立与互斥",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/3-2-independent-and-mutually-exclusive-events",
+      "accessed": "2026-10-02",
+      "reuse": "CC BY 4.0；依据教材定义重新举例和改写"
+    },
+    {
+      "id": "calculus-continuity",
+      "title": "OpenStax · 微积分：连续性",
+      "url": "https://openstax.org/books/calculus-volume-1/pages/2-4-continuity",
+      "accessed": "2026-10-02",
+      "reuse": "CC BY 4.0；OpenStax教材；中文表述与示例为本项目改写"
+    },
+    {
+      "id": "calculus-derivative",
+      "title": "OpenStax · 微积分：导函数",
+      "url": "https://openstax.org/books/calculus-volume-1/pages/3-2-the-derivative-as-a-function",
+      "accessed": "2026-10-02",
+      "reuse": "CC BY 4.0；OpenStax教材；中文表述与示例为本项目改写"
+    },
+    {
+      "id": "calculus-extrema",
+      "title": "OpenStax · 微积分：极值",
+      "url": "https://openstax.org/books/calculus-volume-1/pages/4-3-maxima-and-minima",
+      "accessed": "2026-10-02",
+      "reuse": "CC BY 4.0；OpenStax教材；中文表述与示例为本项目改写"
+    },
+    {
+      "id": "calculus-integral",
+      "title": "OpenStax · 微积分：定积分",
+      "url": "https://openstax.org/books/calculus-volume-1/pages/5-2-the-definite-integral",
+      "accessed": "2026-10-02",
+      "reuse": "CC BY 4.0；OpenStax教材；中文表述与示例为本项目改写"
+    },
+    {
+      "id": "physics-angular",
+      "title": "OpenStax · 物理：角动量守恒",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/11-3-conservation-of-angular-momentum",
+      "accessed": "2026-10-02",
+      "reuse": "CC BY 4.0；OpenStax教材；中文表述与示例为本项目改写"
+    },
+    {
+      "id": "physics-buoyancy",
+      "title": "OpenStax · 物理：浮力",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy",
+      "accessed": "2026-10-02",
+      "reuse": "CC BY 4.0；OpenStax教材；中文表述与示例为本项目改写"
+    },
+    {
+      "id": "nist-kilogram",
+      "title": "NIST · 千克的新定义",
+      "url": "https://www.nist.gov/si-redefinition/kilogram-introduction",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "usgs-density",
+      "title": "USGS · 水的密度",
+      "url": "https://www.usgs.gov/water-science-school/science/water-density",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "usgs-tension",
+      "title": "USGS · 表面张力",
+      "url": "https://www.usgs.gov/water-science-school/science/surface-tension-and-water",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "usgs-adhesion",
+      "title": "USGS · 黏附与内聚",
+      "url": "https://www.usgs.gov/water-science-school/science/adhesion-and-cohesion-water",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "noaa-sound",
+      "title": "NOAA · 海洋中的声音",
+      "url": "https://oceanservice.noaa.gov/facts/sound.html",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "noaa-pressure",
+      "title": "NOAA · 海水压力",
+      "url": "https://oceanservice.noaa.gov/facts/pressure.html",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "noaa-blue",
+      "title": "NOAA · 海洋颜色",
+      "url": "https://oceanservice.noaa.gov/facts/oceanblue.html",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "noaa-salt",
+      "title": "NOAA · 海盐来源",
+      "url": "https://oceanservice.noaa.gov/facts/whysalty.html",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "noaa-jellyfish",
+      "title": "NOAA · 水母身体组成",
+      "url": "https://oceanservice.noaa.gov/facts/jellyfish.html",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "noaa-coral",
+      "title": "NOAA · 珊瑚是动物",
+      "url": "https://oceanservice.noaa.gov/facts/coral.html",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "noaa-bleaching",
+      "title": "NOAA · 珊瑚白化",
+      "url": "https://oceanservice.noaa.gov/facts/coral_bleach.html",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "nhm-octopus",
+      "title": "自然历史博物馆 · 章鱼的八个特点",
+      "url": "https://www.nhm.ac.uk/discover/octopuses-keep-surprising-us-here-are-eight-examples-how.html",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "smithsonian-jelly",
+      "title": "史密森尼 · 水母与栉水母",
+      "url": "https://ocean.si.edu/ocean-life/invertebrates/jellyfish-and-comb-jellies",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "kew-strawberry",
+      "title": "邱园 · 园艺草莓",
+      "url": "https://www.kew.org/plants/garden-strawberry",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "rsc-helium",
+      "title": "英国皇家化学学会 · 氦",
+      "url": "https://periodic-table.rsc.org/element/2/helium",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "rsc-gallium",
+      "title": "英国皇家化学学会 · 镓",
+      "url": "https://periodic-table.rsc.org/element/31/gallium",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "rsc-carbon",
+      "title": "英国皇家化学学会 · 碳",
+      "url": "https://periodic-table.rsc.org/element/6/Carbon",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "rsc-tungsten",
+      "title": "英国皇家化学学会 · 钨",
+      "url": "https://periodic-table.rsc.org/element/74/Tungsten",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "rsc-bromine",
+      "title": "英国皇家化学学会 · 溴",
+      "url": "https://periodic-table.rsc.org/element/35/bromine",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "rsc-mercury",
+      "title": "英国皇家化学学会 · 汞",
+      "url": "https://periodic-table.rsc.org/element/80/mercury",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    },
+    {
+      "id": "rsc-neon",
+      "title": "英国皇家化学学会 · 氖",
+      "url": "https://periodic-table.rsc.org/element/10/neon",
+      "accessed": "2026-10-02",
+      "reuse": "事实摘编；中文表述为本项目重新撰写"
+    }
+  ]
+}

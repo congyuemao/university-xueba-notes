@@ -9,23 +9,37 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
 from pdf_template_layout import *
 from context_highlights import validate_content_highlights,contextual_highlight_lines
+from pick_fun_content import DEFAULT_CATALOG,KINDS,FunPicker,UsageHistory,load_catalog,display_text,write_json
 class Book:
-    def __init__(self,a):
-        self.a=a;self.content=json.loads(Path(a.content).read_text());self.man=json.loads((Path(a.templates)/'template-manifest.json').read_text());self.src=Path(a.templates)/(a.edition+'-master.pdf');self.hash=hashlib.sha256(self.src.read_bytes()).hexdigest();self.master=fitz.open(self.src);self.doc=fitz.open();self.toc=[];self.logs=[];self.g=None;self.contents_links=[];self.body_targets={};register_fonts(a.fonts)
+    def __init__(self,a,history=None):
+        self.a=a;self.content=json.loads(Path(a.content).read_text(encoding='utf-8'));self.man=json.loads((Path(a.templates)/'template-manifest.json').read_text(encoding='utf-8'));self.src=Path(a.templates)/(a.edition+'-master.pdf');self.hash=hashlib.sha256(self.src.read_bytes()).hexdigest();self.master=fitz.open(self.src);self.doc=fitz.open();self.toc=[];self.logs=[];self.g=None;self.contents_links=[];self.body_targets={};register_fonts(a.fonts)
         validate_content_highlights(self.content)
         grid=self.man['grid'];self.first=grid['first_baseline_mm'];self.pitch=grid['pitch_mm'];self.maxrows=grid['rows'];self.assets=Path(a.assets)
+        self.history=history;self.fun_picker=None;self.fun_item=None;self.fun_lines_cache={}
+        if a.fun_mode=='random' and not a.foldout_only:
+            self.fun_picker=FunPicker(load_catalog(a.fun_catalog),seed=a.fun_seed,subjects=a.fun_subject,
+                kinds=a.fun_types,include_general=a.fun_include_general,max_lines=a.fun_max_lines,history=history)
     def y(self,row):return self.first+row*self.pitch
     def start(self,role,number=None):
         self.role=role;self.no=number;self.buf=BytesIO();self.h=210 if role=='foldout' else 297;self.w=594 if role=='foldout' else 210;self.c=canvas.Canvas(self.buf,pagesize=(self.w*MM,self.h*MM));LOG.clear()
-        self.g=self.man['editions'][self.a.edition].get(role)
+        self.g=self.man['editions'][self.a.edition].get(role);self.fun_item=None
     def finish(self):
         self.c.showPage();self.c.save();overlay=fitz.open(stream=self.buf.getvalue(),filetype='pdf');p=self.doc.new_page(width=self.w*MM,height=self.h*MM);p.show_pdf_page(p.rect,self.master,self.man['roles'][self.role]);p.show_pdf_page(p.rect,overlay,0)
-        self.logs.append({'pdf_page':len(self.doc),'logical_page':self.no,'role':self.role,'texts':list(LOG)})
+        self.logs.append({'pdf_page':len(self.doc),'logical_page':self.no,'role':self.role,'texts':list(LOG),'fun_content':self.fun_item})
     def say(self,s,x,y,font='Body',size=11.6,color=INK,align='left',grid=False):
         if s is not None and str(s):return text(self.c,str(s),x,y,font,size,color,align,self.h,grid)
     def furniture(self,title,joke,logical=None,opening=False):
         g=self.g;header=self.content.get('running_header') or {};self.say(header.get('left',self.content.get('subject','')),g['start'],11,'Head',9,BLUE);self.say(header.get('right',self.content.get('chapter','')),g['end'],11,'Body',9,INK,'right')
-        strip=self.man['humour_strip'];lines=wrap(joke,g['end']-g['start']-2*strip['padding_mm'],strip['font'],strip['size_pt'])
+        strip=self.man['humour_strip'];available=g['end']-g['start']-2*strip['padding_mm']
+        if self.fun_picker:
+            def line_count(value):
+                key=(value,available,strip['font'],strip['size_pt'])
+                if key not in self.fun_lines_cache:
+                    try:self.fun_lines_cache[key]=len(wrap(value,available,strip['font'],strip['size_pt']))
+                    except ValueError:self.fun_lines_cache[key]=3
+                return self.fun_lines_cache[key]
+            self.fun_item=self.fun_picker.pick(line_count);joke=display_text(self.fun_item)
+        lines=wrap(joke,available,strip['font'],strip['size_pt'])
         if len(lines)>strip['max_lines']:raise ValueError('Humour exceeds the two-line bottom strip')
         baselines=[strip['single_baseline_mm']] if len(lines)<2 else strip['double_baselines_mm']
         for humour_line,baseline in zip(lines,baselines):self.say(humour_line,g['start']+strip['padding_mm'],baseline,strip['font'],strip['size_pt'],strip['foreground'])
@@ -215,7 +229,29 @@ class Book:
         metadata=self.content.get('metadata') or {};self.doc.set_metadata({key:metadata.get(key,'') for key in ('title','author','subject','keywords')})
         self.doc.rewrite_images(dpi_threshold=450,dpi_target=300,quality=94,bitonal=False)
         self.doc.save(self.a.output,garbage=4,deflate=True)
-        Path(self.a.output).with_suffix('.layout.json').write_text(json.dumps({'master_sha256':self.hash,'pages':self.logs},ensure_ascii=False,indent=2))
+        write_json(Path(self.a.output).with_suffix('.layout.json'),{'master_sha256':self.hash,'fun_mode':self.a.fun_mode,'fun_seed':self.a.fun_seed,'pages':self.logs})
         assert hashlib.sha256(self.src.read_bytes()).hexdigest()==self.hash,'Master was modified'
+        if self.fun_picker and self.history:self.history.commit(self.fun_picker.selected)
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--content',required=True);p.add_argument('--templates',required=True);p.add_argument('--fonts',required=True);p.add_argument('--assets',required=True);p.add_argument('--edition',choices=['print','digital'],default='print');p.add_argument('--output',required=True);p.add_argument('--foldout-only',action='store_true');Book(p.parse_args()).run()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--content',required=True);p.add_argument('--templates',required=True);p.add_argument('--fonts',required=True);p.add_argument('--assets',required=True);p.add_argument('--edition',choices=['print','digital'],default='print');p.add_argument('--output',required=True);p.add_argument('--foldout-only',action='store_true')
+    p.add_argument('--fun-mode',choices=['random','content'],default='random',help='random随机抽取；content使用内容JSON原有humour')
+    p.add_argument('--fun-catalog',type=Path,default=DEFAULT_CATALOG)
+    p.add_argument('--fun-seed',type=int,help='固定随机种子以复现本次抽取')
+    p.add_argument('--fun-subject',action='append',help='按学科筛选，可重复使用，支持中文名')
+    p.add_argument('--fun-include-general',action='store_true',help='学科筛选时同时纳入通用笑话和名句')
+    p.add_argument('--fun-types',nargs='+',choices=KINDS)
+    p.add_argument('--fun-max-lines',type=int,choices=[1,2],default=2)
+    p.add_argument('--fun-used-file',type=Path,help='同一本书各章共用的已用语料记录')
+    a=p.parse_args()
+    try:
+        output=Path(a.output)
+        reserved={Path(a.content).resolve(),a.fun_catalog.resolve(),output.with_suffix('.layout.json').resolve()}
+        if a.fun_used_file and a.fun_used_file.resolve() in reserved|{output.resolve()}:
+            raise ValueError('趣味语料历史文件须与输入、输出及布局记录使用不同路径')
+        if output.resolve() in {Path(a.content).resolve(),a.fun_catalog.resolve()}:
+            raise ValueError('PDF输出路径不能覆盖输入内容或语料库')
+        if a.fun_used_file and a.fun_mode=='content':
+            raise ValueError('--fun-used-file用于random模式；content模式直接使用手写内容')
+        output.parent.mkdir(parents=True,exist_ok=True)
+        with UsageHistory(a.fun_used_file if not a.foldout_only else None) as history:Book(a,history).run()
+    except (ValueError,OSError) as error:p.error(str(error))

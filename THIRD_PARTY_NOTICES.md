@@ -19,3 +19,14 @@
 ## 当前生成资源
 
 `Resources/illustrations/` 中三幅统计学漫画由图像生成工具制作；提示词、参考路径与修正记录保存在 `comic-prompts.json`。`Resources/templates/` 保存当前 PDF 母版，`Resources/examples/` 保存配套统计学示例与检查记录。
+
+## 趣味语料
+
+结构化语料位于 `Resources/fun-content/`。每条记录保留来源链接与定位；来源目录保存上游版本或访问日期。
+
+- 中文笑话选自 [Chinese_Humor_MultiLabeled](https://github.com/SamTseng/Chinese_Humor_MultiLabeled)（Copyright 2020 Yuen-Hsien Tseng）及 [60s](https://github.com/jinyiwei2012/60s)（Copyright 2022-Present Viki）。两者仓库均采用 MIT；许可证副本随附为 `assets/licenses/Chinese-Humor-MIT.txt` 和 `60s-MIT.txt`。入库时转为简体、整理标点，部分条目缩短或改为中性角色。
+- 古典名句通过 [chinese-gushiwen](https://github.com/aopao/chinese-gushiwen) 检索并与篇目原文比对，只取已进入公版的古代作品原文、作者和篇名。该数据仓库未提供整体许可证；未复制其现代翻译、赏析或整套数据库。
+- 学科知识参考 OpenStax《Calculus Volume 1》《University Physics Volume 1》《Introductory Statistics 2e》，按 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 标示来源；中文短句及部分示例由本项目重新组织。
+- 其他冷知识核对 NASA、NOAA、USGS、NIST、英国皇家化学学会、自然历史博物馆、邱园与史密森尼的资料；计算机条目核对 Python Software Foundation 官方文档。只提炼事实并重新撰写中文，不复制网页图片或整段说明。Python文档版权归 Python Software Foundation；[文档许可](https://docs.python.org/3/license.html)。
+
+逐条出处及所用章节见 [sources.json](skills/artifact-template-university-xueba-notes/Resources/fun-content/sources.json) 和各语料的 `source` 字段。

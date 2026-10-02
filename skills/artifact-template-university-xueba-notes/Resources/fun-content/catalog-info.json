@@ -1,0 +1,28 @@
+{
+  "total": 953,
+  "by_kind": {
+    "joke": 356,
+    "quote": 353,
+    "trivia": 145,
+    "subject_fact": 99
+  },
+  "by_subject": {
+    "general": 709,
+    "language": 22,
+    "mathematics": 28,
+    "chemistry": 22,
+    "physics": 25,
+    "computer_science": 44,
+    "literature": 353,
+    "astronomy": 78,
+    "earth_science": 18,
+    "statistics": 15,
+    "biology": 23
+  },
+  "layout_lines": {
+    "1": 940,
+    "2": 13
+  },
+  "max_characters": 60,
+  "sources": 47
+}

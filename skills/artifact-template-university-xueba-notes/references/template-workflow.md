@@ -8,6 +8,7 @@
 | 电子母版 | `Resources/templates/digital-master.pdf`，保留固定左右批注栏 |
 | 模板清单 | `Resources/templates/template-manifest.json`，定义页型、位置、网格、字段和行容量 |
 | 填充脚本 | `scripts/fill_template.py`，读取独立内容JSON并填入母版 |
+| 趣味语料 | `Resources/fun-content/items.jsonl`；抽取入口为 `scripts/pick_fun_content.py` |
 | 版式示例 | `Resources/examples/print-reference.pdf`、`digital-reference.pdf`、`foldout.pdf` |
 | 漫画源图 | `Resources/reference-comics/`，使用实际原书裁片与来源索引 |
 
@@ -41,7 +42,9 @@ python scripts/fill_template.py --content Resources/content/statistics-chapter.j
 python scripts/fill_template.py --content Resources/content/statistics-chapter.json --templates Resources/templates --fonts /path/to/fonts --assets Resources/illustrations --edition print --foldout-only --output /path/to/output/foldout.pdf
 ```
 
-每次输出PDF和同名 `.layout.json` 定位记录，并校验母版文件未被修改。图像路径相对 `--assets` 指定的目录。
+每次输出PDF和同名 `.layout.json` 定位记录，记录中每页的 `fun_content` 包含所选条目和出处。图像路径相对 `--assets` 指定的目录。
+
+趣味条默认自动从随包语料随机抽取，每个有效页面使用不同条目。加 `--fun-seed 42` 固定随机结果；加 `--fun-used-file output/book-used.json` 让各章共用历史；加 `--fun-subject 统计学 --fun-include-general` 混合统计学内容与通用笑话、名句。用 `--fun-mode content` 可改用内容JSON原有的 `humour` 字段。完整用法见[趣味语料](fun-content.md)。
 
 ## 内容字段
 
@@ -62,7 +65,7 @@ python scripts/fill_template.py --content Resources/content/statistics-chapter.j
 | terminology_extended | 逐条提供必填zh、term、definition_zh，即中文词汇、英文对应、中文解释；可选note_zh和usage_en；完整条目自动续页 |
 | answer_vocabulary | title、humour和entries；entries使用上述术语结构，另须usage_en及question_ids，用实际英文答案中的词汇、搭配与句式帮助作答；自动在正文与答案之后续页 |
 | paragraph.highlights | 当前段落内人工审定的具体重点片段，每项含start、end、text、reason；按语境决定，不接受全局词表 |
-| humour | 默认按页面顺序填入物理页底固定浅绿（#F3F7E0）横条上的深色（#252823）趣味文字；不进入正文blocks或知识分区 |
+| humour | `--fun-mode content` 时按页面顺序采用的手写趣味文字；默认random模式从语料库抽取。两种模式都填入固定页底横条，不进入正文blocks |
 | wide_reference | title、label和最多四栏columns；各栏含title、formulas、notes和可选example |
 | example | title与lines，速查栏内的例子或辨析 |
 | metadata | PDF的title、author、subject和keywords |

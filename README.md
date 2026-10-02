@@ -113,6 +113,35 @@ python -X utf8 scripts/fill_template.py --content Resources/content/statistics-c
 python -X utf8 scripts/prepare_fonts.py --output-dir .fonts --source-dir "/path/to/fonts"
 ```
 
+## 页脚笑话、冷知识和名言
+
+内置 **953 条结构化短句**：356 条短笑话、145 条趣味冷知识、99 条学科知识、353 条名言名句。名句以有作品出处的古典诗文为主。每条保存类型、学科、正文和来源，名句另有作者与篇名。
+
+生成 PDF 时会自动随机抽取，优先一行，最长两行，署名也计入长度；同一份笔记的各页不重复。内容已按要求筛选，避开性别歧视、政治冒犯或政治敏感、种族主义内容。
+
+在对话中可以这样要求：
+
+```text
+页脚使用短笑话、统计学冷知识和名言，随机不重复，通常一行，最多两行。
+继续生成下一章时沿用这本书的已用语料记录。
+```
+
+在上面的 PDF 生成命令末尾加参数即可：
+
+```sh
+--fun-seed 42 --fun-subject 统计学 --fun-include-general --fun-used-file output/book-used.json
+```
+
+单独抽取 20 条、保存为 JSON（在 skill 目录运行，只需 Python 标准库）：
+
+```sh
+python -X utf8 scripts/pick_fun_content.py --count 20 --seed 42 --used-file output/book-used.json --output output/fun-selection.json
+```
+
+只要笑话可加 `--types joke`；只要一行可加 `--max-lines 1`。跨章节复用同一个 `--used-file`；重新编一本书时换一个文件名。保留手写页脚时，给 PDF 生成命令加 `--fun-mode content`。
+
+[抽取参数与数据字段](skills/artifact-template-university-xueba-notes/references/fun-content.md) · [全部语料](skills/artifact-template-university-xueba-notes/Resources/fun-content/items.jsonl) · [来源目录](skills/artifact-template-university-xueba-notes/Resources/fun-content/sources.json)
+
 ## 制作自己的章节
 
 在 Codex 中提供课程资料并调用 skill，即可让助手编写内容、准备插图和排版。手动运行脚本时，按下面的方式替换输入：
