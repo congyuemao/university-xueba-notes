@@ -1,0 +1,285 @@
+{
+  "package": "大学学霸笔记 skill 清理完整版",
+  "created_utc": "2026-10-01T15:40:56.515045+00:00",
+  "file_count_including_manifest": 55,
+  "obsolete_files_removed": 29,
+  "checks": {
+    "skill_validation": "passed",
+    "local_markdown_links": "passed",
+    "current_pdf_and_content_hashes": "unchanged and verified",
+    "offline_font_preparation": "passed",
+    "foldout_generation_with_current_fonts": "passed"
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3297,
+      "sha256": "6918db3500a03ca67001d2daec28ac48ba7192cd2762545e72cc82c5c6d679df"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 1341,
+      "sha256": "7f2d40ae7bcbbfb80384b214d22874a4c6ad0f72e60bbd23fe097dfebffb0595"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 66,
+      "sha256": "73955f8853069fc8867d37d541fbe39434c10b79853dc29cc6f7840167561394"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/content/statistics-chapter.json",
+      "bytes": 61697,
+      "sha256": "191abf73c28c0d1a19a95060a2c517b5bff78d0ec5c2d2c0f93d0972dabed896"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/examples/digital-reference.layout.json",
+      "bytes": 140855,
+      "sha256": "2ff5beba55791d46e35793f766611a59983fa9828818350d2b0e030da397e59b"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/examples/digital-reference.pdf",
+      "bytes": 2116965,
+      "sha256": "9af1536affdd44a1098820ecf6137df9a41fea4347c04978a91735dc629b8bc7"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/examples/foldout.layout.json",
+      "bytes": 211,
+      "sha256": "d007a1dfb1286becdbcf9c13d327a5f2cef5673aab4bfff166538dbe8ea37b2d"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/examples/foldout.pdf",
+      "bytes": 104494,
+      "sha256": "00481143f228bfe77e4a84979e54e15c53d9982f04fd8359703afee5a2e21819"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/examples/print-preview.png",
+      "bytes": 217557,
+      "sha256": "76e953290cbbb875b732c80cf06c9a3230f9b24d544b1f1f1e57204979d0c491"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/examples/print-reference.layout.json",
+      "bytes": 128363,
+      "sha256": "0b9e48c13329e906c51c0801bc82a79a34010579d099b13f41f6441cf84ba910"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/examples/print-reference.pdf",
+      "bytes": 2104856,
+      "sha256": "6bbbed1516e8413a0d0f452ca436754cb32dac0a33c2e57c662083db3966e88d"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/examples/verification.json",
+      "bytes": 4504,
+      "sha256": "37323c4e90b6f272e48e0d9ced31c26eecea5315f195a40cc40b807f48c5ed53"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/illustrations/comic-prompts.json",
+      "bytes": 5539,
+      "sha256": "0c969b0755fb94596cc4df67ab77017505fb7409c6eb599cfd7ee9d210520109"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/illustrations/comic_conditional_direction.png",
+      "bytes": 1757409,
+      "sha256": "baf65f68e78bb10510d71d3687f74bd7fc4f20f4a422de49c7affbcb6959ce23"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/illustrations/comic_evidence_population.png",
+      "bytes": 870302,
+      "sha256": "74f828e6d1fe4e219bf76ee4ae114c90f1f88fccc6ad81e48dec0d02b20d5f40"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/illustrations/comic_independent_events.png",
+      "bytes": 1294963,
+      "sha256": "0e5de03bca8a61438bbc9647a3ee127892ef3d05c7314bade56dcae09ecba7e5"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/reference-comics/01-mathematics-mutual-distinction.png",
+      "bytes": 172280,
+      "sha256": "3cfb837349383e5bc00c3f4a19688b54d7312435db8e999d356dd206ee930982"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/reference-comics/02-mathematics-empty-set.png",
+      "bytes": 239614,
+      "sha256": "5d453ffd2e6a17b7dc38920baf884deb6697f9abf35ae8b1e1466b21b268440d"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/reference-comics/03-chemistry-classification.png",
+      "bytes": 329919,
+      "sha256": "00e4cc8ccafc859af6b71ec3b612bf1848083e5307bc819aa8e3c1de98eace81"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/reference-comics/04-chemistry-conductor-condition.png",
+      "bytes": 615111,
+      "sha256": "8cc07913281af3db7970c84248c4b90a5581554bda4b43a358e2af64e752181d"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/reference-comics/05-physics-reference-frame.png",
+      "bytes": 444104,
+      "sha256": "55729aadbbda2bec55ca0e48c9fa1f007a51ee56f147374860ff8b311bc5e8ba"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/reference-comics/06-physics-distance.png",
+      "bytes": 559041,
+      "sha256": "4dc69b03987240a7a0e41db21ce1e27855604e1b82929e0007e6216a168a9245"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/reference-comics/07-history-succession.png",
+      "bytes": 1084619,
+      "sha256": "762ab2e9516fba3e230bffe227ecfcc5416dc064b74abd9541b153469b614007"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/reference-comics/08-history-chu-han.png",
+      "bytes": 433112,
+      "sha256": "8054b3768d7e3e4e8491bd3df56e52ae92568812609f29d71e7e6fcf3ef9d49d"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/reference-comics/index.md",
+      "bytes": 4924,
+      "sha256": "67041c50044db18a240716dadcb8a5301e617bb228f3b62623b85fb4a0c7c7fa"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/reference-comics/manifest.json",
+      "bytes": 3726,
+      "sha256": "b8e28d5e7763073ed1e7ba824e9503f07660b74bad4429cbce34dd146ad5615d"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/templates/digital-master.pdf",
+      "bytes": 18308,
+      "sha256": "09cd21b1f2f1943da02d9f4c1d54f275daec6ef71e291630a32c36862b7e5837"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/templates/print-master.pdf",
+      "bytes": 18232,
+      "sha256": "72c737420bca3289dfd07a0d5717baabcf341123123e839c8f1a9885e8c20bc1"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/templates/template-manifest.json",
+      "bytes": 2893,
+      "sha256": "1a730e21436c286f9280f04e4ba0ad977f6f34cd68086384b46ea007fad509a8"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/SKILL.md",
+      "bytes": 21804,
+      "sha256": "de6b7297f3f807743ee1466f4cdcc1611c638f826dbcba99d6fc49277bcd26df"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/agents/openai.yaml",
+      "bytes": 549,
+      "sha256": "f4b44a85474d91e42a314863027ad3daf868307649f0314866228ebc34aa08ca"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/assets/icon.svg",
+      "bytes": 1210,
+      "sha256": "49315dda7125ec5fc77ef5f2b96126d8b2121c6e72944b4702972e90f321d3ee"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/assets/licenses/DejaVu-LICENSE.txt",
+      "bytes": 3859,
+      "sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/assets/licenses/LXGW-WenKai-OFL.txt",
+      "bytes": 5171,
+      "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/assets/licenses/NotoSansSC-OFL.txt",
+      "bytes": 4388,
+      "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/references/book-plan.md",
+      "bytes": 3944,
+      "sha256": "2fb8d2640d0091a91782ef307e3c3150e7ca42829eddaa892c7fe02aa3816bf0"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/references/content-and-language.md",
+      "bytes": 9467,
+      "sha256": "3c8c3e1e2312377a3431e29751108e16e2f51f749961ed7f2777160d94bfef16"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/references/cover-and-foldout.md",
+      "bytes": 3438,
+      "sha256": "3e0784586f432be2ff28908e94fa2612f8c693e45795106c2273ce82fd36e0d7"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/references/layout-digital.md",
+      "bytes": 4020,
+      "sha256": "cc8937e93896adbbe1db8f23a39da0f9c1fb85aee62b1b811936bb7e19fb03a9"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/references/layout-print.md",
+      "bytes": 4422,
+      "sha256": "d60a60aa411c8d7b081f99275b81f210856cd46a90600452840834338b3f5ef8"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/references/page-types.md",
+      "bytes": 3903,
+      "sha256": "07bb4f6dc8ce75fff45b0dd8885ef209e679af852b9dad10b74419cba9269b23"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/references/production.md",
+      "bytes": 5997,
+      "sha256": "4287fbb879ba904fbc5bc990f8417b4e543f7ebb21eb2fed9729f108480c9ad0"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/references/reference-observations.md",
+      "bytes": 3390,
+      "sha256": "8b730d9b207f029ec56b1ff51ce3e9c4ca48a80efcb83e58ba5e7311afc1bfb8"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/references/series-contract.md",
+      "bytes": 5757,
+      "sha256": "6bacc82f3f2e009e0b644e260d89f3be80441a5a522a89f7d5fcefd680c72b04"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/references/sidebar-comics.md",
+      "bytes": 7282,
+      "sha256": "bf7589d0b2778180c7878904000ec834319ea6a71e9d1cea3978aa9fbccd34e7"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/references/subject-visuals.md",
+      "bytes": 3292,
+      "sha256": "73e0f63d1a288d15a8e9f06fe3cf13ef3d9a4a5fdece1ca7ce8c38ea92adfb16"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/references/template-workflow.md",
+      "bytes": 10264,
+      "sha256": "03b6d49fbdbfb5544bf33b0060ca0cc6839174a6c6a42a9472dd9075302b2a70"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/references/visual-system.md",
+      "bytes": 7724,
+      "sha256": "2cf3ad19c0e0494bc3737fb07cf9edc98b463bbc1a2222971fe8d1e2ed7326a1"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/scripts/build_pdf_templates.py",
+      "bytes": 3514,
+      "sha256": "13a9c9856ae76e4366508a38d87a9e2d225206ba368b5c3d9c236444e38fc49f"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/scripts/context_highlights.py",
+      "bytes": 4713,
+      "sha256": "c0f01277c0e8a4b8b7a5564efa7f6d02fa68a6e591695e1fd98b4c1857b087ed"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/scripts/fill_template.py",
+      "bytes": 17106,
+      "sha256": "8d240b29a15434032291eed0f7c74eb69d85f7899ce6c8be6c645d3090e378c5"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/scripts/pdf_template_layout.py",
+      "bytes": 3567,
+      "sha256": "fba76d11bbe9ebbaeaefee10daef576ce4ae0af38a36fe9b3a8ac6e727e849e4"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/scripts/prepare_fonts.py",
+      "bytes": 4006,
+      "sha256": "95c0c871c2454a58f600d88ae495e1383d72ba22d110f5a0282d6a381542acad"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/scripts/validate_book_plan.py",
+      "bytes": 8091,
+      "sha256": "ce8c5e608f6438b411fe579e2718bdcf1c3ae48909c0a0b9ae47c13661ed7189"
+    }
+  ]
+}

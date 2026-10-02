@@ -1,95 +1,83 @@
-# 学霸笔记边栏手绘漫画
+# 学霸笔记边栏漫画
 
-## 教学功能与视觉语言
+## 必需参考
 
-本模块是可单独调用的漫画提示词，默认直接用于原 skill。每幅小漫画围绕一个概念、关系、疑问或易错点，提供记忆锚点。全册保持教辅风格，但允许按知识任务变化角色和构图。
+每次生成先读取 `Resources/reference-comics/index.md` 与 `manifest.json` 来源索引，实际查看数学、物理、化学、历史原书的侧边批注漫画。按当前知识任务选用相关裁片，记录文件名和对应源页，将裁片路径传给 imagegen 的 `referenced_image_paths`。有文字提示词但没有传入实际裁片，不算完成参考步骤。若运行环境没有附带私人裁片，先查找用户已提供的原书并提取相关侧栏；原书也无法取得时明确说明缺少参考，不能凭通用风格词声称已匹配。
 
-- 角色采用头大身小、短四肢、圆润轮廓与低细节的 Q 版人物，或圆形、椭圆、团子形概念角色。
-- 五官以点眼、小嘴和少量表情线表达。表情可困惑、提问、发现、明白、轻松，不强制冷脸和荒诞笑点。
-- 细线笔或彩铅式轮廓，浅彩平涂或极轻纹理；允许自然线条起伏。避免重黑粗描边、厚涂阴影、复杂透视。
-- 选浅蓝、浅橙、浅黄、浅绿、粉色、灰紫中的少量颜色。纸面周围留白，切出角色时使用透明背景。
-- 背景通常省略，必要时仅有小草地、底座、箭头、云朵或教学道具。默认一至三个角色；群像只在教学需要时采用。
-- 动作采用指向、摊手、拉绳、测量、观察等一眼能懂的姿势。
-- 气泡或旁白短而口语化，通常一句说明。对白优先约 6–18 个汉字，实际以不丢知识条件为准。
-- 同章固定轮廓、色板、气泡形与常用角色。在最终版批注栏尺寸下查看表情和文字，过小就调整位置。
+原书截图是视觉参考资料。新书绘制原创知识角色、动作和对白，保留参考的画法与教学构图；成书不得直接拼贴截图中的原角色、长段台词、版权页或水印。私人参考裁片不自动进入公开分发包。
 
-原 handraw-style 第 103 项不再是默认或统一风格。此模块不以作者名或风格编号替代明确视觉特征。
+## 观察与复现
 
-## 类型选择
+- 依选定原书裁片复现细灰黑轮廓、轻微手绘线条变化、平涂印刷色与有限阴影。颜色小面积使用，边缘清楚，不加粉雾或彩铅颗粒。
+- 概念拟人优先采用原书可见的豆形、袋形或简单物体形态。眼白、瞳孔、眉毛与嘴形共同表达情绪，依裁片保持实际比例。
+- 人物型漫画保持参考中的头身比例、五官和动作。禁止默认生成巨大头部、婴幼儿短肢、点眼 kawaii 人物；禁止上一版可爱学生贴纸画法。
+- 保留原书的紧凑窄栏构图、短对白、少量道具和大部分无背景区域。角色通常一至三个，具体数量服从教学关系。
+- 教学动作应有明确含义，例如共有、排除、选择、比较、平衡或指向一个条件。表情与构图随知识变化，无需强制荒诞笑点。
+- 同章使用一致轮廓、平涂色板、五官比例、气泡线宽和常用角色。先查看最终窄栏尺寸，不能仅检查放大的单张原图。
+
+不得用“浅彩”“Q版”“手绘感”等宽泛词替代源图对照。生成后与传入裁片并排查看线宽、填色、角色比例、眼睛眉毛、阴影、气泡和留白；明显不符时修订提示与参考组合后重新生成。
+
+## 参考记录
+
+每幅漫画记录：
+
+1. 概念ID、准确命题、用途及类比边界。
+2. 原书裁片文件、索引中的源页和选用理由。
+3. 角色、动作、道具及每个元素对应的知识含义。
+4. 独立排版的短对白、术语及公式。
+5. 目标栏宽、角色占位、对白占位和相邻主栏锚点。
+6. 实际传给生成工具的参考文件列表、提示词、输出路径和嵌入页。
+7. 源图并排比对结果及知识核对结果。
+
+## 教学类型
 
 | 类型 | 适用知识 | 构图 |
 | --- | --- | --- |
-| 具体例子化 | 抽象对象、集合或分类 | 熟悉物体组成小群体，附简短标签 |
-| 概念拟人化 | 互相关系、相同与不同 | 简单概念角色，通过动作和一句话说明 |
-| 关系类比 | 包含、映射、条件或平衡 | 门、钥匙、天平、桥或绳子等清楚对应 |
-| 学生提问 | 常见疑问、解题入口、易错点 | 一位学生发问，一位角色指向知识 |
-| 图解辅助 | 数轴、图形、流程与公式 | 精确主图旁的小角色和短提示 |
+| 概念拟人 | 概念区别、关系与误区 | 豆形或袋形角色以动作和短对白表达关系 |
+| 具体例子 | 抽象对象、分类与集合 | 少量熟悉物体形成明确分组 |
+| 关系类比 | 包含、条件、对应与平衡 | 道具与关系一一对应，保留适用边界 |
+| 学生提问 | 常见疑问与解题条件 | 依原书人物比例设计疑问与指示动作 |
+| 图解辅助 | 公式、工作图与流程 | 精确图旁放小角色，字符和关系另行排版 |
 
-选最短且准确的对应。不同方案只在用户需要或确有不同教学用途时提供，一般 2–4 个。正文书稿直接使用选定方案，不把全部候选方案塞入页面。
+选择能准确表达当前关系的最紧凑方案。一个字符标签或原生小图已经足够时无需扩大漫画。窄栏漫画占比按原书裁片测量，避免整页大人物和无知识作用的装饰。
 
-## 每幅漫画的设计记录
+## 全章分布
 
-1. 知识点 ID 与要帮助理解的准确命题。
-2. 用途，例如区分概念、解释误区或恢复记忆。
-3. 构图、角色、道具，以及每个图像元素对应的概念。
-4. 准确对白与独立排版的术语、符号。
-5. 适配位置、可用宽度与图文尺寸。
-6. 图片生成提示词、检查结果、资产位置与嵌入页。
-7. 类比边界：容易引发的额外误解及避免方式。
+内容规划时同步安排侧栏批注漫画，在章节前、中、后部持续出现。普通讲解页通常每一至两页考虑一幅有具体教学用途的小漫画；连续三页或更多没有漫画时，逐页检查是否遗漏了适合图解的关系、过程或疑问。密集题目、答案和索引页可按内容调整。漫画覆盖与工作图、表格分别核对，不能用几张表格充抵漫画，也不能让十余页章节仅有相邻两页出现漫画。
 
-## 可单独调用的系统提示词
+每幅图靠近相应主栏锚点，用不同动作、场景与简短对白解释当前知识。保持原书的窄栏小尺寸，必要时增加分布页数，避免放大单图或重复贴同一个角色来增加存在感。先列知识任务和所在页，再生成相应资产并实际嵌入。沿用同章角色可以保持系列感，但每处教学关系应明确。
+
+核对所有普通知识页的漫画分布与未配图原因，优先补足可帮助理解的空缺。无适当图像表达时保留正文，避免无关装饰。全章约半数或更多批注空间继续留给用户书写。
+
+## 独立提示词
 
 ```text
-你负责设计学霸笔记系列的教辅边栏手绘漫画。
-根据学科、知识点、易错点、页型与可用宽度，选一个准确的教学任务，设计简洁、浅彩、Q版、低细节的小漫画。
-采用圆润头身、细线笔轮廓、简单五官、轻微彩铅感、极少背景与短口语对白。
-保持同册角色、色板与气泡风格一致。图像元素和知识含义需一一对应。
-选择具体例子化、概念拟人化、关系类比、学生提问或图解辅助，依知识需要决定。
-先给知识点与漫画用途，再给构图、角色道具、精确对白、摆放位置、尺寸、生成提示词与类比边界。
-用户需要多个方案时提供2至4个方向；成书时只选适合该页的方案。
-若请求成品，实际生成并嵌入图片。气泡对白、术语和公式在页面中单独排版；精确图形用原生绘图。
-不采用海报、日漫厚涂、重阴影、网络表情包、复杂背景或无关装饰。不要强制荒诞、冷脸或固定笑点。
-核对漫画表达的知识条件。集合重复表达同一元素；条件概率不能自动解释为因果；类比不得改变逻辑方向。
+你负责制作学霸笔记系列的边栏漫画。
+先查看 Resources/reference-comics 的原书裁片与来源索引，选出适合当前知识关系的实际图片，并将文件路径作为 imagegen 参考图传入。
+严格对照参考的细灰黑线、平涂印刷色、有限阴影、眼白瞳孔眉毛、豆形或袋形概念角色，以及紧凑的窄栏教学构图。
+人物型场景沿用实际源图的头身与五官比例，禁止巨大头幼儿Q版、点眼贴纸人物、彩铅颗粒和粉雾渐变。
+为新的知识命题绘制原创角色与动作；说明每个图像元素对应什么，并标明类比边界。
+单独排版简短对白、术语和公式。生成图不带文字，透明背景，只保留必要道具。
+按成稿实际尺寸检查，与选定原书裁片并排比较；不符时重新生成。
+精确图、公式、概率和坐标由原生绘图及文字排版完成。
 ```
 
-## 图片生成提示词
+## 生图提示词
 
 ```text
-为大学学霸笔记制作一幅小型教辅边栏手绘漫画。
-知识任务：{准确命题}。
-构图：{角色、动作、道具及对应关系}。
-风格：头大身小、圆润、低细节的Q版人物或简单拟人角色，点眼和小嘴，细线笔自然轮廓，淡彩与轻微彩铅感。
-配色：{本章固定浅彩色板}。情绪：{困惑/观察/理解等}。
-背景透明，只保留必要道具，无复杂场景。给后期排版的{对白/标签}留出空白。
-不要在图片内生成文字、公式和坐标，这些内容单独精确排版。
-目标宽度：{mm}，最终小尺寸仍可辨认。
-避免厚涂、强黑粗描边、写实、海报构图、网络表情包和多余装饰。
+Create an original compact educational sidebar cartoon for a university study book.
+Use the attached source-book sidebar crops as the visual reference. Match their fine grey-black printed linework, flat light ink colours, limited shadows, small white eyes with pupils and expressive eyebrows, and compact bean-shaped or bag-shaped concept characters where appropriate.
+Keep the specific reference proportions, facial construction, line weight, colour treatment and narrow-column composition.
+Teaching proposition: {accurate proposition}.
+Original composition: {characters, action, necessary props and their meanings}.
+Target column width: {width_mm} mm. Image slot: {height_mm} mm high. Keep the arrangement compact and legible at this actual size.
+Use a transparent background with only necessary props. Reserve space for separately typeset dialogue and labels. Generate no text, letters, numbers or formulas.
+Do not use giant-headed infant chibi students, dot-eye kawaii stickers, coloured-pencil texture, chalky haze, powdery pastel gradients, glossy rendering, heavy outlines or a full background scene.
+Do not reproduce the reference's exact characters or dialogue; create the new teaching scene with its visual language.
 ```
 
-```text
-Create a small educational sidebar cartoon for a university study notebook.
-Teaching point: {accurate proposition}. Composition: {characters, action, props and their meanings}.
-Use rounded, large-headed, small-bodied chibi students or simple personified objects, dot eyes and a small mouth, fine naturally irregular pen outlines, light pastel fills and a subtle coloured-pencil feel.
-Keep the chapter palette: {pastel colours}. Expression: {questioning, observing, understanding}.
-Transparent background, essential props only, with clear empty space for separately typeset dialogue and labels.
-Generate no letters, formulas or numerical axes. It must remain recognisable at {width_mm} mm wide.
-Avoid heavy outlines, glossy rendering, anime painting, complex scenery, meme faces and unrelated decoration.
-```
+该提示词必须和实际图像参考一起调用。不要只复制提示词便声称完成原书风格匹配。
 
-## 调用示例与知识核对
+## 知识核对
 
-```text
-学科：统计学
-章节：条件概率
-知识点：观察到B后，在B限定的范围内重新计算A的比例
-用途：解释分母为什么变成P(B)
-目标页型：知识页右侧教学区
-可用宽度：45 mm
-需要：一个图解辅助方案
-```
-
-构图可为学生站在精确绘制的 B 区域旁，指着 A 与 B 的交集。短对白可用“现在只看B里面。”坐标、区域面积和符号用原生绘图。
-
-集合互异性示例应表达重复写同一对象不产生新元素。不能画成两个外观一样的人不能同时属于一个集合；不同对象即使外观一样仍可同时存在。
-
-贝叶斯侦探例子表示根据证据更新概率，不把一般条件概率宣称为反推真实原因。必要和充分条件的漫画必须对应明确命题及箭头方向。漫画本身无法呈现的条件保留在相邻知识文字中。
+条件概率图应表现条件事件限定后的参考群体，不暗示因果方向。独立与互斥分别核对正概率条件和共同发生的可能性。集合重复表达同一元素不能改变元素数，外观相同的两个不同对象仍可共存。贝叶斯推断说明依据证据更新概率，不能保证已找出真实原因。无法通过漫画表达的前提保留在相邻正文。

@@ -6,6 +6,7 @@ from pathlib import Path
 
 PAGE_TYPES = {"cover", "contents", "overview", "knowledge", "visual_explanation", "process", "worked_example", "synthesis", "recap", "glossary", "answers", "foldout", "blank"}
 BODY_TYPES = PAGE_TYPES - {"cover", "contents", "foldout", "blank"}
+HUMOUR_TYPES = PAGE_TYPES - {"cover", "foldout", "blank"}
 VISUAL_KINDS = {"microdiagram", "working_diagram", "sidebar_comic", "overview"}
 
 
@@ -34,7 +35,7 @@ def validate(data, base, stage="plan"):
     require(data.get("scope") in {"chapter", "whole_book"}, "Unknown scope")
     require(data.get("edition") in {"print", "digital"}, "Unknown edition")
     require(data.get("body_format") == "teaching-units", "Body must use teaching units")
-    require(data.get("comic_style") == "pastel-educational-sidebar", "Wrong default comic style")
+    require(data.get("comic_style") == "reference-anchored-sidebar", "Wrong default comic style")
     fraction = data.get("annotation_free_fraction")
     require(isinstance(fraction, (int, float)) and not isinstance(fraction, bool) and .5 <= fraction <= 1, "Preserve at least half the chapter annotation area")
     concepts, questions, answers, visuals, pages = [index(k) for k in ("concepts", "questions", "answers", "visuals", "pages")]
@@ -78,6 +79,7 @@ def validate(data, base, stage="plan"):
             if isinstance(asset, str) and asset.strip():
                 require((base / asset).is_file(), f"{vid}: asset file absent")
     run = 0
+    comic_run = 0
     types = set()
     for pid, page in pages.items():
         ptype = page.get("type")
@@ -91,8 +93,17 @@ def validate(data, base, stage="plan"):
         run = run + 1 if ptype == "knowledge" and not has_working else 0
         if run == 3:
             warnings.append(f"At {pid}: review three consecutive knowledge pages without a working visual")
-        if stage == "delivery" and ptype in BODY_TYPES:
-            require(page.get("footer_lines") in {1, 2}, f"{pid}: missing/long footer")
+        has_comic = any(visuals.get(vid, {}).get("kind") == "sidebar_comic" for vid in page.get("visual_ids", []))
+        comic_run = comic_run + 1 if ptype == "knowledge" and not has_comic else 0
+        if comic_run == 3:
+            warnings.append(f"At {pid}: review three consecutive knowledge pages without a sidebar comic")
+        humour_position = page.get("humour_position")
+        if humour_position is not None:
+            require(humour_position == "page-bottom", f"{pid}: humour must be independent physical page-bottom furniture, not a top strip or body section")
+        if stage == "delivery" and ptype in HUMOUR_TYPES:
+            lines = page.get("humour_lines")
+            require(isinstance(lines, int) and not isinstance(lines, bool) and lines in {1, 2}, f"{pid}: physical page-bottom humour strip must have one or two dark text lines on a pale green bar")
+            require(humour_position == "page-bottom", f"{pid}: humour strip must be fixed at the physical page bottom outside body content")
     for registry, placed, label in [(concepts, placed_concepts, "concept"), (visuals, placed_visuals, "visual"), (questions, placed_questions, "question"), (answers, placed_answers, "answer")]:
         for rid in registry:
             require(rid in placed, f"Unplaced {label} {rid}")

@@ -1,0 +1,78 @@
+{
+  "use": "User-provided private visual references. Input references for image generation only; do not place source crops in output books or publish them in the public GitHub repository.",
+  "white_background": "Both print and digital editions must use pure white backgrounds.",
+  "items": [
+    {
+      "file": "01-mathematics-mutual-distinction.png",
+      "source_file": "学霸笔记高中数学.pdf",
+      "pdf_page_1_based": 18,
+      "printed_page": 4,
+      "purpose": "两个数字角色与一条完整对白；扁团形、薄轮廓、平涂。",
+      "capture": "Rendered page at 2600px width, pixel clip [1910,1380,2490,1810]",
+      "sha256": "3cfb837349383e5bc00c3f4a19688b54d7312435db8e999d356dd206ee930982"
+    },
+    {
+      "file": "02-mathematics-empty-set.png",
+      "source_file": "学霸笔记高中数学.pdf",
+      "pdf_page_1_based": 22,
+      "printed_page": 8,
+      "purpose": "空集与含零元素集合；修长豆形、眼白与瞳孔、白色胸牌、手势、双气泡。",
+      "capture": "Rendered page at 2600px width, pixel clip [1835,245,2485,710]",
+      "sha256": "5d453ffd2e6a17b7dc38920baf884deb6697f9abf35ae8b1e1466b21b268440d"
+    },
+    {
+      "file": "03-chemistry-classification.png",
+      "source_file": "学霸笔记高中化学.pdf",
+      "pdf_page_1_based": 12,
+      "printed_page": 4,
+      "purpose": "硫酸面对不同分类标签；单角色、细腿、明确疑问表情。",
+      "capture": "Rendered page at 2600px width, pixel clip [1930,1250,2495,1865]",
+      "sha256": "00e4cc8ccafc859af6b71ec3b612bf1848083e5307bc819aa8e3c1de98eace81"
+    },
+    {
+      "file": "04-chemistry-conductor-condition.png",
+      "source_file": "学霸笔记高中化学.pdf",
+      "pdf_page_1_based": 15,
+      "printed_page": 7,
+      "purpose": "铜与电解质入口；双角色、门牌和动作共同承载定义边界。",
+      "capture": "PDF clip [1200,830,1885,1190], render scale 1.5",
+      "sha256": "8cc07913281af3db7970c84248c4b90a5581554bda4b43a358e2af64e752181d"
+    },
+    {
+      "file": "05-physics-reference-frame.png",
+      "source_file": "学霸笔记高中物理.pdf",
+      "pdf_page_1_based": 15,
+      "printed_page": 5,
+      "purpose": "车上与地面观察者；极简白色人物、少量场景、相反对白。",
+      "capture": "PDF clip [1380,440,1855,765], render scale 1.7",
+      "sha256": "55729aadbbda2bec55ca0e48c9fa1f007a51ee56f147374860ff8b311bc5e8ba"
+    },
+    {
+      "file": "06-physics-distance.png",
+      "source_file": "学霸笔记高中物理.pdf",
+      "pdf_page_1_based": 16,
+      "printed_page": 6,
+      "purpose": "出租车计程情境；日常物件与人物只保留解释所需细节。",
+      "capture": "PDF clip [1480,455,1890,790], render scale 1.7",
+      "sha256": "4dc69b03987240a7a0e41db21ce1e27855604e1b82929e0007e6216a168a9245"
+    },
+    {
+      "file": "07-history-succession.png",
+      "source_file": "学霸笔记高中历史.pdf",
+      "pdf_page_1_based": 17,
+      "printed_page": 5,
+      "purpose": "两段式人物场景；彩色平涂服饰、脸部眉眼口丰富、上下画面由箭头连接。",
+      "capture": "PDF clip [1445,1495,1810,2120], render scale 1.7",
+      "sha256": "762ab2e9516fba3e230bffe227ecfcc5416dc064b74abd9541b153469b614007"
+    },
+    {
+      "file": "08-history-chu-han.png",
+      "source_file": "学霸笔记高中历史.pdf",
+      "pdf_page_1_based": 26,
+      "printed_page": 14,
+      "purpose": "对峙场景；角色、界河与短标签表达关系，局部背景限定场景。",
+      "capture": "PDF clip [1490,610,1820,897], render scale 1.7",
+      "sha256": "8054b3768d7e3e4e8491bd3df56e52ae92568812609f29d71e7e6fcf3ef9d49d"
+    }
+  ]
+}

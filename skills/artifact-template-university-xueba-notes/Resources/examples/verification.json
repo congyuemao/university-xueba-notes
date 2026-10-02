@@ -1,0 +1,152 @@
+{
+  "status": "passed",
+  "source_content_sha256": "191abf73c28c0d1a19a95060a2c517b5bff78d0ec5c2d2c0f93d0972dabed896",
+  "font": "LXGW WenKai Regular",
+  "opening_terminology_count": 27,
+  "answer_vocabulary_count": 20,
+  "highlight_policy": "authored paragraph-local offsets, exact text and contextual reasons",
+  "highlight_checks": [
+    "all sample selections valid",
+    "repeated occurrence stays unmarked unless selected",
+    "cross-line mapping passed",
+    "global emphasis list rejected",
+    "stale span rejected"
+  ],
+  "sidebar_comic_check": "independent advisory after three knowledge pages without a sidebar comic; working diagrams counted separately",
+  "selftest_language": "zh",
+  "answer_language": "en",
+  "humour_position_mm": [
+    275,
+    285
+  ],
+  "humour_colour": "#F3F7E0",
+  "humour_text_colour": "#252823",
+  "files": {
+    "print": {
+      "sha256": "6bbbed1516e8413a0d0f452ca436754cb32dac0a33c2e57c662083db3966e88d",
+      "pages": 17,
+      "retention": {
+        "opening_terms": {
+          "entries": 27,
+          "fields_checked": 81,
+          "pages": [
+            4,
+            5,
+            6
+          ],
+          "all_fields_retained": true,
+          "missing": []
+        },
+        "answer_vocabulary": {
+          "entries": 20,
+          "fields_checked": 100,
+          "pages": [
+            15,
+            16,
+            17
+          ],
+          "all_fields_retained": true,
+          "missing": []
+        }
+      },
+      "print_minimum_inner_text_margin_mm": 19.999991,
+      "all_text_and_vector_geometry_within_content_span": true,
+      "grid": {
+        "logged_text_lines_checked": 579,
+        "maximum_grid_error_mm": 5.1159076974727215e-14,
+        "maximum_actual_PDF_baseline_error_mm": 2.4244520375305e-05,
+        "max_baseline_mm": 266.4,
+        "actual_baseline_method": "First non-synthetic glyph origin at logged x/y; ignores extractor-inserted spaces in heading spans."
+      },
+      "line_widths": {
+        "lines_checked": 579,
+        "maximum_main_line_width_mm": 127.481,
+        "all_lines_within_allocated_column": true
+      },
+      "toc": {
+        "links": 9,
+        "targets_pdf_pages": [
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "all_destinations_correct": true,
+        "bookmarks": 12
+      }
+    },
+    "digital": {
+      "sha256": "9af1536affdd44a1098820ecf6137df9a41fea4347c04978a91735dc629b8bc7",
+      "pages": 17,
+      "retention": {
+        "opening_terms": {
+          "entries": 27,
+          "fields_checked": 81,
+          "pages": [
+            3,
+            4,
+            5
+          ],
+          "all_fields_retained": true,
+          "missing": []
+        },
+        "answer_vocabulary": {
+          "entries": 20,
+          "fields_checked": 100,
+          "pages": [
+            14,
+            15,
+            16
+          ],
+          "all_fields_retained": true,
+          "missing": []
+        }
+      },
+      "print_minimum_inner_text_margin_mm": null,
+      "all_text_and_vector_geometry_within_content_span": true,
+      "grid": {
+        "logged_text_lines_checked": 649,
+        "maximum_grid_error_mm": 5.1159076974727215e-14,
+        "maximum_actual_PDF_baseline_error_mm": 2.4244520375305e-05,
+        "max_baseline_mm": 266.4,
+        "actual_baseline_method": "First non-synthetic glyph origin at logged x/y; ignores extractor-inserted spaces in heading spans."
+      },
+      "line_widths": {
+        "lines_checked": 649,
+        "maximum_main_line_width_mm": 127.481,
+        "all_lines_within_allocated_column": true
+      },
+      "toc": {
+        "links": 9,
+        "targets_pdf_pages": [
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "all_destinations_correct": true,
+        "bookmarks": 13
+      }
+    },
+    "foldout": {
+      "sha256": "00481143f228bfe77e4a84979e54e15c53d9982f04fd8359703afee5a2e21819",
+      "pages": 1,
+      "dimensions_mm": [
+        594.0,
+        210.0
+      ],
+      "matches_digital_last_page_text": true
+    }
+  },
+  "visual_review": "Fresh renders of all 20 pages affected by punctuation grouping, two representative pages, and the foldout show no clipping, overlap, binding-margin excursions, or detached punctuation at line starts. Ruled baselines, mirrored print columns, fixed digital columns, and footer clearance remain intact."
+}

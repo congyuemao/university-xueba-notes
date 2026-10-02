@@ -1,0 +1,166 @@
+{
+  "version": 5,
+  "paper": "#FFFFFF",
+  "page_mm": [
+    210,
+    297
+  ],
+  "grid": {
+    "first_baseline_mm": 28.8,
+    "pitch_mm": 7.2,
+    "rows": 34,
+    "rule_offset_mm": 1
+  },
+  "fonts": {
+    "body": [
+      "Body",
+      11.6
+    ],
+    "body_file": "WenKai.ttf",
+    "body_family": "LXGW WenKai Regular",
+    "english": [
+      "Latin",
+      11
+    ],
+    "sidebar": [
+      "Hand",
+      10
+    ],
+    "table": [
+      "Body",
+      9.5
+    ]
+  },
+  "humour_strip": {
+    "position": "page-bottom",
+    "top_mm": 275,
+    "height_mm": 10,
+    "background": "#F3F7E0",
+    "foreground": "#252823",
+    "font": "Hand",
+    "size_pt": 10,
+    "padding_mm": 3,
+    "max_lines": 2,
+    "line_pitch_mm": 4.2,
+    "single_baseline_mm": 281.3,
+    "double_baselines_mm": [
+      279.2,
+      283.4
+    ]
+  },
+  "roles": {
+    "cover": 0,
+    "odd": 1,
+    "even": 2,
+    "opening_odd": 3,
+    "opening_even": 4,
+    "foldout": 5,
+    "blank": 6
+  },
+  "editions": {
+    "print": {
+      "odd": {
+        "main_x": 20,
+        "main_w": 128,
+        "side_x": 153,
+        "side_w": 45,
+        "start": 20,
+        "end": 198,
+        "dividers": [
+          150
+        ]
+      },
+      "even": {
+        "main_x": 62,
+        "main_w": 128,
+        "side_x": 12,
+        "side_w": 45,
+        "start": 12,
+        "end": 190,
+        "dividers": [
+          59
+        ]
+      },
+      "opening_odd": {
+        "main_x": 20,
+        "main_w": 128,
+        "side_x": 153,
+        "side_w": 45,
+        "start": 20,
+        "end": 198,
+        "dividers": [
+          150
+        ]
+      },
+      "opening_even": {
+        "main_x": 62,
+        "main_w": 128,
+        "side_x": 12,
+        "side_w": 45,
+        "start": 12,
+        "end": 190,
+        "dividers": [
+          59
+        ]
+      }
+    },
+    "digital": {
+      "odd": {
+        "main_x": 38,
+        "main_w": 128,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "even": {
+        "main_x": 38,
+        "main_w": 128,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "opening_odd": {
+        "main_x": 38,
+        "main_w": 128,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "opening_even": {
+        "main_x": 38,
+        "main_w": 128,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      }
+    }
+  }
+}

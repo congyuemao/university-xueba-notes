@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare licensed fonts for the reference builder; supports offline sources."""
+"""Prepare licensed template fonts with WenKai.ttf as the body default; supports offline sources."""
 import argparse
 from pathlib import Path
 import shutil
@@ -9,8 +9,9 @@ import urllib.request
 
 KAI_URL = "https://raw.githubusercontent.com/lxgw/LxgwWenKai/main/fonts/TTF/LXGWWenKai-Regular.ttf"
 NOTO_URL = "https://raw.githubusercontent.com/google/fonts/main/ofl/notosanssc/NotoSansSC%5Bwght%5D.ttf"
+DEFAULT_BODY_FONT = "WenKai.ttf"
 DEJAVU_URL = "https://github.com/dejavu-fonts/dejavu-fonts/releases/download/version_2_37/dejavu-fonts-ttf-2.37.tar.bz2"
-LATIN = ["DejaVuSans.ttf", "DejaVuSansMono.ttf", "DejaVuSerif.ttf", "DejaVuSerif-Bold.ttf"]
+LATIN = ["DejaVuSans.ttf", "DejaVuSerif.ttf"]
 
 def download(url, path):
     request = urllib.request.Request(url, headers={"User-Agent": "University-Xueba-Notes"})
@@ -27,19 +28,21 @@ def prepare(output, source=None):
     if source:
         if source.resolve() == output.resolve():
             raise ValueError("Choose a separate output directory.")
-        for name in ["WenKai.ttf","NotoSansSC.ttf","Sans.ttf","SansBold.ttf"] + LATIN:
+        for name in [DEFAULT_BODY_FONT,"SansBold.ttf"] + LATIN:
             file = source / name
             if file.is_file():
                 shutil.copy2(file, output / name)
     if not (output / "WenKai.ttf").exists():
         download(KAI_URL, output / "WenKai.ttf")
-    if not all((output / n).exists() for n in ["Sans.ttf","SansBold.ttf"]):
+    if not (output / "SansBold.ttf").exists():
         variable = output / "NotoSansSC.ttf"
+        if not variable.exists() and source and (source / variable.name).is_file():
+            shutil.copy2(source / variable.name, variable)
         if not variable.exists():
             download(NOTO_URL, variable)
         from fontTools.ttLib import TTFont
         from fontTools.varLib.instancer import instantiateVariableFont
-        for name, weight in [("Sans.ttf",400),("SansBold.ttf",700)]:
+        for name, weight in [("SansBold.ttf",700)]:
             if not (output/name).exists():
                 font = TTFont(variable)
                 instance = instantiateVariableFont(font, {"wght": weight}, inplace=True)
@@ -66,7 +69,7 @@ def prepare(output, source=None):
     for name in ["LXGW-WenKai-OFL.txt","NotoSansSC-OFL.txt","DejaVu-LICENSE.txt"]:
         shutil.copy2(licences/name,output/name)
     from fontTools.ttLib import TTFont
-    for name in ["WenKai.ttf","Sans.ttf","SansBold.ttf"] + LATIN:
+    for name in [DEFAULT_BODY_FONT,"SansBold.ttf"] + LATIN:
         font=TTFont(output/name)
         if not font.getBestCmap():
             raise ValueError(f"Invalid font: {name}")
@@ -79,7 +82,7 @@ def main():
     parser.add_argument("--source-dir",type=Path,help="Optional offline font directory")
     args=parser.parse_args()
     path=prepare(args.output_dir.resolve(),args.source_dir.resolve() if args.source_dir else None)
-    print(f"Prepared reference font set: {path}")
+    print(f"Prepared template font set: {path} (body default: {DEFAULT_BODY_FONT})")
 
 if __name__=="__main__":
     main()

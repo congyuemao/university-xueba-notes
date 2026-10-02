@@ -1,0 +1,1608 @@
+{
+  "chapter": "条件概率与贝叶斯",
+  "audience": "大学入门统计学与概率论",
+  "editorial_basis": "参考页主栏用完整定义、性质、适用条件、简洁推导与典例连续组织知识。每页保留2至3个有实质内容的栏目，正文段落通常为2至4句，表格只承担确实适合比较的关系。数学例子均为教学设定。",
+  "notation": "Ω为样本空间；A^c为A的补事件；∩为交集；∪为并集。D表示组件有缺陷，F表示检测给出标记。表中百分比均以所在行或明确指定的条件群体为分母。",
+  "pages": [
+    {
+      "number": 1,
+      "title": "条件概率",
+      "subtitle": "事件运算与条件概率",
+      "blocks": [
+        {
+          "type": "heading",
+          "number": "1",
+          "text": "事件运算",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "随机试验的所有可能结果组成样本空间Ω，事件是其中可赋予概率的结果集合。A∩B表示A与B同时发生，A∪B表示至少发生一个，A^c表示A不发生。有限且等可能时，概率等于有利结果数与总结果数之比；有限或可数结果不等可能时，应累加相应结果的概率。",
+          "estimated_grid_lines": 4
+        },
+        {
+          "type": "formula",
+          "text": "P(A^c) = 1 − P(A)",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "formula",
+          "text": "P(A ∪ B) = P(A) + P(B) − P(A ∩ B)",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "并集公式中，交集已分别计入P(A)和P(B)，因此需减去一次。当A、B互斥时，交集概率为0，故两个概率可直接相加。更一般地，只要P(A∩B)=0，加法仍成立。",
+          "estimated_grid_lines": 2
+        },
+        {
+          "type": "heading",
+          "number": "2",
+          "text": "条件概率的定义与性质",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "已知B发生后，条件概率P(A|B)衡量B所限定的群体中A发生的比例。条件B决定分母，联合事件A∩B决定分子；该定义要求P(B)>0。",
+          "estimated_grid_lines": 2,
+          "highlights": [
+            {
+              "start": 34,
+              "end": 65,
+              "text": "条件B决定分母，联合事件A∩B决定分子；该定义要求P(B)>0",
+              "reason": "本段确立条件概率的计算对象、分母和存在条件，这一连续论点决定后续表格应选哪一组。"
+            }
+          ]
+        },
+        {
+          "type": "formula",
+          "text": "P(A | B) = P(A ∩ B) / P(B),   P(B) > 0",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "固定条件B后，P(·|B)仍满足概率运算规则。因此P(A^c|B)=1−P(A|B)，且条件并集公式中的每一项都应保留同一个条件B。P(A|B)与P(B|A)共有分子，但分母分别为P(B)、P(A)，一般不能交换。",
+          "estimated_grid_lines": 4
+        },
+        {
+          "type": "heading",
+          "number": "3",
+          "text": "典例精析",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "某批2000件组件的检测结果如下。D表示有缺陷，F表示被标记。",
+          "estimated_grid_lines": 2
+        },
+        {
+          "type": "table",
+          "headers": [
+            "实际状态",
+            "标记 F",
+            "未标记 F^c",
+            "合计"
+          ],
+          "rows": [
+            [
+              "有缺陷 D",
+              "90",
+              "10",
+              "100"
+            ],
+            [
+              "无缺陷 D^c",
+              "190",
+              "1710",
+              "1900"
+            ],
+            [
+              "合计",
+              "280",
+              "1720",
+              "2000"
+            ]
+          ],
+          "widths_mm": [
+            38,
+            30,
+            32,
+            28
+          ],
+          "estimated_grid_lines": 4
+        },
+        {
+          "type": "paragraph",
+          "text": "检出率P(F|D)=90/100=0.90；被标记组件中的缺陷比例P(D|F)=90/280=9/28≈0.3214。两者分别以100件缺陷组件和280件被标记组件为分母。另有P(D∩F)=90/2000=0.045，分母为全部组件。三个概率回答三个不同的问题。",
+          "estimated_grid_lines": 4,
+          "highlights": [
+            {
+              "start": 59,
+              "end": 85,
+              "text": "两者分别以100件缺陷组件和280件被标记组件为分母",
+              "reason": "这句具体解释检出率与标记后缺陷比例为何不同，读者需要回看的是两种参考群体。"
+            }
+          ]
+        }
+      ],
+      "sidebar": {
+        "title": "条件与目标",
+        "text": "P(D|F)中，竖线右侧的F限定已知群体，左侧的D指出目标事件。先圈出题目中的已知条件，再选择分母。90%的检出率不等于90%的标记可信度。",
+        "comic_brief": "参考原书概念拟人侧栏风格，两个不规则软团角色分别带D和F标记，共同指向同一交集小牌，但各自站在大小明显不同的圈内。对白强调分母不同，避免侦探或可爱学生场景。",
+        "comic_text": [
+          "我看缺陷组。",
+          "我看标记组。"
+        ],
+        "keywords": [
+          "样本空间",
+          "条件群体",
+          "联合概率"
+        ],
+        "comic": {
+          "asset": "comic_conditional_direction.png",
+          "speech": "分母可不能交换！"
+        }
+      },
+      "estimated_grid_lines": 28
+    },
+    {
+      "number": 2,
+      "title": "乘法公式与全概率公式",
+      "subtitle": "联合概率与总体概率",
+      "blocks": [
+        {
+          "type": "heading",
+          "number": "1",
+          "text": "乘法公式",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "由条件概率定义移项，可得两个事件同时发生的概率。这里的乘法不要求独立，第二个因子必须反映前一个事件已发生这一条件。",
+          "estimated_grid_lines": 2,
+          "highlights": [
+            {
+              "start": 24,
+              "end": 56,
+              "text": "这里的乘法不要求独立，第二个因子必须反映前一个事件已发生这一条件",
+              "reason": "本段用于纠正乘法公式只有独立时才能使用的误解，必须连同第二个因子的条件一起阅读。"
+            }
+          ]
+        },
+        {
+          "type": "formula",
+          "text": "P(A ∩ B) = P(A)P(B | A) = P(B)P(A | B)",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "含条件概率的表达式要求相应分母为正。对于三个事件，依次应用同一规则可得下式；最后一项同时以A、B发生为条件，不能仅凭事件先后顺序删去条件。",
+          "estimated_grid_lines": 3
+        },
+        {
+          "type": "formula",
+          "text": "P(A ∩ B ∩ C) = P(A)P(B | A)P(C | A ∩ B)",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "heading",
+          "number": "2",
+          "text": "全概率公式",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "设A₁,…,Aₘ两两互斥、并集为Ω，且P(Aᵢ)>0，称这些事件构成一个划分。任意事件B都可写成互斥事件B∩A₁,…,B∩Aₘ的并集，故先用可加性求和，再对各项使用乘法公式。",
+          "estimated_grid_lines": 3
+        },
+        {
+          "type": "formula",
+          "text": "P(B) = Σᵢ P(B ∩ Aᵢ) = Σᵢ P(Aᵢ)P(B | Aᵢ)",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "各组条件概率P(B|Aᵢ)的权重是该组在总体中的比例P(Aᵢ)。因此，总体概率通常是加权平均；各组等权时可以直接取算术平均；不等权时应按权重计算。分组有重叠会重复计数，分组不完整会遗漏来源。",
+          "estimated_grid_lines": 3,
+          "highlights": [
+            {
+              "start": 0,
+              "end": 31,
+              "text": "各组条件概率P(B|Aᵢ)的权重是该组在总体中的比例P(Aᵢ)",
+              "reason": "这一句说明组内概率怎样合成为总体概率，是后文不能直接平均缺陷率的理由。"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "number": "3",
+          "text": "典例精析",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "三条产线A₁、A₂、A₃分别供应50%、30%、20%的组件，缺陷率依次为1%、3%、5%。随机抽取一件，求其有缺陷的概率。",
+          "estimated_grid_lines": 2
+        },
+        {
+          "type": "table",
+          "headers": [
+            "来源",
+            "供应比例",
+            "组内缺陷率",
+            "联合概率"
+          ],
+          "rows": [
+            [
+              "A₁",
+              "0.50",
+              "0.01",
+              "0.005"
+            ],
+            [
+              "A₂",
+              "0.30",
+              "0.03",
+              "0.009"
+            ],
+            [
+              "A₃",
+              "0.20",
+              "0.05",
+              "0.010"
+            ]
+          ],
+          "widths_mm": [
+            22,
+            32,
+            37,
+            37
+          ],
+          "estimated_grid_lines": 4
+        },
+        {
+          "type": "formula",
+          "text": "P(D) = 0.005 + 0.009 + 0.010 = 0.024",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "总体缺陷率为2.4%。若直接平均三个缺陷率，会得到3%，忽略各产线供货量的差异。概率树中，每条完整路径的概率等于沿途条件概率之积；属于目标事件的不同终点概率相加，得到总体概率。",
+          "estimated_grid_lines": 3
+        }
+      ],
+      "sidebar": {
+        "title": "分组条件",
+        "text": "全概率公式需要互斥且完整的分组。分组之间不要求独立。事实上，当两组都有正概率且互斥时，它们必不独立。树上的同层分支必须针对同一个条件群体。",
+        "diagram": {
+          "type": "probability_tree",
+          "description": "只画三条通向缺陷D的路径，起点总体，第一层A₁0.50/A₂0.30/A₃0.20，第二层到D标0.01/0.03/0.05，末端标0.005/0.009/0.010。图注说明仅显示目标路径，其余终点省略。",
+          "values": [
+            [
+              0.5,
+              0.01,
+              0.005
+            ],
+            [
+              0.3,
+              0.03,
+              0.009
+            ],
+            [
+              0.2,
+              0.05,
+              0.01
+            ]
+          ]
+        },
+        "keywords": [
+          "划分",
+          "加权平均"
+        ],
+        "calculation": {
+          "title": "三条目标路径",
+          "lines": [
+            "0.50×0.01=0.005",
+            "0.30×0.03=0.009",
+            "0.20×0.05=0.010"
+          ],
+          "note": "三项相加为0.024，仅列通向缺陷D的路径。"
+        }
+      },
+      "estimated_grid_lines": 27
+    },
+    {
+      "number": 3,
+      "title": "贝叶斯公式",
+      "subtitle": "先验概率与后验概率",
+      "blocks": [
+        {
+          "type": "heading",
+          "number": "1",
+          "text": "公式与推导",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "全概率公式根据各组比例及组内概率求总体概率。贝叶斯公式则在已知事件B发生后，求对象来自某组Aₖ的概率。其依据仍是条件概率定义，分子用乘法公式，分母用全概率公式展开。",
+          "estimated_grid_lines": 3
+        },
+        {
+          "type": "formula",
+          "text": "P(Aₖ | B) = P(Aₖ ∩ B) / P(B)",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "formula",
+          "text": "P(Aₖ | B) = P(Aₖ)P(B | Aₖ) / Σᵢ P(Aᵢ)P(B | Aᵢ)",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "使用条件为A₁,…,Aₘ构成划分、各条件概率有定义，并且P(B)>0。分子是目标来源与证据同时出现的概率，分母汇总所有可能产生证据的来源。仅使用某一来源计算分母，会夸大它的后验概率。",
+          "estimated_grid_lines": 3,
+          "highlights": [
+            {
+              "start": 35,
+              "end": 68,
+              "text": "分子是目标来源与证据同时出现的概率，分母汇总所有可能产生证据的来源",
+              "reason": "本段解释贝叶斯公式的分子与共同分母，完整标出对应关系有助于避免分母只算一条产线。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "名称",
+            "表达式",
+            "本例中的含义"
+          ],
+          "rows": [
+            [
+              "先验 prior",
+              "P(Aₖ)",
+              "观察B前的组别概率"
+            ],
+            [
+              "似然 likelihood",
+              "P(B | Aₖ)",
+              "该组产生B的概率"
+            ],
+            [
+              "后验 posterior",
+              "P(Aₖ | B)",
+              "观察B后的组别概率"
+            ]
+          ],
+          "widths_mm": [
+            33,
+            34,
+            61
+          ],
+          "estimated_grid_lines": 4
+        },
+        {
+          "type": "paragraph",
+          "text": "似然比较不同来源对同一证据的支持程度，但P(B|Aₖ)按k求和一般不等于1。后验概率经过共同分母归一化，所有来源的后验概率之和等于1。",
+          "estimated_grid_lines": 3
+        },
+        {
+          "type": "heading",
+          "number": "2",
+          "text": "典例精析",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "沿用三条产线的数据。已知抽到缺陷组件，求它来自A₃的概率，并解释与原供应比例的差异。",
+          "estimated_grid_lines": 2
+        },
+        {
+          "type": "formula",
+          "text": "P(A₃ | D) = (0.20 × 0.05) / 0.024 = 5/12",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "答案约为41.67%。A₃仅供应20%的组件，但其缺陷率高于总体缺陷率2.4%，因此在缺陷组件中的占比增加。类似地，A₁、A₂的后验概率分别为5/24、3/8，三者相加为1。",
+          "estimated_grid_lines": 3,
+          "highlights": [
+            {
+              "start": 24,
+              "end": 53,
+              "text": "其缺陷率高于总体缺陷率2.4%，因此在缺陷组件中的占比增加",
+              "reason": "例题要求解释先验与后验的差异，这段因果关系给出数值结果之外的完整解释。"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "number": "3",
+          "text": "频数核对",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "假设总体有10000件组件，三条产线的供应量依次为5000、3000、2000件；按给定比例，缺陷数依次为50、90、100件，共240件。其中来自A₃的占100/240=5/12。此频数模型与概率计算等价，也说明后验分母应是全部缺陷件数。",
+          "estimated_grid_lines": 4
+        }
+      ],
+      "sidebar": {
+        "title": "易错辨析",
+        "text": "P(A₃|D)回答缺陷件来自哪里，P(D|A₃)回答A₃产线的缺陷比例。前者约41.67%，后者为5%。已知条件改变，参考群体随之改变。",
+        "comic_brief": "两个原书风格概念拟人小角色，各自拿着不同身份牌，面对同一个缺陷组件。一个牌写产线A₃，一个牌写缺陷D。对话形成条件方向的具体对照，保留原书线条、表情与上色。",
+        "comic_text": [
+          "先问哪条产线？",
+          "这次已知有缺陷！"
+        ],
+        "keywords": [
+          "先验",
+          "似然",
+          "后验"
+        ],
+        "comic": {
+          "asset": "comic_evidence_population.png",
+          "speech": "先看全部缺陷件。"
+        }
+      },
+      "estimated_grid_lines": 28
+    },
+    {
+      "number": 4,
+      "title": "基准比例与似然比",
+      "subtitle": "概率更新与重复证据",
+      "blocks": [
+        {
+          "type": "heading",
+          "number": "1",
+          "text": "基准比例",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "记缺陷比例为p=P(D)，检出率为q=P(F|D)，误报率为r=P(F|D^c)。被标记组件既可能是真正缺陷件，也可能是误报，因此其缺陷概率为下式。",
+          "estimated_grid_lines": 3
+        },
+        {
+          "type": "formula",
+          "text": "P(D | F) = pq / [pq + (1 − p)r]",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "即使q较高，庞大的无缺陷群体仍可能产生大量误报。取q=0.90、r=0.10，只改变缺陷比例p，便可看到这一影响。",
+          "estimated_grid_lines": 2,
+          "highlights": [
+            {
+              "start": 0,
+              "end": 23,
+              "text": "即使q较高，庞大的无缺陷群体仍可能产生大量误报",
+              "reason": "这句提出表格要展示的基准比例效应，重点在检出率与群体规模共同影响误报数量的关系。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "先验p",
+            "真实标记pq",
+            "误报(1−p)r",
+            "后验P(D|F)"
+          ],
+          "rows": [
+            [
+              "0.02",
+              "0.018",
+              "0.098",
+              "0.1552"
+            ],
+            [
+              "0.05",
+              "0.045",
+              "0.095",
+              "0.3214"
+            ],
+            [
+              "0.50",
+              "0.450",
+              "0.050",
+              "0.9000"
+            ]
+          ],
+          "widths_mm": [
+            24,
+            33,
+            37,
+            34
+          ],
+          "estimated_grid_lines": 4
+        },
+        {
+          "type": "comparison_bars",
+          "values": [
+            [
+              0.02,
+              0.15517241379310345
+            ],
+            [
+              0.05,
+              0.32142857142857145
+            ],
+            [
+              0.5,
+              0.9
+            ]
+          ],
+          "parameter_label": "p=",
+          "legend": "先验 / 后验"
+        },
+        {
+          "type": "paragraph",
+          "text": "第一行说明2%的基准比例配合90%的检出率，后验仅约15.52%。忽略先验比例，单凭检出率判断标记可信度，会忽略不同群体的规模差异。",
+          "estimated_grid_lines": 3
+        },
+        {
+          "type": "heading",
+          "number": "2",
+          "text": "几率形式",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "当0<p<1且r>0时，几率odds定义为O(D)=p/(1−p)。正标记的似然比LR=q/r，表示同一证据在缺陷件中出现的可能性是无缺陷件中的多少倍。由两个后验概率相除可得：",
+          "estimated_grid_lines": 3
+        },
+        {
+          "type": "formula",
+          "text": "O(D | F) = O(D) × LR = [p/(1−p)] × (q/r)",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "几率为o时，概率为o/(1+o)。在p=0.05、q=0.90、r=0.10的例子中，先验几率为1/19，似然比为9，后验几率为9/19，故后验概率为9/28。LR>1支持D，LR<1削弱D，LR=1时该证据不改变概率。",
+          "estimated_grid_lines": 3
+        },
+        {
+          "type": "heading",
+          "number": "3",
+          "text": "重复检测的条件",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "若两次检测具有相同检出率与误报率，且在给定真实状态后条件独立，则P(F₁∩F₂|D)=q²，P(F₁∩F₂|D^c)=r²。两次正标记的似然比为LR²，后验几率为81/19，后验概率为81/100=0.81。",
+          "estimated_grid_lines": 3,
+          "highlights": [
+            {
+              "start": 17,
+              "end": 60,
+              "text": "且在给定真实状态后条件独立，则P(F₁∩F₂|D)=q²，P(F₁∩F₂|Dᶜ)=r²",
+              "reason": "在此推导中，平方来自两个真实状态组内的条件独立，标记完整条件与其计算结果。"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "条件独立必须由题目或模型支持。同一误差来源可能使两次结果相关，此时应使用P(F₂|D∩F₁)与P(F₂|D^c∩F₁)，不能直接再次乘以q/r。",
+          "estimated_grid_lines": 3
+        }
+      ],
+      "sidebar": {
+        "title": "概率与几率",
+        "text": "概率0.8对应几率4，表示成功与失败的概率之比为4∶1。几率可大于1，概率必须在0与1之间。两次检测条件独立，并不推出两次结果在总体中独立。",
+        "comic_brief": "原书风格的小概念角色举着检测结果牌，旁边另一角色检查同一个标记重复出现的两张卡。重点是两个检测是否共享错误来源，不使用科学侦探或现代3D角色。",
+        "comic_text": [
+          "又是同一个误差？",
+          "先检查独立条件。"
+        ],
+        "keywords": [
+          "基准比例",
+          "似然比"
+        ]
+      },
+      "estimated_grid_lines": 29
+    },
+    {
+      "number": 5,
+      "title": "独立事件与互斥事件",
+      "subtitle": "定义关系与判断方法",
+      "blocks": [
+        {
+          "type": "heading",
+          "number": "1",
+          "text": "独立性的定义",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "若P(A∩B)=P(A)P(B)，称A与B独立independent。该定义对零概率事件同样适用。当P(B)>0时，等价条件为P(A|B)=P(A)；若P(A)>0，还可用P(B|A)=P(B)判断。独立性描述已知一个事件是否改变另一个事件的概率。",
+          "estimated_grid_lines": 4
+        },
+        {
+          "type": "formula",
+          "text": "P(A ∩ B^c) = P(A) − P(A ∩ B)",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "formula",
+          "text": "= P(A)[1 − P(B)] = P(A)P(B^c)",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "上述推导表明，A与B独立时，A与B^c也独立；同理，A^c与B、A^c与B^c均独立。独立性应来自题设、抽样模型或概率计算，事件名称不同和发生时间不同都不足以构成理由。",
+          "estimated_grid_lines": 3
+        },
+        {
+          "type": "heading",
+          "number": "2",
+          "text": "互斥与独立的区别",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "互斥mutually exclusive要求A∩B=∅，即两个事件不能同时发生。当P(A)>0且P(B)>0时，互斥意味着交集概率为0，而P(A)P(B)>0，因此两事件必不独立。已知其中一个发生，另一个的条件概率立即降为0。",
+          "estimated_grid_lines": 4
+        },
+        {
+          "type": "table",
+          "headers": [
+            "性质",
+            "判断式",
+            "核心含义"
+          ],
+          "rows": [
+            [
+              "互斥",
+              "A∩B=∅",
+              "不能同时发生"
+            ],
+            [
+              "独立",
+              "P(A∩B)=P(A)P(B)",
+              "概率不因对方而改变"
+            ]
+          ],
+          "widths_mm": [
+            22,
+            60,
+            46
+          ],
+          "estimated_grid_lines": 3
+        },
+        {
+          "type": "paragraph",
+          "text": "边界情形需要单独检查。若某个事件的概率为0，它按乘法定义与任何事件独立；因此“互斥必不独立”须加上两个事件都有正概率这一条件。一般概率空间中，P(A∩B)=0也不必意味着交集为空。",
+          "estimated_grid_lines": 3,
+          "highlights": [
+            {
+              "start": 38,
+              "end": 62,
+              "text": "“互斥必不独立”须加上两个事件都有正概率这一条件",
+              "reason": "边界讨论需要读者记住命题成立的限定，不能只标互斥或独立两个名称。"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "number": "3",
+          "text": "两两独立与相互独立",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "三个事件两两独立，要求每一对事件都满足独立乘法式。相互独立还要求三重交集满足P(A∩B∩C)=P(A)P(B)P(C)。两两关系无法保证三者的共同关系，第7页的自测题给出反例。",
+          "estimated_grid_lines": 3,
+          "highlights": [
+            {
+              "start": 25,
+              "end": 59,
+              "text": "相互独立还要求三重交集满足P(A∩B∩C)=P(A)P(B)P(C)",
+              "reason": "这句给出三个事件从两两独立进一步达到相互独立所需的额外检验。"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "number": "4",
+          "text": "典例精析",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "10件组件中有4件缺陷件，连续不放回抽取两件。记D₁、D₂为第一、二件有缺陷，则P(D₂)=4/10，而P(D₂|D₁)=3/9，二者不相等，故不独立。若每次抽取后放回、充分混合，并按相同随机规则重新抽取，则两次结果独立。",
+          "estimated_grid_lines": 4
+        }
+      ],
+      "sidebar": {
+        "title": "零概率边界",
+        "text": "独立的乘法定义不需要除法。条件概率形式则要求条件事件的概率为正。连续模型中，单个点可以具有零概率而仍属于样本空间，因此概率为零不总等于集合为空。",
+        "comic_brief": "原书不规则拟人概念团两个角色站在有交叠的圈中，同向看一个共同结果，短对白纠正独立等于无法相遇的误解。保留简笔四肢、教材手绘轮廓和少量平涂。",
+        "comic_text": [
+          "我们能同时发生。",
+          "看概率有没有改变！"
+        ],
+        "keywords": [
+          "互斥",
+          "独立",
+          "条件独立"
+        ],
+        "comic": {
+          "asset": "comic_independent_events.png",
+          "speech": "我们也能同时发生。"
+        }
+      },
+      "estimated_grid_lines": 30
+    },
+    {
+      "number": 6,
+      "title": "典例精析",
+      "subtitle": "来源追溯与结果解释",
+      "blocks": [
+        {
+          "type": "heading",
+          "number": "1",
+          "text": "题目",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "language": "en",
+          "text": "A manufacturer obtains 70% of its components from supplier A and 30% from B. Their defect rates are 2% and 5%, respectively. A component is selected at random. Find (a) P(D), (b) P(B|D), and (c) P(B|D^c), where D denotes a defect. Interpret the results.",
+          "estimated_grid_lines": 5
+        },
+        {
+          "type": "heading",
+          "number": "2",
+          "text": "完整英文解答",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "language": "en",
+          "text": "The supplier events A and B are mutually exclusive and exhaustive, so they form a partition of the sample space.",
+          "estimated_grid_lines": 2
+        },
+        {
+          "type": "paragraph",
+          "language": "en",
+          "text": "(a) By the law of total probability, add the joint probabilities for the two suppliers:",
+          "estimated_grid_lines": 2
+        },
+        {
+          "type": "formula",
+          "text": "P(D) = 0.70 × 0.02 + 0.30 × 0.05 = 0.029",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "language": "en",
+          "text": "Thus, 2.9% of all components are defective. The rates are weighted by the supply proportions; an unweighted average would ignore the composition of the mixture.",
+          "estimated_grid_lines": 3
+        },
+        {
+          "type": "paragraph",
+          "language": "en",
+          "text": "(b) Given that the component is defective, Bayes' theorem gives:",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "formula",
+          "text": "P(B | D) = (0.30 × 0.05) / 0.029 = 15/29 ≈ 0.5172",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "language": "en",
+          "text": "B supplies approximately 51.72% of defective components, although it supplies only 30% of all components. Its higher defect rate increases its share within the defective group.",
+          "estimated_grid_lines": 3
+        },
+        {
+          "type": "paragraph",
+          "language": "en",
+          "text": "(c) P(D^c) = 1 − 0.029 = 0.971, while P(B∩D^c) = 0.30 × 0.95 = 0.285. Conditional probability therefore gives:",
+          "estimated_grid_lines": 2
+        },
+        {
+          "type": "formula",
+          "text": "P(B | D^c) = 0.285 / 0.971 = 285/971 ≈ 0.2935",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "language": "en",
+          "text": "About 29.35% of non-defective components come from B. This is below its supply share because non-defective status is less likely under B than under A.",
+          "estimated_grid_lines": 3
+        },
+        {
+          "type": "heading",
+          "number": "3",
+          "text": "方法归纳",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "本题两个后验概率分别以D和D^c为条件，分母随之变化。P(B|D)与P(B|D^c)不构成互补事件的概率；真正的互补关系为P(B|D)+P(A|D)=1。检查互补时，目标可以互补，条件必须相同。",
+          "estimated_grid_lines": 3,
+          "highlights": [
+            {
+              "start": 75,
+              "end": 94,
+              "text": "检查互补时，目标可以互补，条件必须相同",
+              "reason": "此处归纳前面两个不同条件后验概率的辨析，简短规则紧接具体题目，能够指导核对。"
+            }
+          ]
+        }
+      ],
+      "sidebar": {
+        "title": "频数核对",
+        "text": "设总体有10000件。A供应7000件，其中140件有缺陷；B供应3000件，其中150件有缺陷。缺陷件共290件，来自B的为150/290。无缺陷件共9710件，来自B的为2850/9710。",
+        "english_terms": [
+          {
+            "term": "exhaustive",
+            "meaning": "覆盖所有可能来源"
+          },
+          {
+            "term": "weighted average",
+            "meaning": "按来源比例加权的平均"
+          },
+          {
+            "term": "interpret",
+            "meaning": "说明数值对应的参考群体"
+          }
+        ],
+        "keywords": [
+          "total",
+          "probability",
+          "Bayes"
+        ],
+        "term_limit": 2
+      },
+      "estimated_grid_lines": 30
+    },
+    {
+      "number": 7,
+      "title": "综合自测",
+      "subtitle": "条件概率与独立性",
+      "blocks": [
+        {
+          "type": "heading",
+          "number": "1",
+          "text": "不放回抽样",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "language": "zh",
+          "text": "盒中有4个红球和6个蓝球。从中依次随机抽取两个球且不放回，每次剩余各球被抽中的概率相同。设R₁和R₂分别表示第一次和第二次抽到红球的事件。(a)求P(R₁∩R₂)。(b)利用全概率公式求P(R₂)。(c)求P(R₁|R₂)。(d)R₁和R₂独立吗？请说明理由。",
+          "estimated_grid_lines": 6
+        },
+        {
+          "type": "heading",
+          "number": "2",
+          "text": "重复检测",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "language": "zh",
+          "text": "某组件有缺陷的概率为0.02。一项检测会对95%的缺陷组件和5%的无缺陷组件给出标记。(a)求检测给出标记的概率，以及已知检测给出标记时组件有缺陷的概率。(b)已知组件的真实缺陷状态时，两次检测条件独立。求已知两次检测均给出标记时组件有缺陷的概率。(c)说明条件独立假设为何重要。",
+          "estimated_grid_lines": 7
+        },
+        {
+          "type": "heading",
+          "number": "3",
+          "text": "两两独立",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "language": "zh",
+          "text": "独立地投掷两枚均匀硬币。设A表示第一枚硬币正面朝上的事件，B表示第二枚硬币正面朝上的事件，C表示两枚硬币朝上的面相同的事件。(a)验证A、B和C两两独立。(b)这三个事件相互独立吗？请给出相关概率以支持你的结论。",
+          "estimated_grid_lines": 6
+        },
+        {
+          "type": "heading",
+          "number": "4",
+          "text": "术语与表达",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "table",
+          "headers": [
+            "术语",
+            "含义与使用"
+          ],
+          "rows": [
+            [
+              "conditional probability",
+              "已知条件下的事件概率"
+            ],
+            [
+              "partition",
+              "互斥且覆盖总体的分组"
+            ],
+            [
+              "prior / posterior",
+              "观察证据前后的概率"
+            ],
+            [
+              "likelihood ratio",
+              "同一证据的概率之比"
+            ],
+            [
+              "conditional independence",
+              "给定条件后的独立性"
+            ],
+            [
+              "pairwise / mutual independence",
+              "两两关系与整体关系"
+            ]
+          ],
+          "widths_mm": [
+            62,
+            66
+          ],
+          "estimated_grid_lines": 9
+        },
+        {
+          "type": "paragraph",
+          "text": "完整答案见下一页。概率结果需说明条件，独立性判断需给出理由。",
+          "estimated_grid_lines": 1
+        }
+      ],
+      "sidebar": {
+        "title": "自测要点",
+        "text": "第1题关注抽取后总体组成是否改变。第2题关注重复证据之间的关系。第3题关注两两条件与整体条件的区别。三题分别检验参考群体、证据更新和独立性的边界。",
+        "comic_brief": "原书风格的小角色观察同一组中的两个标签，另一个角色持题目纸，表现逐项核对条件的学习场景；人物适当夸张，简笔少细节，风格服从原书截图。",
+        "comic_text": [
+          "条件写全了吗？",
+          "答案还要有理由。"
+        ],
+        "keywords": [
+          "without",
+          "replacement"
+        ]
+      },
+      "estimated_grid_lines": 33
+    },
+    {
+      "number": 8,
+      "title": "自测答案",
+      "subtitle": "完整解答与理由",
+      "blocks": [
+        {
+          "type": "heading",
+          "number": "1",
+          "text": "不放回抽样",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "language": "en",
+          "text": "(a) After a red ball is drawn, 3 red balls remain among 9 balls. Hence P(R₁∩R₂) = (4/10)(3/9) = 2/15.",
+          "estimated_grid_lines": 2
+        },
+        {
+          "type": "formula",
+          "text": "P(R₂) = (4/10)(3/9) + (6/10)(4/9) = 2/5",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "language": "en",
+          "text": "(b) The two terms above correspond to a red and a blue first draw, which form a partition. (c) P(R₁|R₂) = (2/15)/(2/5) = 1/3. (d) The events are not independent: 1/3 differs from P(R₁) = 2/5. Equivalently, 2/15 ≠ (2/5)².",
+          "estimated_grid_lines": 4
+        },
+        {
+          "type": "heading",
+          "number": "2",
+          "text": "重复检测",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "language": "en",
+          "text": "Let D denote a defect and Fᵢ a flag on test i. (a) By total probability, P(F₁) = 0.02(0.95) + 0.98(0.05) = 0.068. Therefore P(D|F₁) = 0.019/0.068 = 19/68 ≈ 0.2794.",
+          "estimated_grid_lines": 3
+        },
+        {
+          "type": "paragraph",
+          "language": "en",
+          "text": "(b) Conditional independence gives P(F₁∩F₂|D) = 0.95² and P(F₁∩F₂|D^c) = 0.05². Applying Bayes' theorem:",
+          "estimated_grid_lines": 2
+        },
+        {
+          "type": "formula",
+          "text": "P(D | F₁ ∩ F₂) = 0.01805 / (0.01805 + 0.00245)",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "formula",
+          "text": "= 361/410 ≈ 0.8805",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "language": "en",
+          "text": "(c) The assumption permits multiplication within each true-status group. Without it, a shared error source may affect both tests. Further conditional probabilities would be needed; squaring the single-test rates would be unjustified.",
+          "estimated_grid_lines": 4,
+          "highlights": [
+            {
+              "start": 4,
+              "end": 72,
+              "text": "The assumption permits multiplication within each true-status group.",
+              "reason": "该题问条件独立为何重要，这一句直接说明假设许可的计算步骤与适用群体。"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "number": "3",
+          "text": "两两独立",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "language": "en",
+          "text": "HH, HT, TH and TT are equally likely. A = {HH, HT}, B = {HH, TH} and C = {HH, TT}; each event has probability 1/2. Every pair intersects only at HH, with probability 1/4 = (1/2)(1/2). The events are therefore pairwise independent.",
+          "estimated_grid_lines": 4
+        },
+        {
+          "type": "paragraph",
+          "language": "en",
+          "text": "However, A∩B∩C = {HH} has probability 1/4. Mutual independence requires (1/2)³ = 1/8. Since these values differ, the three events are not mutually independent.",
+          "estimated_grid_lines": 3,
+          "highlights": [
+            {
+              "start": 43,
+              "end": 85,
+              "text": "Mutual independence requires (1/2)³ = 1/8.",
+              "reason": "该题反例的决定性步骤是比较三重交集与三个边际概率之积，此句提供所需对照值。"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "number": "4",
+          "text": "方法归纳",
+          "estimated_grid_lines": 1
+        },
+        {
+          "type": "paragraph",
+          "text": "计算联合概率使用乘法公式，汇总互斥来源使用全概率公式，已知结果求来源使用贝叶斯公式。判断独立须核对定义；重复证据须核对条件独立；多个事件还须区分两两独立与相互独立。",
+          "estimated_grid_lines": 3
+        }
+      ],
+      "sidebar": {
+        "title": "数值核对",
+        "text": "不放回抽样的联合概率约0.1333，两个边际概率乘积为0.16。一次标记的后验约27.94%，两次条件独立标记后约88.05%。两次标记仍无法保证缺陷概率等于1。",
+        "english_terms": [
+          {
+            "term": "given the true status",
+            "meaning": "给定真实状态"
+          },
+          {
+            "term": "would be unjustified",
+            "meaning": "缺乏所需依据"
+          },
+          {
+            "term": "equivalently",
+            "meaning": "使用等价判断方式"
+          }
+        ],
+        "keywords": [
+          "pairwise",
+          "mutual"
+        ],
+        "term_limit": 2
+      },
+      "estimated_grid_lines": 32
+    }
+  ],
+  "wide_reference": {
+    "columns": [
+      {
+        "title": "条件概率与乘法",
+        "formulas": [
+          "P(A|B)=P(A∩B)/P(B), P(B)>0",
+          "P(A∩B)=P(A)P(B|A)",
+          "P(A∩B∩C)=P(A)P(B|A)P(C|A∩B)"
+        ],
+        "notes": [
+          "条件决定分母；联合事件决定分子。",
+          "P(A|B)与P(B|A)一般不同。",
+          "乘法公式本身不要求独立。"
+        ],
+        "example": {
+          "title": "频数核对",
+          "lines": [
+            "P(F|D)=90/100=0.90",
+            "P(D|F)=90/280≈0.3214",
+            "P(D∩F)=90/2000=0.045"
+          ]
+        }
+      },
+      {
+        "title": "全概率与贝叶斯",
+        "formulas": [
+          "P(B)=ΣᵢP(Aᵢ)P(B|Aᵢ)",
+          "P(Aₖ|B)=P(Aₖ)P(B|Aₖ)/P(B)"
+        ],
+        "notes": [
+          "Aᵢ必须互斥且覆盖总体。",
+          "先验乘似然后，以全部证据概率归一化。",
+          "后验概率之和为1，似然之和一般不等于1。",
+          "贝叶斯公式要求P(B)>0，且各组的条件概率有定义。"
+        ],
+        "example": {
+          "title": "产线实例",
+          "lines": [
+            "P(D)=0.005+0.009+0.010=0.024",
+            "P(A₃|D)=0.010/0.024=5/12",
+            "三个来源的后验之和为1。"
+          ]
+        }
+      },
+      {
+        "title": "基准比例与几率",
+        "formulas": [
+          "P(D|F)=pq/[pq+(1−p)r]",
+          "O(D)=p/(1−p)",
+          "O(D|F)=O(D)×LR, LR=q/r"
+        ],
+        "notes": [
+          "p为基准比例，q为检出率，r为误报率。",
+          "几率o转换为概率o/(1+o)。",
+          "重复使用似然比需要相应条件独立，或使用更新后的条件概率。",
+          "几率模型要求0<p<1，似然比q/r要求r>0。"
+        ],
+        "example": {
+          "title": "两次标记",
+          "lines": [
+            "p=0.05，q=0.90，r=0.10",
+            "一次标记的后验为9/28。",
+            "条件独立时，两次后验为0.81。"
+          ]
+        }
+      },
+      {
+        "title": "独立与互斥",
+        "formulas": [
+          "独立：P(A∩B)=P(A)P(B)",
+          "互斥：A∩B=∅",
+          "条件独立：P(A∩B|C)=P(A|C)P(B|C)"
+        ],
+        "notes": [
+          "正概率互斥事件必不独立。",
+          "零概率事件用乘法定义判断。",
+          "两两独立不保证相互独立。",
+          "给定事件C的条件独立公式要求P(C)>0。"
+        ],
+        "example": {
+          "title": "判断边界",
+          "lines": [
+            "P(A|B)=P(A)要求P(B)>0。",
+            "独立的乘法定义也适用于零概率。",
+            "两两独立不保证三重交集的乘法关系。"
+          ]
+        }
+      }
+    ],
+    "title": "条件概率与贝叶斯",
+    "label": "知识速查"
+  },
+  "math_checks": {
+    "screening_frequency": {
+      "total": 2000,
+      "defective": 100,
+      "flagged": 280,
+      "defective_flagged": 90,
+      "p_F_given_D": "9/10",
+      "p_D_given_F": "9/28",
+      "p_D_and_F": "9/200"
+    },
+    "three_lines": {
+      "defect_probability": "3/125",
+      "posterior_A1": "5/24",
+      "posterior_A2": "3/8",
+      "posterior_A3": "5/12",
+      "posterior_sum": "1"
+    },
+    "base_rates": {
+      "p_002": "9/58",
+      "p_005": "9/28",
+      "p_050": "9/10",
+      "two_flags_p_005": "81/100"
+    },
+    "supplier_example": {
+      "p_D": "29/1000",
+      "p_B_given_D": "15/29",
+      "p_B_given_notD": "285/971"
+    },
+    "exercise1": {
+      "p_R1_R2": "2/15",
+      "p_R2": "2/5",
+      "p_R1_given_R2": "1/3",
+      "product_marginals": "4/25"
+    },
+    "exercise2": {
+      "p_flag": "17/250",
+      "one_flag_posterior": "19/68",
+      "two_flags_posterior": "361/410"
+    },
+    "exercise3": {
+      "each_marginal": "1/2",
+      "each_pair_intersection": "1/4",
+      "triple_intersection": "1/4",
+      "triple_marginal_product": "1/8"
+    }
+  },
+  "terminology_extended": [
+    {
+      "zh": "样本空间",
+      "term": "sample space",
+      "definition_zh": "随机试验所有可能结果的集合，通常记为Ω。有限且等可能时，计算概率的总结果数取自该集合；条件概率则在给定事件限定的范围内重新确定分母。"
+    },
+    {
+      "zh": "事件",
+      "term": "event",
+      "definition_zh": "样本空间中可赋予概率的结果集合。事件发生表示实际结果属于该集合，同一结果可以同时属于多个事件。"
+    },
+    {
+      "zh": "交集",
+      "term": "intersection",
+      "definition_zh": "同时属于两个事件的结果集合，记为A∩B。计算P(A∩B)时，目标要求A和B同时发生。"
+    },
+    {
+      "zh": "并集",
+      "term": "union",
+      "definition_zh": "至少属于两个事件中一个的结果集合，记为A∪B。A和B的交集会在两个单独概率中各计一次，所以相加后需要减去一次交集概率。"
+    },
+    {
+      "zh": "补事件",
+      "term": "complementary event",
+      "definition_zh": "样本空间中不属于原事件的全部结果，记为A^c。原事件与补事件互斥且合起来覆盖整个样本空间，二者的概率之和为1。"
+    },
+    {
+      "zh": "条件概率",
+      "term": "conditional probability",
+      "definition_zh": "已知B发生后，A在B限定群体中的概率，记为P(A|B)。分母为P(B)，分子为P(A∩B)，定义要求P(B)>0；交换A与B通常会改变参考群体。"
+    },
+    {
+      "zh": "联合概率",
+      "term": "joint probability",
+      "definition_zh": "两个或多个事件同时发生的概率。P(A∩B)以整个样本空间为参考；P(A|B)以事件B为参考，二者分母不同。"
+    },
+    {
+      "zh": "边际概率",
+      "term": "marginal probability",
+      "definition_zh": "单独考察一个事件的概率，例如P(A)。在联合频数表中，它对应相应行或列的合计比例，不附加另一个事件作为条件。"
+    },
+    {
+      "zh": "乘法公式",
+      "term": "multiplication rule",
+      "definition_zh": "通过一个事件的概率与给定该事件时另一个事件的条件概率，求共同发生的概率。P(A∩B)=P(A)P(B|A)，右侧的条件概率要求P(A)>0。"
+    },
+    {
+      "zh": "划分",
+      "term": "partition",
+      "definition_zh": "一组两两互斥且并集为整个样本空间的事件。全概率公式按这些组汇总目标事件，各组不会重复也不会遗漏；写出组内条件概率时还要求相应组概率为正。"
+    },
+    {
+      "zh": "全概率公式",
+      "term": "law of total probability",
+      "definition_zh": "在互斥且完整的分组下，将每组比例乘以该组内目标事件的条件概率，再将各项相加，得到目标事件的总体概率。"
+    },
+    {
+      "zh": "加权平均",
+      "term": "weighted average",
+      "definition_zh": "各项数值按不同权重求和所得的平均。本章中组内缺陷率的权重为各组供应比例，只有各组等权时才可直接取算术平均。"
+    },
+    {
+      "zh": "贝叶斯公式",
+      "term": "Bayes' theorem",
+      "definition_zh": "观察到证据后更新来源概率的公式。分子为目标来源与证据共同发生的概率，分母汇总全部来源产生证据的概率，且证据概率须为正。"
+    },
+    {
+      "zh": "先验概率",
+      "term": "prior probability",
+      "definition_zh": "纳入当前证据之前，对某事件或来源赋予的概率。产线例题中，观察组件是否有缺陷之前的供应比例就是来源的先验概率。"
+    },
+    {
+      "zh": "似然",
+      "term": "likelihood",
+      "definition_zh": "在给定来源或假设下，实际观察证据出现的概率。本章写作P(B|Aᵢ)，比较不同来源产生同一证据的可能性；这些数值按来源求和一般不等于1。"
+    },
+    {
+      "zh": "后验概率",
+      "term": "posterior probability",
+      "definition_zh": "纳入观察证据后得到的条件概率。本章P(Aᵢ|B)表示已知证据B时对象来自Aᵢ的概率，各个互斥且完整来源的后验概率之和为1。"
+    },
+    {
+      "zh": "基准比例",
+      "term": "base rate",
+      "definition_zh": "目标群体在总体中的原有比例。例如检测前组件的缺陷比例；即使检出率较高，较低的基准比例仍可能使被标记组件中误报所占比例较大。"
+    },
+    {
+      "zh": "检出率",
+      "term": "sensitivity",
+      "definition_zh": "真实有缺陷的组件中被检测标记的比例，记为P(F|D)。其分母限定为缺陷组件，不等于被标记组件中真正有缺陷的比例P(D|F)。"
+    },
+    {
+      "zh": "误报率",
+      "term": "false positive rate",
+      "definition_zh": "真实无缺陷的组件中被检测标记的比例，记为P(F|D^c)。总体中的误报比例还须乘以无缺陷组件所占比例P(D^c)。"
+    },
+    {
+      "zh": "几率",
+      "term": "odds",
+      "definition_zh": "事件发生概率与不发生概率之比。概率为p时，几率为p/(1−p)；几率为o时，概率为o/(1+o)。几率可以大于1。"
+    },
+    {
+      "zh": "似然比",
+      "term": "likelihood ratio",
+      "definition_zh": "同一证据在两个假设下出现概率之比。检测例中LR=P(F|D)/P(F|D^c)，分母须为正；后验几率等于先验几率乘以该比值。"
+    },
+    {
+      "zh": "独立事件",
+      "term": "independent events",
+      "definition_zh": "满足P(A∩B)=P(A)P(B)的两个事件。若P(B)>0，也可检验P(A|B)=P(A)；乘法定义同样适用于零概率事件。"
+    },
+    {
+      "zh": "互斥事件",
+      "term": "mutually exclusive events",
+      "definition_zh": "不能同时发生的两个事件，即A∩B为空集。若两个事件概率都为正，互斥便意味着它们不独立；零概率边界情形需要按独立定义判断。"
+    },
+    {
+      "zh": "条件独立",
+      "term": "conditional independence",
+      "definition_zh": "在给定某个条件后满足独立乘法关系。重复检测中，须分别在缺陷组和无缺陷组检查此条件，才能将组内两次检测概率相乘。"
+    },
+    {
+      "zh": "两两独立",
+      "term": "pairwise independence",
+      "definition_zh": "多个事件中每一对事件都独立。对于三个事件，这只检验三组两事件关系，不能据此推出三重交集也满足概率相乘。"
+    },
+    {
+      "zh": "相互独立",
+      "term": "mutual independence",
+      "definition_zh": "多个事件的每个至少含两个事件的子集都满足交集概率等于各自概率之积。三个事件相互独立既要求两两独立，也要求三重交集满足乘法式。"
+    },
+    {
+      "zh": "不放回抽样",
+      "term": "sampling without replacement",
+      "definition_zh": "抽出的对象不再放回总体的抽样方式。前一次结果会改变下一次抽取时总体的数量或组成，因此计算连续结果的概率时需要更新条件概率。"
+    }
+  ],
+  "humour": [
+    "我问冰箱有什么吃的，它给了我一盏灯。",
+    "闹钟每天都很准时，准时被我关掉。",
+    "电脑问我是否保存，我说先救救我的作业。",
+    "我的拖延症很稳定，治疗计划明天再写。",
+    "图书馆最受欢迎的书，是别人桌上那本。",
+    "笔记本只剩一格电时，我的思路突然非常清晰。",
+    "我和截止日期很熟，它总是追着我跑。",
+    "昨天买了时间管理书，准备有空再看。"
+  ],
+  "subject": "统计学",
+  "chapter_heading": "第一章  条件概率与贝叶斯",
+  "running_header": {
+    "left": "统计学",
+    "right": "条件概率与贝叶斯"
+  },
+  "cover": {
+    "subtitle": "概率基础",
+    "note": "大学课程参考样例",
+    "image": "comic_conditional_direction.png",
+    "edition_labels": {
+      "print": "打印批注版",
+      "digital": "电子批注版"
+    }
+  },
+  "frontmatter": {
+    "contents": {
+      "title": "目录",
+      "humour": "我问冰箱有什么吃的，它给了我一盏灯。",
+      "summary_title": "基础知识再读",
+      "summary": "事件运算说明结果之间的关系，条件概率确定已知群体。乘法公式计算共同发生，全概率公式汇总全部来源，贝叶斯公式根据证据更新来源概率。独立性决定条件能否省略，条件独立决定多次证据能否直接相乘。"
+    },
+    "glossary": {
+      "title": "术语索引",
+      "humour": "闹钟每天都很准时，准时被我关掉。"
+    }
+  },
+  "metadata": {
+    "title": "统计学学霸笔记 条件概率与贝叶斯",
+    "author": "",
+    "subject": "白底参考样例 PDF母版填充",
+    "keywords": "条件概率 贝叶斯 全概率 独立事件"
+  },
+  "answer_vocabulary": {
+    "title": "答案词汇",
+    "humour": "昨天买了时间管理书，准备有空再看。",
+    "entries": [
+      {
+        "zh": "抽出",
+        "term": "is drawn",
+        "definition_zh": "描述球已被抽出的结果；被动语态的主语是球，说明下一步计算所依据的已知状态。",
+        "usage_en": "After a red ball is drawn, 3 red balls remain among 9 balls.",
+        "question_ids": [
+          "1(a)"
+        ]
+      },
+      {
+        "zh": "剩余群体",
+        "term": "remain among",
+        "definition_zh": "说明抽样后的数量与新的总体大小，用于交代条件概率的分子和分母。",
+        "usage_en": "Three red balls remain among nine balls.",
+        "question_ids": [
+          "1(a)"
+        ]
+      },
+      {
+        "zh": "划分",
+        "term": "form a partition",
+        "definition_zh": "说明若干事件互斥且完整覆盖样本空间，因而可以分别计算目标概率再求和。",
+        "usage_en": "A red and a blue first draw form a partition.",
+        "question_ids": [
+          "1(b)"
+        ]
+      },
+      {
+        "zh": "对应于",
+        "term": "correspond to",
+        "definition_zh": "指出公式中的每一项代表哪一种情形，让求和式与题目分组逐项对应。",
+        "usage_en": "The two terms correspond to a red and a blue first draw.",
+        "question_ids": [
+          "1(b)"
+        ]
+      },
+      {
+        "zh": "不同于",
+        "term": "differs from",
+        "definition_zh": "比较两个概率值，用于说明条件概率改变，从而否定独立性。",
+        "usage_en": "P(R₁|R₂) = 1/3 differs from P(R₁) = 2/5.",
+        "question_ids": [
+          "1(d)"
+        ]
+      },
+      {
+        "zh": "等价地",
+        "term": "equivalently",
+        "definition_zh": "引出结论相同的另一种检验方式；本题先比较条件概率，再比较交集概率与边际概率乘积。",
+        "usage_en": "Equivalently, 2/15 ≠ (2/5)².",
+        "question_ids": [
+          "1(d)"
+        ]
+      },
+      {
+        "zh": "独立",
+        "term": "independent",
+        "definition_zh": "指两个事件的交集概率等于各自概率之积；答题时须配上所检验的概率关系。",
+        "usage_en": "The events are not independent because 1/3 differs from 2/5.",
+        "question_ids": [
+          "1(d)"
+        ]
+      },
+      {
+        "zh": "符号表示",
+        "term": "let … denote …",
+        "definition_zh": "引入后续计算使用的事件符号，并给出符号在当前题目中的含义。",
+        "usage_en": "Let D denote a defect and Fᵢ a flag on test i.",
+        "question_ids": [
+          "2(a)"
+        ]
+      },
+      {
+        "zh": "全概率公式",
+        "term": "total probability",
+        "definition_zh": "按真实缺陷状态分组计算标记概率，将真实标记与误报的联合概率相加。",
+        "usage_en": "By total probability, P(F₁) = 0.02(0.95) + 0.98(0.05) = 0.068.",
+        "question_ids": [
+          "2(a)"
+        ]
+      },
+      {
+        "zh": "条件独立",
+        "term": "conditional independence",
+        "definition_zh": "表示在给定真实状态的各组内，两次检测结果独立；该条件支持组内概率相乘。",
+        "usage_en": "Conditional independence gives P(F₁∩F₂|D) = 0.95².",
+        "question_ids": [
+          "2(b)",
+          "2(c)"
+        ]
+      },
+      {
+        "zh": "贝叶斯公式",
+        "term": "Bayes' theorem",
+        "definition_zh": "根据两次标记这一证据更新缺陷概率，分母同时包含缺陷组和无缺陷组产生证据的概率。",
+        "usage_en": "Applying Bayes' theorem, P(D|F₁∩F₂) = 361/410.",
+        "question_ids": [
+          "2(b)"
+        ]
+      },
+      {
+        "zh": "允许相乘",
+        "term": "permits multiplication",
+        "definition_zh": "解释某项假设在推导中的用途，明确指出该假设许可哪一步运算。",
+        "usage_en": "The assumption permits multiplication within each true-status group.",
+        "question_ids": [
+          "2(c)"
+        ]
+      },
+      {
+        "zh": "真实状态组",
+        "term": "true-status group",
+        "definition_zh": "按组件实际是否有缺陷划分的群体；应分别在每组内讨论检测结果之间的关系。",
+        "usage_en": "Multiplication is applied within each true-status group.",
+        "question_ids": [
+          "2(c)"
+        ]
+      },
+      {
+        "zh": "共同误差来源",
+        "term": "shared error source",
+        "definition_zh": "能够同时影响两次检测的误差来源，可能使两次结果相关，破坏组内条件独立。",
+        "usage_en": "A shared error source may affect both tests.",
+        "question_ids": [
+          "2(c)"
+        ]
+      },
+      {
+        "zh": "缺乏依据",
+        "term": "would be unjustified",
+        "definition_zh": "说明缺少题目所需假设时，某一步推导不能成立，并指出具体受影响的步骤。",
+        "usage_en": "Squaring the single-test rates would be unjustified.",
+        "question_ids": [
+          "2(c)"
+        ]
+      },
+      {
+        "zh": "等可能",
+        "term": "equally likely",
+        "definition_zh": "描述基本结果具有相同概率，支持用结果个数计算硬币例题的事件概率。",
+        "usage_en": "HH, HT, TH and TT are equally likely.",
+        "question_ids": [
+          "3(a)"
+        ]
+      },
+      {
+        "zh": "相交于",
+        "term": "intersects at",
+        "definition_zh": "说明两个事件共同包含的基本结果；本题每一对事件的交集都只含HH。",
+        "usage_en": "Every pair intersects only at HH.",
+        "question_ids": [
+          "3(a)"
+        ]
+      },
+      {
+        "zh": "两两独立",
+        "term": "pairwise independent",
+        "definition_zh": "指每一对事件的交集概率都等于该对事件的概率乘积；结论限于逐对检验。",
+        "usage_en": "The events are therefore pairwise independent.",
+        "question_ids": [
+          "3(a)"
+        ]
+      },
+      {
+        "zh": "相互独立",
+        "term": "mutual independence",
+        "definition_zh": "本题三个事件相互独立还须满足三重交集的乘法关系，不能仅凭两两检验作出结论。",
+        "usage_en": "Mutual independence requires P(A∩B∩C) = (1/2)³ = 1/8.",
+        "question_ids": [
+          "3(b)"
+        ]
+      },
+      {
+        "zh": "由于数值不同",
+        "term": "since these values differ",
+        "definition_zh": "连接已经算出的比较结果与独立性结论，使答案明确说明结论依据。",
+        "usage_en": "Since these values differ, the three events are not mutually independent.",
+        "question_ids": [
+          "3(b)"
+        ]
+      }
+    ]
+  }
+}
