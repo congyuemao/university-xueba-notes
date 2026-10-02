@@ -1,6 +1,6 @@
 # 大学学霸笔记 · University Xueba Notes
 
-用课程讲义、教材、课堂笔记和习题制作大学学习笔记，输出适合打印或平板批注的 PDF。笔记采用白底蓝色横线、霞鹜文楷正文，配合中英术语、知识讲解、例题、教学漫画与章末自测。
+用课程讲义、教材、课堂笔记和习题制作大学学习笔记，输出适合打印或平板批注的 PDF。笔记采用白底蓝色横线、霞鹜文楷正文，配合分级知识目录、正文完整讲解、例题、教学漫画与书末分章专有词汇表。
 
 查看示例：[打印版](skills/artifact-template-university-xueba-notes/Resources/examples/print-reference.pdf) · [电子版](skills/artifact-template-university-xueba-notes/Resources/examples/digital-reference.pdf) · [知识速查](skills/artifact-template-university-xueba-notes/Resources/examples/foldout.pdf)
 
@@ -34,7 +34,8 @@ https://github.com/congyuemao/university-xueba-notes/tree/main/skills/artifact-t
 ```text
 使用 $artifact-template-university-xueba-notes，根据我上传的讲义制作条件概率章节笔记。
 采用打印批注版，中文讲解，保留英文术语。
-包括知识讲解、推导、例题、教学漫画和章末自测，自测配英文答案。
+包括分级知识目录、知识讲解、推导、例题和教学漫画。
+核心概念第一次出现时给出定义、通俗解释、条件和例子，书末附分章英中专有词汇表。
 输出章节 PDF 和独立知识速查页。
 ```
 
@@ -146,8 +147,10 @@ python -X utf8 scripts/pick_fun_content.py --count 20 --seed 42 --used-file outp
 
 在 Codex 中提供课程资料并调用 skill，即可让助手编写内容、准备插图和排版。手动运行脚本时，按下面的方式替换输入：
 
-1. 参考 [统计学内容文件](skills/artifact-template-university-xueba-notes/Resources/content/statistics-chapter.json)，另存一份章节 JSON，填写课程名称、正文、术语、例题、自测和答案。
+1. 参考 [统计学内容文件](skills/artifact-template-university-xueba-notes/Resources/content/statistics-chapter.json)，另存一份章节 JSON，填写课程名称、核心概念、独立知识目录、正文、典例与书末分章专有词汇表。
 2. 将本章插图放入一个文件夹，在内容 JSON 的 `sidebar.comic.asset` 中填写相对于该文件夹的图片路径。
 3. 将生成命令中的 `--content` 改为新 JSON 路径，`--assets` 改为插图目录，`--output` 改为目标 PDF 路径。
+
+目录由独立 `outline` 生成，不把每个分页标题机械列入目录。默认不生成统一自测、独立答案页或答案词汇；如确需练习册，可在具体请求中另行说明。`chapter_glossary` 位于全书最后，每个词条只保留 `term_en` 与 `meaning_zh`。
 
 内容字段、页型和高亮写法见 [模板填充说明](skills/artifact-template-university-xueba-notes/references/template-workflow.md)；调整笔记风格可从 [skill 主规范](skills/artifact-template-university-xueba-notes/SKILL.md) 进入对应说明。

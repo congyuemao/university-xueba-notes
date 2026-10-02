@@ -12,13 +12,51 @@ from context_highlights import validate_content_highlights,contextual_highlight_
 from pick_fun_content import DEFAULT_CATALOG,KINDS,FunPicker,UsageHistory,load_catalog,display_text,write_json
 class Book:
     def __init__(self,a,history=None):
-        self.a=a;self.content=json.loads(Path(a.content).read_text(encoding='utf-8'));self.man=json.loads((Path(a.templates)/'template-manifest.json').read_text(encoding='utf-8'));self.src=Path(a.templates)/(a.edition+'-master.pdf');self.hash=hashlib.sha256(self.src.read_bytes()).hexdigest();self.master=fitz.open(self.src);self.doc=fitz.open();self.toc=[];self.logs=[];self.g=None;self.contents_links=[];self.body_targets={};register_fonts(a.fonts)
+        self.a=a;self.content=json.loads(Path(a.content).read_text(encoding='utf-8'));self.man=json.loads((Path(a.templates)/'template-manifest.json').read_text(encoding='utf-8'));self.src=Path(a.templates)/(a.edition+'-master.pdf');self.hash=hashlib.sha256(self.src.read_bytes()).hexdigest();self.master=fitz.open(self.src);self.doc=fitz.open();self.toc=[];self.logs=[];self.g=None;self.contents_links=[];self.body_targets={};self.contents_pdf_page=None;register_fonts(a.fonts)
+        self.validate_schema()
         validate_content_highlights(self.content)
         grid=self.man['grid'];self.first=grid['first_baseline_mm'];self.pitch=grid['pitch_mm'];self.maxrows=grid['rows'];self.assets=Path(a.assets)
         self.history=history;self.fun_picker=None;self.fun_item=None;self.fun_lines_cache={}
         if a.fun_mode=='random' and not a.foldout_only:
             self.fun_picker=FunPicker(load_catalog(a.fun_catalog),seed=a.fun_seed,subjects=a.fun_subject,
                 kinds=a.fun_types,include_general=a.fun_include_general,max_lines=a.fun_max_lines,history=history)
+    def validate_schema(self):
+        legacy=[key for key in ('terminology_extended','answer_vocabulary') if key in self.content]
+        if legacy:raise ValueError('Remove legacy fields: '+', '.join(legacy))
+        front=self.content.get('frontmatter') or {}
+        if 'glossary' in front:raise ValueError('frontmatter.glossary is no longer supported; use chapter_glossary at the end')
+        outline=self.content.get('outline')
+        if not isinstance(outline,list) or not outline:raise ValueError('outline must be a non-empty independent knowledge hierarchy')
+        ids=set()
+        for node in outline:
+            if not isinstance(node,dict) or not isinstance(node.get('id'),str) or not node['id'].strip():raise ValueError('Every outline node needs an id')
+            if node['id'] in ids:raise ValueError('Duplicate outline id '+node['id'])
+            ids.add(node['id'])
+            if not isinstance(node.get('title'),str) or not node['title'].strip():raise ValueError(node['id']+': outline title is required')
+            if node.get('level') not in (1,2,3,4):raise ValueError(node['id']+': outline level must be 1–4')
+        for node in outline:
+            parent=node.get('parent_id')
+            if parent and parent not in ids:raise ValueError(node['id']+': unknown outline parent '+str(parent))
+        for page in self.content.get('pages') or []:
+            for oid in page.get('outline_ids') or []:
+                if oid not in ids:raise ValueError(f"Page {page.get('number')}: unknown outline id {oid}")
+            sidebar=page.get('sidebar') or {}
+            if 'english_terms' in sidebar or 'term_limit' in sidebar:raise ValueError(f"Page {page.get('number')}: sidebar English term lists were removed")
+        glossary=self.content.get('chapter_glossary')
+        if not isinstance(glossary,list) or not glossary:raise ValueError('chapter_glossary must contain the final chapter-grouped specialist glossary')
+        seen=set()
+        for group in glossary:
+            if not isinstance(group,dict) or not group.get('chapter_id') or not group.get('chapter_title'):raise ValueError('Each glossary group needs chapter_id and chapter_title')
+            if group['chapter_id'] not in ids:raise ValueError('Glossary group references unknown outline id '+str(group['chapter_id']))
+            entries=group.get('entries')
+            if not isinstance(entries,list) or not entries:raise ValueError(str(group.get('chapter_id'))+': glossary entries are required')
+            for entry in entries:
+                if not isinstance(entry,dict) or set(entry)!={'term_en','meaning_zh'}:raise ValueError('Glossary entries may contain only term_en and meaning_zh')
+                term=entry.get('term_en');meaning=entry.get('meaning_zh')
+                if not isinstance(term,str) or not term.strip() or not isinstance(meaning,str) or not meaning.strip():raise ValueError('Glossary term_en and meaning_zh must be non-empty')
+                key=term.strip().casefold()
+                if key in seen:raise ValueError('Duplicate glossary term '+term)
+                seen.add(key)
     def y(self,row):return self.first+row*self.pitch
     def start(self,role,number=None):
         self.role=role;self.no=number;self.buf=BytesIO();self.h=210 if role=='foldout' else 297;self.w=594 if role=='foldout' else 210;self.c=canvas.Canvas(self.buf,pagesize=(self.w*MM,self.h*MM));LOG.clear()
@@ -124,14 +162,6 @@ class Book:
                 self.say(label,x,self.y(r),'Math',7.7,INK,grid=True);r+=1
             if calculation.get('note'):
                 for t in wrap(calculation['note'],w,'Hand',10):self.say(t,x,self.y(r),'Hand',10,RED,grid=True);r+=1
-        terms=s.get('english_terms') or []
-        if terms:
-            r+=1
-            for term in terms[:s.get('term_limit',len(terms))]:
-                if term.get('term'):
-                    for t in wrap(term['term'],w,'Latin',8.5):self.say(t,x,self.y(r),'Latin',8.5,BLUE,grid=True);r+=1
-                if term.get('meaning'):
-                    for t in wrap(term['meaning'],w,'Hand',9.8):self.say(t,x,self.y(r),'Hand',9.8,INK,grid=True);r+=1
         keywords=s.get('keywords') or []
         if self.a.edition=='digital' and keywords:
             self.say(s.get('keywords_title','关键词'),g['left_x'],self.y(2),'Hand',9.5,BLUE,grid=True)
@@ -141,61 +171,90 @@ class Book:
         self.start('cover');self.say(cover.get('subject',self.content.get('subject','')),20,109,'Head',38);self.say(cover.get('chapter',self.content.get('chapter','')),20,135,'Body',22);self.say(cover.get('subtitle',''),20,159,'Hand',15,BLUE)
         if cover.get('image'):self.image(cover['image'],123,181,50,34)
         self.say(cover.get('note',''),20,244,'Body',11);self.say((cover.get('edition_labels') or {}).get(self.a.edition,''),20,254,'Body',11);self.finish();self.toc.append([1,'封面',1])
+    def outline_numbers(self):
+        numbers={}
+        for page in self.content.get('pages') or []:
+            for oid in page.get('outline_ids') or []:numbers.setdefault(oid,page['number'])
+        first_glossary=max((p['number'] for p in self.content.get('pages') or []),default=0)+1
+        for node in self.content.get('outline') or []:
+            if node.get('kind') in {'glossary','appendix'}:numbers.setdefault(node['id'],first_glossary)
+        return numbers
     def frontmatter(self):
-        front=self.content.get('frontmatter') or {};contents=front.get('contents') or {};glossary=front.get('glossary') or {}
-        title=contents.get('title','目录');self.start('odd');self.furniture(title,contents.get('humour',''));x=self.g['main_x'];r=3
-        for p in self.content.get('pages') or []:
-            self.fit(r,1,p['title']);self.contents_links.append((len(self.doc),p['number'],[x,self.y(r)-5,x+128,self.y(r)+1]));self.say(p['title'],x,self.y(r),'Body',12,grid=True);self.say(str(p['number']),x+121,self.y(r),'Latin',11,grid=True);r+=2
-        vocabulary=self.content.get('answer_vocabulary') or {}
-        if vocabulary.get('entries'):
-            self.fit(r,1,'答案词汇');self.contents_links.append((len(self.doc),'answer_vocabulary',[x,self.y(r)-5,x+128,self.y(r)+1]))
-            self.say(vocabulary.get('title','答案词汇'),x,self.y(r),'Body',12,grid=True)
-            self.say(str(max((p['number'] for p in self.content.get('pages') or []),default=0)+1),x+121,self.y(r),'Latin',11,grid=True);r+=2
-        if contents.get('summary_title'):self.say(contents['summary_title'],x,self.y(r),'Head',11.8,BLUE,grid=True);r+=1
-        if contents.get('summary'):
-            for t in wrap(contents['summary'],128,'Body',11.6):self.say(t,x,self.y(r),grid=True);r+=1
-        self.toc.append([1,title,len(self.doc)+1]);self.finish()
-        self.term_pages(self.content.get('terminology_extended') or [],glossary,'术语索引')
-    def term_pages(self,entries,settings,default_title,first_number=None):
-        """Paginate complete CN/EN/CN entries without shrinking or dropping content."""
-        if not entries:return
-        title=settings.get('title',default_title);r=1;page_index=0;number=first_number
+        contents=((self.content.get('frontmatter') or {}).get('contents') or {});title=contents.get('title','目录');numbers=self.outline_numbers();r=3
         def begin():
-            role=('odd' if number%2 else 'even') if number is not None else ('odd' if (len(self.doc)+1)%2 else 'even')
-            self.start(role,number);self.furniture(title,settings.get('humour',''),number)
-        begin();self.toc.append([1,title,len(self.doc)+1])
-        for entry in entries:
-            for key in ('zh','term','definition_zh'):
-                if not isinstance(entry.get(key),str) or not entry[key].strip():
-                    raise ValueError(f'{default_title}: entry requires {key}; replace legacy definition/sentence with definition_zh/usage_en')
-            if not any('\u3400'<=ch<='\u9fff' for ch in entry['definition_zh']):
-                raise ValueError(f"{default_title}: {entry['term']} needs a Chinese explanation")
-            if first_number is not None and (not entry.get('usage_en') or not entry.get('question_ids')):
-                raise ValueError(f"{default_title}: {entry['term']} needs usage_en and question_ids")
-            parts=[('  '.join((entry['zh'],entry['term'])),'Head',10.5,BLUE),
-                   (entry['definition_zh'],'Body',11.6,INK)]
-            if entry.get('note_zh'):parts.append((entry['note_zh'],'Body',11.6,INK))
-            if entry.get('usage_en'):parts.append((entry['usage_en'],'Latin',10.2,INK))
-            if entry.get('question_ids'):parts.append(('对应题目  '+'、'.join(str(q) for q in entry['question_ids']),'Body',10.2,BLUE))
-            lines=[(line,font,size,color) for label,font,size,color in parts for line in wrap(label,self.g['main_w']-.5,font,size)]
-            if len(lines)>self.maxrows-1:raise ValueError(f"{default_title}: entry too long for a page: {entry['term']}")
-            if r+len(lines)>self.maxrows:
-                self.finish();page_index+=1
-                if first_number is not None:number=first_number+page_index
-                begin();r=1
-            for label,font,size,color in lines:
-                self.say(label,self.g['main_x'],self.y(r),font,size,color,grid=True);r+=1
+            role='contents_odd' if (len(self.doc)+1)%2 else 'contents_even'
+            self.start(role);self.furniture(title,contents.get('humour',''))
+            if self.contents_pdf_page is None:self.contents_pdf_page=len(self.doc)
+        begin()
+        for node in self.content.get('outline') or []:
+            if node.get('include_in_toc',True) is False:continue
+            if node['id'] not in numbers:raise ValueError(node['id']+': outline node has no page anchor')
+            level=node['level'];indent=(level-1)*7;font='Head' if level==1 else 'Body';size=12.2 if level==1 else 11.4 if level==2 else 10.7
+            lines=wrap(node['title'],self.g['main_w']-indent-20,font,size)
+            needed=len(lines)+(1 if level==1 else 0)
+            if r+needed>self.maxrows:
+                self.finish();begin();r=3
+            if level==1 and r>3:r+=1
+            page_index=len(self.doc);top=self.y(r)-5
+            for line_text in lines:
+                self.say(line_text,self.g['main_x']+indent,self.y(r),font,size,BLUE if level==1 else INK,grid=True);r+=1
+            dots='·'*100
+            number_text=str(numbers[node['id']]);right=self.g['main_x']+self.g['main_w']
+            dot_start=self.g['main_x']+indent+min(self.g['main_w']-24,width(lines[-1],font,size)+3)
+            dot_width=max(0,right-14-dot_start)
+            if dot_width>2:self.say(dots[:max(1,int(dot_width/2.2))],dot_start,self.y(r-1),'Body',8,'#7D8B8E',grid=True)
+            self.say(number_text,right,self.y(r-1),'Latin',10.5,INK,'right',grid=True)
+            self.contents_links.append((page_index,node['id'],[self.g['main_x']+indent,top,right,self.y(r-1)+1]))
+            r+=1
         self.finish()
-    def answer_vocabulary(self):
-        vocabulary=self.content.get('answer_vocabulary') or {}
-        if vocabulary.get('entries'):
-            self.body_targets['answer_vocabulary']=len(self.doc)
-            first_number=max((p['number'] for p in self.content.get('pages') or []),default=0)+1
-            self.term_pages(vocabulary['entries'],vocabulary,'答案词汇',first_number)
     def chapter(self):
         jokes=self.content.get('humour') or []
         for index,page in enumerate(self.content.get('pages') or []):
-            n=page['number'];self.body_targets[n]=len(self.doc);opening=n==1;role=('opening_'if opening else'')+('odd'if n%2 else'even');self.start(role,n);self.furniture(page['title'],page.get('humour',jokes[index] if index<len(jokes) else ''),n,opening);end=self.blocks(page['blocks'],2 if opening else 1);self.sidebar(page);self.toc.append([1,page['title'],len(self.doc)+1]);self.finish();print(f'{self.a.edition} page {n}: {end}/{self.maxrows} rows')
+            n=page['number'];opening=n==1;role=('opening_'if opening else'')+('odd'if n%2 else'even')
+            for oid in page.get('outline_ids') or []:self.body_targets.setdefault(oid,len(self.doc))
+            self.start(role,n);self.furniture(page['title'],page.get('humour',jokes[index] if index<len(jokes) else ''),n,opening);end=self.blocks(page['blocks'],2 if opening else 1);self.sidebar(page);self.finish();print(f'{self.a.edition} page {n}: {end}/{self.maxrows} rows')
+    def glossary_pages(self):
+        groups=self.content.get('chapter_glossary') or [];settings=self.content.get('glossary_settings') or {};title=settings.get('title','分章专有词汇表');number=max((p['number'] for p in self.content.get('pages') or []),default=0)+1
+        glossary_nodes=[n for n in self.content.get('outline') or [] if n.get('kind') in {'glossary','appendix'}]
+        if not glossary_nodes:raise ValueError('outline needs one glossary or appendix node')
+        for node in glossary_nodes:self.body_targets.setdefault(node['id'],len(self.doc))
+        col=0;r=3;started=False
+        def begin():
+            nonlocal col,r,started
+            role='glossary_odd' if number%2 else 'glossary_even';self.start(role,number);self.furniture(title,settings.get('humour',''),number);col=0;r=3;started=True
+        def advance():
+            nonlocal col,r,number
+            if col==0:col=1;r=3;return
+            self.finish();number+=1;begin()
+        def put(lines):
+            nonlocal r
+            if len(lines)>self.maxrows-3:raise ValueError('Glossary entry is too long for one column')
+            if r+len(lines)>self.maxrows:advance()
+            gap=8;cw=(self.g['main_w']-gap)/2;x=self.g['main_x']+col*(cw+gap)
+            for label,font,size,color in lines:self.say(label,x,self.y(r),font,size,color,grid=True);r+=1
+        begin()
+        gap=8;cw=(self.g['main_w']-gap)/2
+        for group in groups:
+            header=[(line,'Head',11.2,BLUE) for line in wrap(group['chapter_title'],cw,'Head',11.2)]
+            if r+len(header)>self.maxrows:advance()
+            put(header);r+=1
+            for entry in group['entries']:
+                term_lines=wrap(entry['term_en'],cw-2,'Latin',9.8);meaning_lines=wrap(entry['meaning_zh'],cw-2,'Body',10)
+                lines=[(line,'Latin',9.8,BLUE) for line in term_lines]+[(line,'Body',10,INK) for line in meaning_lines]
+                if r+len(lines)>self.maxrows:
+                    advance();put([(line,'Head',10.5,BLUE) for line in wrap(group['chapter_title']+'（续）',cw,'Head',10.5)]);r+=1
+                put(lines)
+            r+=1
+        if started:self.finish()
+    def build_toc(self,has_foldout=False):
+        toc=[[1,'封面',1]]
+        if self.contents_pdf_page is not None:toc.append([1,((self.content.get('frontmatter') or {}).get('contents') or {}).get('title','目录'),self.contents_pdf_page+1])
+        for node in self.content.get('outline') or []:
+            if node.get('include_in_toc',True) is False:continue
+            target=self.body_targets.get(node['id'])
+            if target is not None:toc.append([node['level'],node['title'],target+1])
+        if has_foldout:toc.append([1,'知识速查',len(self.doc)])
+        self.toc=toc
     def foldout(self):
         wide=self.content.get('wide_reference') or {};self.start('foldout');self.say(wide.get('title',self.content.get('chapter','')),14,21,'Head',23);self.say(wide.get('label','知识速查'),580,21,'Hand',14,BLUE,'right')
         cols=wide.get('columns') or []
@@ -221,11 +280,11 @@ class Book:
             self.frontmatter()
             if self.a.edition=='print' and len(self.doc)%2:self.start('blank');self.finish()
             self.chapter()
-            self.answer_vocabulary()
-            if self.a.edition=='digital' and (self.content.get('wide_reference') or {}).get('columns'):self.toc.append([1,'知识速查',len(self.doc)+1]);self.foldout()
+            self.glossary_pages()
+            self.build_toc(False)
         if self.toc:self.doc.set_toc(self.toc)
-        for src,number,box in self.contents_links:
-            self.doc[src].insert_link({'kind':fitz.LINK_GOTO,'from':fitz.Rect(*(z*MM for z in box)),'page':self.body_targets[number]})
+        for src,outline_id,box in self.contents_links:
+            self.doc[src].insert_link({'kind':fitz.LINK_GOTO,'from':fitz.Rect(*(z*MM for z in box)),'page':self.body_targets[outline_id]})
         metadata=self.content.get('metadata') or {};self.doc.set_metadata({key:metadata.get(key,'') for key in ('title','author','subject','keywords')})
         self.doc.rewrite_images(dpi_threshold=450,dpi_target=300,quality=94,bitonal=False)
         self.doc.save(self.a.output,garbage=4,deflate=True)

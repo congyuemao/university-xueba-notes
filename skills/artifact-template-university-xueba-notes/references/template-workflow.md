@@ -53,17 +53,16 @@ python scripts/fill_template.py --content Resources/content/statistics-chapter.j
 | subject、chapter、chapter_heading | 学科、章节名称与开章标题 |
 | running_header.left、right | 左右页眉文字，可省略以采用学科和章节 |
 | cover | 封面subtitle、note、image及按print/digital区分的edition_labels；可覆盖subject和chapter |
-| frontmatter.contents | 目录title、humour、summary_title和summary |
-| frontmatter.glossary | 术语页title与humour |
-| pages | number、title、blocks和sidebar；每页可单独给humour |
+| frontmatter.contents | 目录title与可选humour；目录条目由outline自动生成 |
+| concepts | 核心概念的definition、plain_explanation、boundary和canonical_example，用于教学覆盖检查 |
+| outline | 独立知识目录；每项含id、title、level、parent_id、kind与include_in_toc |
+| pages | number、title、outline_ids、blocks和sidebar；每页可单独给humour |
 | blocks | heading、paragraph、formula、table、comparison_bars；段落语言用language=en |
 | comparison_bars | values、parameter_label和legend，数据和图注随章节替换 |
-| sidebar | title、text、keywords、comic、calculation和english_terms；所有教学内容来自当前页数据 |
+| sidebar | title、text、keywords、comic和calculation；所有教学内容来自当前页数据 |
 | sidebar.comic | asset与speech，省略时不插入漫画或对白 |
 | sidebar.calculation | title、lines和note，用于紧凑计算路径或公式补充 |
-| sidebar.english_terms | term与meaning列表；term_limit可显式限定显示数量 |
-| terminology_extended | 逐条提供必填zh、term、definition_zh，即中文词汇、英文对应、中文解释；可选note_zh和usage_en；完整条目自动续页 |
-| answer_vocabulary | title、humour和entries；entries使用上述术语结构，另须usage_en及question_ids，用实际英文答案中的词汇、搭配与句式帮助作答；自动在正文与答案之后续页 |
+| chapter_glossary | 书末分章词汇组；每组含chapter_id、chapter_title与entries，每项只含term_en和meaning_zh |
 | paragraph.highlights | 当前段落内人工审定的具体重点片段，每项含start、end、text、reason；按语境决定，不接受全局词表 |
 | humour | `--fun-mode content` 时按页面顺序采用的手写趣味文字；默认random模式从语料库抽取。两种模式都填入固定页底横条，不进入正文blocks |
 | wide_reference | title、label和最多四栏columns；各栏含title、formulas、notes和可选example |
@@ -96,12 +95,12 @@ python scripts/fill_template.py --content Resources/content/statistics-chapter.j
 
 正文调整后重新阅读并核对片段；跨行时标记跟随同一片段分成相邻行的笔触。填充器拒绝非空顶层emphasis、索引越界、片段文本不符或重叠的标记，不静默退回关键词匹配。渲染后既检查位置，也检查高亮内容能否帮助重建该段的论述。
 
-## 术语与答案词汇
+## 正文术语与书末词汇表
 
-逐条写出中文词汇、英文对应和中文解释，解释应说明本章中的含义及必要的适用条件或相邻概念区别。按概念覆盖补齐条目，不沿用旧示例的少量词汇。英文例句为补充，不能代替中文解释。旧字段definition和sentence需重新编辑为definition_zh与usage_en，不能只改字段名后保留英文释义。
+核心概念在正文第一次实质出现的位置完成教学：给出规范定义、通俗解释、必要条件或边界及代表性例子。不能把这些说明推迟到词汇表，也不能用侧栏中的英文提示代替正文。
 
-答案词汇放在完整答案之后，覆盖实际用到的学科词、动作表达、逻辑连接和常用搭配。每条含中文解释、英文用法或短例句，以及question_ids中对应的题号，如["1(a)", "2(c)"]。解释用中文，原有完整答案继续用英文。词汇较多时增加页数，保持字号、基线和完整条目，不挤进一个小表格，也不静默截断。
+完整书的最后一个正式内容区为分章专有词汇表。按正文首次实质出现顺序分组，每项只写标准英文术语与简明中文释义。排除普通动词、连接语、句子碎片、单题措辞、英文例句、题号和答题用途说明。词汇较多时增加页数，保持字号、基线和完整条目，不挤进过小表格，也不静默截断。
 
-填充器按整条术语分页，打印版继续保持左右侧栏和正文首页正面起排；答案词汇进入目录链接与书签。过长到一页无法容纳的单条解释会报错，由作者重新组织。漫画分布与条目覆盖、语境判断需按技能的编辑检查执行，程序不以数量或关键词代替判断。
+填充器先由outline和页面锚点生成多级目录，再按整条词汇分页；打印版继续保持左右侧栏和正文首页正面起排。过长到一页无法容纳的单条释义会报错，由作者重新组织。漫画分布、概念覆盖、词条选择与语境判断需按技能的编辑检查执行，程序不以数量或关键词代替判断。
 
-`Resources/content/statistics-chapter.json`是当前内容字段示例，`Resources/examples/`中的打印版、电子版及速查PDF由该数据生成，展示完整中文释义、局部语境高亮与答案词汇续页。示例的27项前置术语、20项答案词汇和漫画分布只对应本章，不构成其他课程的数量配额；新章节仍按实际知识与答案覆盖组织。
+`Resources/content/statistics-chapter.json`是当前内容字段示例，`Resources/examples/`中的打印版、电子版及速查PDF由该数据生成，展示分级知识目录、正文首次解释、局部语境高亮与书末分章专有词汇表。示例的词条和漫画分布只对应本章，不构成其他课程的数量配额；新章节仍按实际知识组织。

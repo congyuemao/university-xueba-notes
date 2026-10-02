@@ -1,11 +1,14 @@
 {
-  "master_sha256": "72c737420bca3289dfd07a0d5717baabcf341123123e839c8f1a9885e8c20bc1",
+  "master_sha256": "9df0d857bd5941f0ffb42f7dc171fd1b9b2abdafea3e2bf00f444ce76f304236",
+  "fun_mode": "random",
+  "fun_seed": null,
   "pages": [
     {
       "pdf_page": 1,
       "logical_page": null,
       "role": "foldout",
-      "texts": []
+      "texts": [],
+      "fun_content": null
     }
   ]
 }

@@ -1,152 +1,126 @@
 {
   "status": "passed",
-  "source_content_sha256": "191abf73c28c0d1a19a95060a2c517b5bff78d0ec5c2d2c0f93d0972dabed896",
+  "source_content_sha256": "6e5b8664cb645d2d23dac68e0584bef21e1f11a54b2ed6d54769afa2a789b1a6",
   "font": "LXGW WenKai Regular",
-  "opening_terminology_count": 27,
-  "answer_vocabulary_count": 20,
-  "highlight_policy": "authored paragraph-local offsets, exact text and contextual reasons",
-  "highlight_checks": [
-    "all sample selections valid",
-    "repeated occurrence stays unmarked unless selected",
-    "cross-line mapping passed",
-    "global emphasis list rejected",
-    "stale span rejected"
-  ],
-  "sidebar_comic_check": "independent advisory after three knowledge pages without a sidebar comic; working diagrams counted separately",
-  "selftest_language": "zh",
-  "answer_language": "en",
-  "humour_position_mm": [
-    275,
-    285
-  ],
-  "humour_colour": "#F3F7E0",
-  "humour_text_colour": "#252823",
+  "structure": {
+    "body_teaching_pages": 6,
+    "outline_nodes": 8,
+    "core_concepts": 6,
+    "chapter_glossary_groups": 1,
+    "chapter_glossary_entries": 21,
+    "legacy_opening_terminology_removed": true,
+    "default_self_tests_removed": true,
+    "answer_vocabulary_removed": true,
+    "glossary_entry_fields_only": [
+      "term_en",
+      "meaning_zh"
+    ]
+  },
+  "checks": {
+    "hierarchical_contents": "passed: independent outline with levels, page anchors, links and bookmarks",
+    "first_use_teaching": "passed: each core concept has definition, plain explanation, boundary and canonical example metadata; rendered body was reviewed",
+    "glossary": "passed: final formal page, chapter grouped, English term plus concise Chinese meaning only",
+    "highlight_policy": "authored paragraph-local offsets, exact text and contextual reasons",
+    "humour_strip": "passed: fixed page-bottom pale green bar, one or two lines",
+    "wide_reference": "separate foldout; not appended after the final glossary"
+  },
   "files": {
     "print": {
-      "sha256": "6bbbed1516e8413a0d0f452ca436754cb32dac0a33c2e57c662083db3966e88d",
-      "pages": 17,
-      "retention": {
-        "opening_terms": {
-          "entries": 27,
-          "fields_checked": 81,
-          "pages": [
-            4,
-            5,
-            6
-          ],
-          "all_fields_retained": true,
-          "missing": []
-        },
-        "answer_vocabulary": {
-          "entries": 20,
-          "fields_checked": 100,
-          "pages": [
-            15,
-            16,
-            17
-          ],
-          "all_fields_retained": true,
-          "missing": []
-        }
-      },
-      "print_minimum_inner_text_margin_mm": 19.999991,
-      "all_text_and_vector_geometry_within_content_span": true,
-      "grid": {
-        "logged_text_lines_checked": 579,
-        "maximum_grid_error_mm": 5.1159076974727215e-14,
-        "maximum_actual_PDF_baseline_error_mm": 2.4244520375305e-05,
-        "max_baseline_mm": 266.4,
-        "actual_baseline_method": "First non-synthetic glyph origin at logged x/y; ignores extractor-inserted spaces in heading spans."
-      },
-      "line_widths": {
-        "lines_checked": 579,
-        "maximum_main_line_width_mm": 127.481,
-        "all_lines_within_allocated_column": true
-      },
-      "toc": {
-        "links": 9,
-        "targets_pdf_pages": [
-          7,
-          8,
-          9,
-          10,
-          11,
-          12,
-          13,
-          14,
-          15
-        ],
-        "all_destinations_correct": true,
-        "bookmarks": 12
-      }
+      "sha256": "ecb9c757a19d2c7037c206a17191cefc5e96779558ac0eb41f71b5c083af2f01",
+      "pages": 11,
+      "searchable_text_characters": 7647,
+      "forbidden_legacy_sections_absent": true,
+      "contents_links": 8,
+      "contents_link_targets": [
+        5,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "bookmarks": 10,
+      "bookmark_titles": [
+        "封面",
+        "目录",
+        "第一章 条件概率与独立性",
+        "第一节 条件概率",
+        "第二节 乘法公式与全概率公式",
+        "第三节 贝叶斯公式",
+        "第四节 基准比例与似然比",
+        "第五节 事件的独立性",
+        "典例精析与知识关系",
+        "分章专有词汇表"
+      ],
+      "last_formal_page": "分章专有词汇表",
+      "layout_roles": [
+        "cover",
+        "blank",
+        "contents_odd",
+        "blank",
+        "opening_odd",
+        "even",
+        "odd",
+        "even",
+        "odd",
+        "even",
+        "glossary_odd"
+      ]
     },
     "digital": {
-      "sha256": "9af1536affdd44a1098820ecf6137df9a41fea4347c04978a91735dc629b8bc7",
-      "pages": 17,
-      "retention": {
-        "opening_terms": {
-          "entries": 27,
-          "fields_checked": 81,
-          "pages": [
-            3,
-            4,
-            5
-          ],
-          "all_fields_retained": true,
-          "missing": []
-        },
-        "answer_vocabulary": {
-          "entries": 20,
-          "fields_checked": 100,
-          "pages": [
-            14,
-            15,
-            16
-          ],
-          "all_fields_retained": true,
-          "missing": []
-        }
-      },
-      "print_minimum_inner_text_margin_mm": null,
-      "all_text_and_vector_geometry_within_content_span": true,
-      "grid": {
-        "logged_text_lines_checked": 649,
-        "maximum_grid_error_mm": 5.1159076974727215e-14,
-        "maximum_actual_PDF_baseline_error_mm": 2.4244520375305e-05,
-        "max_baseline_mm": 266.4,
-        "actual_baseline_method": "First non-synthetic glyph origin at logged x/y; ignores extractor-inserted spaces in heading spans."
-      },
-      "line_widths": {
-        "lines_checked": 649,
-        "maximum_main_line_width_mm": 127.481,
-        "all_lines_within_allocated_column": true
-      },
-      "toc": {
-        "links": 9,
-        "targets_pdf_pages": [
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12,
-          13,
-          14
-        ],
-        "all_destinations_correct": true,
-        "bookmarks": 13
-      }
+      "sha256": "48cf4ace54ebc152c7048dc79581f273793db4761ff718f93ab30b732136549d",
+      "pages": 9,
+      "searchable_text_characters": 7770,
+      "forbidden_legacy_sections_absent": true,
+      "contents_links": 8,
+      "contents_link_targets": [
+        3,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "bookmarks": 10,
+      "bookmark_titles": [
+        "封面",
+        "目录",
+        "第一章 条件概率与独立性",
+        "第一节 条件概率",
+        "第二节 乘法公式与全概率公式",
+        "第三节 贝叶斯公式",
+        "第四节 基准比例与似然比",
+        "第五节 事件的独立性",
+        "典例精析与知识关系",
+        "分章专有词汇表"
+      ],
+      "last_formal_page": "分章专有词汇表",
+      "layout_roles": [
+        "cover",
+        "contents_even",
+        "opening_odd",
+        "even",
+        "odd",
+        "even",
+        "odd",
+        "even",
+        "glossary_odd"
+      ]
     },
     "foldout": {
-      "sha256": "00481143f228bfe77e4a84979e54e15c53d9982f04fd8359703afee5a2e21819",
+      "sha256": "d36e9d1e8e546cdb859e3abebb41f7a0fe0ff77b80bfcaf9d7309c00ac89a734",
       "pages": 1,
+      "searchable_text_characters": 858,
+      "forbidden_legacy_sections_absent": true,
       "dimensions_mm": [
         594.0,
         210.0
-      ],
-      "matches_digital_last_page_text": true
+      ]
     }
   },
-  "visual_review": "Fresh renders of all 20 pages affected by punctuation grouping, two representative pages, and the foldout show no clipping, overlap, binding-margin excursions, or detached punctuation at line starts. Ruled baselines, mirrored print columns, fixed digital columns, and footer clearance remain intact."
+  "visual_review": "Fresh PyMuPDF renders of all 11 print pages, all 9 digital pages and the separate foldout were inspected. No clipping, overlap, binding-margin excursions or detached glossary entries were found; ruled baselines, print mirroring, digital columns, contents hierarchy and final glossary remain clear."
 }

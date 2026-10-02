@@ -1,7 +1,7 @@
 interface:
   display_name: 大学学霸笔记 University Xueba Notes
-  short_description: 复用白底PDF模板和原书漫画参考，生成密度适当的完整大学知识笔记与双版本批注
-  default_prompt: 使用 $artifact-template-university-xueba-notes，依原书知识密度、标题和漫画参考编写完整大学笔记，填充白底PDF模板，并沿用我的批注版本。
+  short_description: 生成带分级知识目录、正文完整讲解和书末分章词汇表的大学学霸笔记
+  default_prompt: 使用 $artifact-template-university-xueba-notes，依原书知识密度、标题和漫画参考编写完整大学笔记；核心概念在正文首次出现时讲清，目录按知识层级生成，书末附分章英中专有词汇表，并输出打印与电子批注版本。
   icon_small: assets/icon.svg
   icon_large: assets/icon.svg
 policy:

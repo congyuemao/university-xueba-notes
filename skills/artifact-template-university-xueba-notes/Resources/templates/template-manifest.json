@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "paper": "#FFFFFF",
   "page_mm": [
     210,
@@ -54,8 +54,12 @@
     "even": 2,
     "opening_odd": 3,
     "opening_even": 4,
-    "foldout": 5,
-    "blank": 6
+    "contents_odd": 5,
+    "contents_even": 6,
+    "glossary_odd": 7,
+    "glossary_even": 8,
+    "foldout": 9,
+    "blank": 10
   },
   "editions": {
     "print": {
@@ -102,6 +106,42 @@
         "dividers": [
           59
         ]
+      },
+      "contents_odd": {
+        "main_x": 20,
+        "main_w": 178,
+        "side_x": 153,
+        "side_w": 45,
+        "start": 20,
+        "end": 198,
+        "dividers": []
+      },
+      "contents_even": {
+        "main_x": 12,
+        "main_w": 178,
+        "side_x": 12,
+        "side_w": 45,
+        "start": 12,
+        "end": 190,
+        "dividers": []
+      },
+      "glossary_odd": {
+        "main_x": 20,
+        "main_w": 178,
+        "side_x": 153,
+        "side_w": 45,
+        "start": 20,
+        "end": 198,
+        "dividers": []
+      },
+      "glossary_even": {
+        "main_x": 12,
+        "main_w": 178,
+        "side_x": 12,
+        "side_w": 45,
+        "start": 12,
+        "end": 190,
+        "dividers": []
       }
     },
     "digital": {
@@ -160,6 +200,50 @@
           35,
           168
         ]
+      },
+      "contents_odd": {
+        "main_x": 12,
+        "main_w": 186,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": []
+      },
+      "contents_even": {
+        "main_x": 12,
+        "main_w": 186,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": []
+      },
+      "glossary_odd": {
+        "main_x": 12,
+        "main_w": 186,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": []
+      },
+      "glossary_even": {
+        "main_x": 12,
+        "main_w": 186,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": []
       }
     }
   }

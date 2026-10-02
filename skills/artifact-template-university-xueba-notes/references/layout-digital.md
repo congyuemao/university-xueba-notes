@@ -14,7 +14,7 @@ Use fixed dual sidebars for electronic reading and stylus or computer annotation
 
 Keep these positions fixed on odd and even pages. Omit the asymmetric print binding offset. Put prerequisite or concise bilingual cues in the left sidebar and illustrations, interpretation or examination-language cues in the right, adapting to the concept. Provide a separate empty “我的批注” area in each sidebar.
 
-Wrap long sidebar headings rather than drawing them past an edge. Keep substantial terminology entries in the central text: Chinese term, English equivalent and a complete Chinese explanation, with optional English usage. Extend the terminology section across pages as needed. Retain ample writing space in both margins.
+Wrap long sidebar headings rather than drawing them past an edge. Use dedicated full-width contents masters for a multi-level knowledge outline and dedicated full-width glossary masters at the end. The glossary contains only English terms and concise Chinese meanings. Core explanations stay in the body at first occurrence. Retain ample writing space in both margins on ordinary teaching pages.
 
 Use `Resources/templates/digital-master.pdf` with exact rows and field positions from `template-manifest.json`. Reserve an independent pale green joke/trivia/quotation strip at the physical bottom of the page; all body grid slots must end above it. Use a shared baseline grid, currently about 7.2 mm per row, with each body baseline about 1 mm above its rule. Align blocks and allocated heights to the defined rows. Keep blue rules clearly visible at ordinary reading size; do not reuse the former independent 5.2 mm decorative pattern. Dividers remain at x = 35 and 168, as defined in the active template manifest.
 
@@ -22,7 +22,7 @@ Use the chapter-opening master for the black chapter heading and brush-like sect
 
 Place a short joke, interesting fact, subject fact or attributed quotation selected without repetition from the bundled corpus in the independent pale green strip at the physical page bottom, with one or at most two dark text lines. The strip is fixed page furniture outside the body grid, never a top strip or a concluding knowledge section/body block. The strip starts at y = 275 mm and is 10 mm high, with `#F3F7E0` background and `#252823` text. Keep page numbering clear of the strip text: odd right at x = 198, even left at x = 12, normally at baseline y = 291 mm; exact field positions come from the template manifest. Both annotation columns remain present.
 
-Export a normal unencrypted PDF with searchable typeset text and usable spaces for standard PDF ink annotations. Add text form fields only if requested. Provide chapter and answer bookmarks. Wide content may span 186 mm where useful, then restore the three-column layout.
+Export a normal unencrypted PDF with searchable typeset text and usable spaces for standard PDF ink annotations. Add text form fields only if requested. Provide contents, chapter and final glossary bookmarks. Wide content may span 186 mm where useful, then restore the three-column layout.
 
 Active master: `Resources/templates/digital-master.pdf`. Filled example: `Resources/examples/digital-reference.pdf`.
 
