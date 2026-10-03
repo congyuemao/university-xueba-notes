@@ -24,7 +24,7 @@
 
 ## 核心概念
 
-每项至少包含`id`、`topic`、`core`、`prerequisite_ids`、`definition`、`plain_explanation`和`canonical_example`。核心概念的定义、通俗解释和例子必须出现在正文首次承载该概念的位置。按学科需要增加`conditions`、`symbols`、`contrast_ids`、`derivation`、`evidence`或`causal_links`。`main_text`只记录最终教材稿或摘要，不能替代上述教学字段。
+每项至少包含`id`、`topic`、`core`、`prerequisite_ids`、`definition`、`plain_explanation`和`canonical_example`，编辑记录另明确`example_mapping`与必要的`boundary`。这些内容都须出现在正文首次教学位置。按学科需要增加`conditions`、`symbols`、`contrast_ids`、`derivation`、`evidence`或`causal_links`。`main_text`只记录教材稿或摘要；填写字段不能证明实际正文已经教会。
 
 概念仍可记录`visual_ids`；没有图时写`prose_reason`。视觉引用必须双向对应。
 
@@ -67,3 +67,20 @@ python scripts/validate_book_plan.py /path/to/book-plan.json --stage delivery
 ```
 
 检查教学字段、先修关系、目录父子关系、页面锚点、视觉双向引用、书末词汇表、趣味条位置和成品资产。连续三个普通知识页没有工作视觉或没有侧栏漫画时分别给出复查提醒。人工仍检查内容准确性、首次解释是否真正可懂、图像意义、目录层级和最终渲染。
+
+## 首次教学的编辑记录
+
+当前计划校验器不验证完整教学链是否真实进入PDF。另存 `teaching-review.json` 或等价编辑表，逐个记录以下信息；这是审稿数据，不宣称为填充器已实现的输入接口。
+
+- 稳定 `unit_id`、核心 `concept_id`、先修概念及首次教学位置。
+- 五项角色各自对应的实际正文位置与短摘录：`definition`、`plain_explanation`、`canonical_example`、`example_mapping`、`boundary`。同一段可完成多项任务，证据须可具体指认。
+- 优先用稳定块ID；现行内容没有块ID时，用 `pages`、`blocks` 的零起点数组位置加短摘录定位，并保存内容文件校验值。改稿后重建定位，不能仅凭旧数组索引通过。
+- 新符号出现与解释位置；所需先修可在同页更早的正文完成，不机械要求提前一整页。
+- 侧栏的 `anchor_block_id` 或等价位置、所需概念与符号、最终视觉阅读顺序。源JSON顺序不能代替实际页面位置。
+- 定义与例子的距离、关键推导理由、结果解释、遮住侧栏后的复读结论。
+
+评审概念状态可用 `unseen`、`introduced`、`taught`、`reused`：仅出现名称或符号时仍未教完；实际五项教学完成后才标 `taught`。必要边界尚未交代时不能以已有四个字段代替完成。侧栏或图注使用未教概念时，先改教学顺序或将必要解释移入主栏。
+
+## 后续结构改造的衔接
+
+方案中的 `content_schema_version`、`teaching_units`、`source_ref`、`ordinal_label`、`toc_visuals` 和自动侧栏锚定属于后续工程接口。在内容编译器、模板与校验器共同支持之前，不升级现行内容的版本号，不把这些字段交给旧填充器后宣称生效。当前以审定稿、编辑记录和真实 `pages[].blocks` 逐项核对；实现状态见[模板工作流](template-workflow.md)。

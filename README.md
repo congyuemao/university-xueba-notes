@@ -2,7 +2,11 @@
 
 用课程讲义、教材、课堂笔记和习题制作大学学习笔记，输出适合打印或平板批注的 PDF。笔记采用白底蓝色横线、霞鹜文楷正文，配合分级知识目录、正文完整讲解、例题、教学漫画与书末分章专有词汇表。
 
-查看示例：[打印版](skills/artifact-template-university-xueba-notes/Resources/examples/print-reference.pdf) · [电子版](skills/artifact-template-university-xueba-notes/Resources/examples/digital-reference.pdf) · [知识速查](skills/artifact-template-university-xueba-notes/Resources/examples/foldout.pdf)
+查看旧版排版示例：[打印版](skills/artifact-template-university-xueba-notes/Resources/examples/print-reference.pdf) · [电子版](skills/artifact-template-university-xueba-notes/Resources/examples/digital-reference.pdf) · [知识速查](skills/artifact-template-university-xueba-notes/Resources/examples/foldout.pdf)
+
+2026年10月3日提示词修订重点：核心概念在主栏完成定义、解释、例子、逐项对应与必要边界；删除作者辩护、空泛提醒和循环释义，保留适用条件与真实不确定性。详见[内容与语言](skills/artifact-template-university-xueba-notes/references/content-and-language.md)及[完整改写样例](skills/artifact-template-university-xueba-notes/references/teaching-examples.md)。
+
+本轮更新提示词和审稿规范。现有脚本、内容JSON与PDF仍为原版；旧示例及验证记录不代表新版教学或目录形式已通过。当前正文读取 `pages[].blocks`，概念元数据不自动变成讲解。新目录母版、教学单元编译与侧栏自动锚定的实现要求见[模板工作流](skills/artifact-template-university-xueba-notes/references/template-workflow.md)。
 
 ## 在 Codex 中使用
 
@@ -35,7 +39,8 @@ https://github.com/congyuemao/university-xueba-notes/tree/main/skills/artifact-t
 使用 $artifact-template-university-xueba-notes，根据我上传的讲义制作条件概率章节笔记。
 采用打印批注版，中文讲解，保留英文术语。
 包括分级知识目录、知识讲解、推导、例题和教学漫画。
-核心概念第一次出现时给出定义、通俗解释、条件和例子，书末附分章英中专有词汇表。
+核心概念第一次出现时给出定义、通俗解释、具体例子、逐项对应和必要条件；公式讲清符号、步骤理由及结果含义。
+删去作者辩护、空泛重要性和同义重复，保留实际适用条件与必要衔接。书末附分章英中专有词汇表。
 输出章节 PDF 和独立知识速查页。
 ```
 
@@ -65,7 +70,7 @@ https://github.com/congyuemao/university-xueba-notes/tree/main/skills/artifact-t
 
 ## 在本地生成示例 PDF
 
-下面的命令使用仓库附带的统计学内容，生成与示例对应的 PDF。
+下面的命令使用仓库附带的旧版统计学内容，复现旧排版示例；它们不会自动应用新版教学写作规范改写正文。
 
 ### 1. 下载项目并准备字体
 
@@ -147,7 +152,7 @@ python -X utf8 scripts/pick_fun_content.py --count 20 --seed 42 --used-file outp
 
 在 Codex 中提供课程资料并调用 skill，即可让助手编写内容、准备插图和排版。手动运行脚本时，按下面的方式替换输入：
 
-1. 参考 [统计学内容文件](skills/artifact-template-university-xueba-notes/Resources/content/statistics-chapter.json)，另存一份章节 JSON，填写课程名称、核心概念、独立知识目录、正文、典例与书末分章专有词汇表。
+1. 参考[统计学内容文件](skills/artifact-template-university-xueba-notes/Resources/content/statistics-chapter.json)的现有字段，另存章节JSON。先按新版语言规范写审定稿，再落实到 `pages[].blocks`；不要照搬旧第一页的概念密度，也不要只填写 `concepts`。逐项记录首次教学在正文中的位置，填写目录、典例与书末分章专有词汇表。
 2. 将本章插图放入一个文件夹，在内容 JSON 的 `sidebar.comic.asset` 中填写相对于该文件夹的图片路径。
 3. 将生成命令中的 `--content` 改为新 JSON 路径，`--assets` 改为插图目录，`--output` 改为目标 PDF 路径。
 

@@ -1,5 +1,13 @@
 # PDF模板填充
 
+## 提示词要求与当前实现
+
+本次修订更新教学与审稿要求，未迁移内容JSON或修改填充器。当前正文来自 `pages[].blocks`，`concepts` 不会自动展开成正文；字段填写完整也不代表教学完整。先按 `content-and-language.md` 写审定稿，再把五项教学内容落实到实际块，并保存 `book-plan.md` 规定的编辑记录。
+
+目前侧栏从固定位置绘制，不按主栏块自动定位；目录主要依 `level` 排版，尚未具备按 `kind` 绘制的新版专用目录。需要这些成品能力时，应先补齐相应模板或脚本再核验。临时处理侧栏可省略会提前教学的项目，并把必要内容放入主栏；不能增加未被读取的锚点字段就声称位置已跟随。
+
+后续工程实现应让 `concepts` 保存权威教学内容，`teaching_units.steps[].source_ref` 引用它，编译成真实正文块，再按完整教学单元分页。加入稳定ID、结构版本、先修与符号状态、侧栏锚点、目录节点类型与 `toc_visuals`，保存可检查的编译结果。编译、渲染和校验共同支持后才切换版本；一次性迁移结果须复核。此段是实现要求，不是现有功能说明。
+
 ## 固定资源
 
 | 资源 | 路径与用途 |
@@ -54,12 +62,12 @@ python scripts/fill_template.py --content Resources/content/statistics-chapter.j
 | running_header.left、right | 左右页眉文字，可省略以采用学科和章节 |
 | cover | 封面subtitle、note、image及按print/digital区分的edition_labels；可覆盖subject和chapter |
 | frontmatter.contents | 目录title与可选humour；目录条目由outline自动生成 |
-| concepts | 核心概念的definition、plain_explanation、boundary和canonical_example，用于教学覆盖检查 |
+| concepts | 现有概念元数据；不会自动写入正文。编辑检查另要求example_mapping，并与实际blocks逐项对应 |
 | outline | 独立知识目录；每项含id、title、level、parent_id、kind与include_in_toc |
 | pages | number、title、outline_ids、blocks和sidebar；每页可单独给humour |
 | blocks | heading、paragraph、formula、table、comparison_bars；段落语言用language=en |
 | comparison_bars | values、parameter_label和legend，数据和图注随章节替换 |
-| sidebar | title、text、keywords、comic和calculation；所有教学内容来自当前页数据 |
+| sidebar | title、text、comic和calculation；旧keywords字段仍被脚本识别，但新稿默认省略；须人工核对前置教学与位置 |
 | sidebar.comic | asset与speech，省略时不插入漫画或对白 |
 | sidebar.calculation | title、lines和note，用于紧凑计算路径或公式补充 |
 | chapter_glossary | 书末分章词汇组；每组含chapter_id、chapter_title与entries，每项只含term_en和meaning_zh |
@@ -97,10 +105,10 @@ python scripts/fill_template.py --content Resources/content/statistics-chapter.j
 
 ## 正文术语与书末词汇表
 
-核心概念在正文第一次实质出现的位置完成教学：给出规范定义、通俗解释、必要条件或边界及代表性例子。不能把这些说明推迟到词汇表，也不能用侧栏中的英文提示代替正文。
+核心概念在正文第一次实质出现的位置完成定义、通俗解释、具体例子、例子逐项对应和必要条件或边界。不能把这些说明推迟到词汇表，也不能用侧栏中的英文提示代替正文。核查对象是填充器实际读取的blocks及最终页面，而不是concepts字段是否非空。
 
 完整书的最后一个正式内容区为分章专有词汇表。按正文首次实质出现顺序分组，每项只写标准英文术语与简明中文释义。排除普通动词、连接语、句子碎片、单题措辞、英文例句、题号和答题用途说明。词汇较多时增加页数，保持字号、基线和完整条目，不挤进过小表格，也不静默截断。
 
 填充器先由outline和页面锚点生成多级目录，再按整条词汇分页；打印版继续保持左右侧栏和正文首页正面起排。过长到一页无法容纳的单条释义会报错，由作者重新组织。漫画分布、概念覆盖、词条选择与语境判断需按技能的编辑检查执行，程序不以数量或关键词代替判断。
 
-`Resources/content/statistics-chapter.json`是当前内容字段示例，`Resources/examples/`中的打印版、电子版及速查PDF由该数据生成，展示分级知识目录、正文首次解释、局部语境高亮与书末分章专有词汇表。示例的词条和漫画分布只对应本章，不构成其他课程的数量配额；新章节仍按实际知识组织。
+`Resources/content/statistics-chapter.json`是旧版但仍受当前脚本支持的字段示例。相关PDF和验证记录不满足新版教学验收的证明要求；只参考现有接口、几何和局部高亮用法。统计学新稿应先讲样本空间与事件关系，再讲条件概率，随后进入乘法、全概率、贝叶斯、基准比例与似然比、独立性及综合应用。每段先修完成后再前进，页数由教学完整性决定。新的五项讲解粒度见 `teaching-examples.md`，其中片段不能冒充整章已重做。
