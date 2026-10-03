@@ -1,9 +1,9 @@
 interface:
-  display_name: 大学学霸笔记 University Xueba Notes
-  short_description: 生成带分级知识目录、正文完整讲解和书末分章词汇表的大学学霸笔记
-  default_prompt: 使用 $artifact-template-university-xueba-notes，依原书知识密度、标题和漫画参考编写完整大学笔记；核心概念在正文首次出现时讲清，目录按知识层级生成，书末附分章英中专有词汇表，并输出打印与电子批注版本。
-  icon_small: assets/icon.svg
-  icon_large: assets/icon.svg
+  display_name: "大学学霸笔记 University Xueba Notes"
+  short_description: "编写主栏讲透概念、例子逐项对应、表达直接且保留推导条件的大学学霸笔记"
+  default_prompt: "使用 $artifact-template-university-xueba-notes，依据课程材料和原书参考编写大学笔记：主栏首次讲清定义、直观含义、例子、对应关系和必要条件，解释推导与结果，删去作者辩护和无信息语句；按知识层级组织目录，书末列分章英中术语，并按指定批注版本输出。"
+  icon_small: "assets/icon.svg"
+  icon_large: "assets/icon.svg"
 policy:
   allow_implicit_invocation: true
   products:

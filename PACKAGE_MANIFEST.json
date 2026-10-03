@@ -1,48 +1,68 @@
 {
-  "package": "大学学霸笔记 skill 分级目录与书末词汇表版",
-  "created_utc": "2026-10-02T15:55:29.181788+00:00",
-  "file_count_including_manifest": 65,
-  "obsolete_files_removed": 29,
+  "package": "大学学霸笔记 skill 提示词修订版",
+  "revised_on": "2026-10-03",
+  "timezone": "Australia/Sydney",
+  "baseline_repository": "https://github.com/congyuemao/university-xueba-notes.git",
+  "baseline_commit": "65c1459aa494cbfb3af3b91dce6f47d95b3a2184",
+  "scope": "Prompt and editorial-reference revision. Renderer, schema, source content and PDF examples are unchanged legacy assets.",
+  "file_count_including_manifest": 66,
+  "changed_prompt_files": [
+    "README.md",
+    "skills/artifact-template-university-xueba-notes/SKILL.md",
+    "skills/artifact-template-university-xueba-notes/agents/openai.yaml",
+    "skills/artifact-template-university-xueba-notes/references/book-plan.md",
+    "skills/artifact-template-university-xueba-notes/references/content-and-language.md",
+    "skills/artifact-template-university-xueba-notes/references/page-types.md",
+    "skills/artifact-template-university-xueba-notes/references/production.md",
+    "skills/artifact-template-university-xueba-notes/references/reference-observations.md",
+    "skills/artifact-template-university-xueba-notes/references/series-contract.md",
+    "skills/artifact-template-university-xueba-notes/references/sidebar-comics.md",
+    "skills/artifact-template-university-xueba-notes/references/teaching-examples.md",
+    "skills/artifact-template-university-xueba-notes/references/template-workflow.md",
+    "skills/artifact-template-university-xueba-notes/references/visual-system.md"
+  ],
   "checks": {
-    "skill_validation": "passed",
-    "python_compile": "passed",
-    "unit_tests": "passed (17 tests)",
-    "pdf_generation": "passed: print, digital and separate foldout regenerated",
-    "pdf_visual_review": "passed: all 21 generated pages inspected",
-    "hierarchical_contents": "passed: 8 links and 10 bookmarks in both editions",
-    "final_glossary": "passed: 21 specialist terms; English term and concise Chinese meaning only",
-    "legacy_sample_sections": "removed: opening terminology, self-test, answer pages and answer vocabulary"
+    "skill_validation": "passed: skill-creator quick_validate.py",
+    "agent_yaml": "passed: parsed; skill invocation and existing policy preserved",
+    "changed_document_links": "passed: 46 local links resolve",
+    "diff_whitespace": "passed: git diff --check",
+    "authored_example_arithmetic": "passed: conditional-probability table, ratios and train example",
+    "editorial_review": "manually reviewed: required conditions, useful transitions, direct comparisons, first-use mapping, source-versus-output distinction",
+    "model_generation_evaluation": "not_run: examples are authored calibration material, not an independent model benchmark",
+    "renderer_tests": "not_run: no runtime code changed",
+    "pdf_generation": "not_run: legacy PDFs were not regenerated",
+    "pdf_visual_review": "not_run for a revised book; source-reference sampling is documented separately"
   },
   "files": [
     {
       "path": ".gitignore",
-      "bytes": 57,
-      "sha256": "8325ba92560f84ae6cc8a389810a9d73888b13c50bbb8e1b84b80059663fb314"
+      "bytes": 63,
+      "sha256": "a77d87b818e6b320d1b3ec25a6d46715607da3a6b62e060a3d851b4c01be980e"
     },
     {
       "path": "README.md",
-      "bytes": 7712,
-      "sha256": "7f607c7535ee84e28f6e2b2c6ece4fa52414e30305c9b401b9cc7d6c4aaed2cf"
+      "bytes": 9116,
+      "sha256": "c7288ebc0e81f115416c6357e920e552e3f7a65e9ee112b0a5c818d1f68d1490"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "bytes": 3000,
-      "sha256": "c99290660dc7496b4368958a723afbe6e59ed16d3ace14adbaf68e485666a47d"
+      "bytes": 3032,
+      "sha256": "55218f8e57b4b5369c133a6679310f34785ee655fff91838e25dea01534f7874"
     },
     {
       "path": "requirements.txt",
-      "bytes": 66,
-      "sha256": "73955f8853069fc8867d37d541fbe39434c10b79853dc29cc6f7840167561394"
+      "bytes": 70,
+      "sha256": "256e577713f09ff4245297a20e4b09f7fedee1f7185c116d83dfd8d404ebc10b"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/Resources/content/statistics-chapter.json",
-      "bytes": 46390,
-      "sha256": "6e5b8664cb645d2d23dac68e0584bef21e1f11a54b2ed6d54769afa2a789b1a6"
+      "bytes": 47667,
+      "sha256": "2824002b254ff98283423dc8572c96320b3beec4b04ebf09989ae78ba4ed7c84"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/Resources/examples/digital-reference.layout.json",
-      "bytes": 93897,
-      "sha256": "068ca16e79ffecab4f028daaeddb29116f6edf193c2b5be40f7ddb53d1c73313"
+      "bytes": 97427,
+      "sha256": "221bbb6b00f7140294d6b9ac9c370640a6b772db7ee0f9bc409f5c137de7ea62"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/Resources/examples/digital-reference.pdf",
@@ -51,8 +71,8 @@
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/Resources/examples/foldout.layout.json",
-      "bytes": 283,
-      "sha256": "b187cec39e16e52edb7763e4bea2a5d7bf7117e666a8c8586482a8a37b12105b"
+      "bytes": 297,
+      "sha256": "fb190dce422c9c2604080c021b9351bc9182a95081283b9649cbdc58fc488271"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/Resources/examples/foldout.pdf",
@@ -66,8 +86,8 @@
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/Resources/examples/print-reference.layout.json",
-      "bytes": 85472,
-      "sha256": "2b2130fd4a6103203475987f691883597c535a6bddbb90fbf349bd7358e30d06"
+      "bytes": 88625,
+      "sha256": "40ca55b588372ea77e86f571b1a2e2ec522664b2ee1065c912e10e3ed4ad4a14"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/Resources/examples/print-reference.pdf",
@@ -76,28 +96,28 @@
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/Resources/examples/verification.json",
-      "bytes": 3911,
-      "sha256": "c00b16c7c4faa538b88921cd86e10b06235042919c063e21d83cdfdb59ca44e5"
+      "bytes": 4037,
+      "sha256": "6b3e0e1a12d1bf55b4fa8abfcef8270ca7c26b6395cae588e822e11ec82cd479"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/Resources/fun-content/catalog-info.json",
-      "bytes": 471,
-      "sha256": "01a105b15502265816a9f60078a6024a47db0a8102252b7a530b550e0e94c45a"
+      "bytes": 499,
+      "sha256": "7af286d54be4a0d55b52692203fc4ba22912279772a1484b319f12cef92c2de0"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/Resources/fun-content/items.jsonl",
-      "bytes": 553619,
-      "sha256": "addad83f63308335f68320fd0f7e6df586fdc72bfe372bea0d8e13235c6aa167"
+      "bytes": 554572,
+      "sha256": "e9759dae188e6ea537d2d27964c4ed9fba0e11c60e1d1fb26ed9f3f884cb32fa"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/Resources/fun-content/sources.json",
-      "bytes": 12558,
-      "sha256": "c5959d41d05718a1a851fd23336d64ace7d20ee17a87673d649e7044619c2c75"
+      "bytes": 12895,
+      "sha256": "29aa4a36626322a57d3b79e10ed8a4c0dcff4cf2d8ce52e718a0b053d0da60be"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/Resources/illustrations/comic-prompts.json",
-      "bytes": 5539,
-      "sha256": "0c969b0755fb94596cc4df67ab77017505fb7409c6eb599cfd7ee9d210520109"
+      "bytes": 5557,
+      "sha256": "e4e56da7a8a9211769a22b366b8eb8e122cd1176155aca6c354f56087c110ba6"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/Resources/illustrations/comic_conditional_direction.png",
@@ -156,13 +176,13 @@
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/Resources/reference-comics/index.md",
-      "bytes": 4924,
-      "sha256": "67041c50044db18a240716dadcb8a5301e617bb228f3b62623b85fb4a0c7c7fa"
+      "bytes": 4982,
+      "sha256": "1c6e177356c5697d18e7a03502bcadb5f1e46fb4afeaaa35e06d5db6f93c41dc"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/Resources/reference-comics/manifest.json",
-      "bytes": 3726,
-      "sha256": "b8e28d5e7763073ed1e7ba824e9503f07660b74bad4429cbce34dd146ad5615d"
+      "bytes": 3804,
+      "sha256": "5847d0c46a97cc2d02d203e1c2167eb941d79d64df20405e479a71a5492cd1cb"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/Resources/templates/digital-master.pdf",
@@ -176,163 +196,168 @@
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/Resources/templates/template-manifest.json",
-      "bytes": 4662,
-      "sha256": "5ce751d2a098e9eb0befd0776f1b71f76f8f2d87381d81693c9ee5d77ec2856e"
+      "bytes": 4911,
+      "sha256": "35ac211bcdce9df4a78b50b12c2757d676e4e8244c703454eec460746259a37e"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/SKILL.md",
-      "bytes": 22357,
-      "sha256": "79706b2b40dc4cd6be221d93aff0cc700564bc3f6b4932b0f95dfeafe35ab690"
+      "bytes": 25207,
+      "sha256": "3f271fe41873d494ba58cd085a336085aed38689f53d904da57e841ef27a79d0"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/agents/openai.yaml",
-      "bytes": 633,
-      "sha256": "4481947a00f544f38740cebbd86c3cf2787aa872b3c892d5ee82c8c009fa9965"
+      "bytes": 731,
+      "sha256": "1bf8a0815250d3859036c4f13fd0b37a83c272fa13d6c4c226e776febb0c9c99"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/assets/icon.svg",
-      "bytes": 1210,
-      "sha256": "49315dda7125ec5fc77ef5f2b96126d8b2121c6e72944b4702972e90f321d3ee"
+      "bytes": 1218,
+      "sha256": "2f264abab3ebabc3876f3f25a23bc7e05ce558ee176b3059598922889bc61ceb"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/assets/licenses/60s-MIT.txt",
-      "bytes": 1083,
-      "sha256": "787fca056b13c7f75e71cf490b18f450eda47448b03a73c8b93bb80af047d640"
+      "bytes": 1104,
+      "sha256": "1d4db96da755f24a7c57a17d9d3fbd71c411d6f6b792b4fd8a304cbf94b756ce"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/assets/licenses/Chinese-Humor-MIT.txt",
-      "bytes": 1073,
-      "sha256": "bc53adb1ffb02f48e1bf8bfdaa67a64c2c264eb3f23cb83f848c81af50fc3c21"
+      "bytes": 1094,
+      "sha256": "6b207cf1c7474c722f275d9d29029c3a5d9f1ef3d7adb2642e57f9bebc6ec86f"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/assets/licenses/DejaVu-LICENSE.txt",
-      "bytes": 3859,
-      "sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9"
+      "bytes": 3937,
+      "sha256": "baa2e5e5cdb29e9052bbe4e171b2feb4b3314116ef9032fe11bd874c803cc815"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/assets/licenses/LXGW-WenKai-OFL.txt",
-      "bytes": 5171,
-      "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
+      "bytes": 5265,
+      "sha256": "cb973995026e28c931886a1d127397152187e03e53b2f71864e86cee8c25e54a"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/assets/licenses/NotoSansSC-OFL.txt",
-      "bytes": 4388,
-      "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9"
+      "bytes": 4481,
+      "sha256": "e35ffdebb2225b49814c31889cbb3ce69cb3509e6a9f431edaba5e1a6de8cd15"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/references/book-plan.md",
-      "bytes": 4464,
-      "sha256": "3a38c835e1688833a406e70601f8777d55d1d571d490bf18ad27580bb6ac83ca"
+      "bytes": 6495,
+      "sha256": "0c19d1084bf3305cad158ef123d036470caaefdf63ccf62b3286a879a5a8daf2"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/references/content-and-language.md",
-      "bytes": 8560,
-      "sha256": "771dd7d4044f1d6dcfd34ee3427ec38b375069b355c69ba4403dca5c38bd33bc"
+      "bytes": 13031,
+      "sha256": "493fe2b536f311230186574dce16e9424514b4b5067edd2ca5189c61c66eacbd"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/references/cover-and-foldout.md",
-      "bytes": 3645,
-      "sha256": "87bef35a553543195f48a6099959787839b77eb5b5e47f5fe7627bd229e43ba3"
+      "bytes": 3682,
+      "sha256": "408e3a5fe4d15daeee6aaacdf2b6ac823dc2fdf830ffb090ae5aa6d5eb89ebc1"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/references/fun-content.md",
-      "bytes": 5769,
-      "sha256": "ecaa6265be98a3ebf4041671072315e936e7ae9109560ebfd96d9d70190232b7"
+      "bytes": 5850,
+      "sha256": "257650fb126dab3f19bffc8f39441acfcc760e569985fd745430bb66e7503aa8"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/references/layout-digital.md",
-      "bytes": 4203,
-      "sha256": "6a44b32fc8df12cb0e05a4f1eba5bb5eeab86e141ba88a483d31d3d28eca287c"
+      "bytes": 4238,
+      "sha256": "fb0ee07c8f6ffb167dbb9e57147b7dac77484f9b9ce78807b415eb4e6e7c0356"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/references/layout-print.md",
-      "bytes": 4946,
-      "sha256": "29197b7dcccda2dc8d840b82e29bd5bac0594d21d59b956d3d35c84be8cca88a"
+      "bytes": 4986,
+      "sha256": "3f8eb41d5b86e96fca90aa22178f7d788c9427fa8793e5d5348f5b93eaa719c5"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/references/page-types.md",
-      "bytes": 4193,
-      "sha256": "8d56c0b2320e35ad30bd60f9237710d9a21355516feb13dd7fd027d331a0dea5"
+      "bytes": 4915,
+      "sha256": "4dd417fa618b3330a9984eb2c88bc6c4b25260b011c8d4b49a72707159a4c655"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/references/production.md",
-      "bytes": 6496,
-      "sha256": "656c7075ef8418fb09e19bee9f99f36a9cc34d242faf4e50d216d8396e714ff5"
+      "bytes": 9300,
+      "sha256": "9e0feec5abe77df1cbbd31415098f0f4ed4f16f1b1e1c20cd3accfad37034cdd"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/references/reference-observations.md",
-      "bytes": 5168,
-      "sha256": "b94ee410f54ed65cc47206dad33b79931e30188baa4646fd647c10cfe87a5a9a"
+      "bytes": 8562,
+      "sha256": "e8430676c0096da5189dc576e981f8baf805472cb4a7851ea7629e09b719e1cc"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/references/series-contract.md",
-      "bytes": 6143,
-      "sha256": "eaf8a11cbdd995b6e233b1b0c3b60e5c2489658708a245e45c7c559ede7fb90d"
+      "bytes": 7732,
+      "sha256": "44085174775b276cc477e3e33fa59f6501fdd4784ec174cb67cbcb6170c249bb"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/references/sidebar-comics.md",
-      "bytes": 7282,
-      "sha256": "bf7589d0b2778180c7878904000ec834319ea6a71e9d1cea3978aa9fbccd34e7"
+      "bytes": 7667,
+      "sha256": "03f299296097f220c9cd9376d0e86a0b6ae360b51f0f54403c330e4ba7b5ab24"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/references/subject-visuals.md",
-      "bytes": 3765,
-      "sha256": "f79eaec5bb8a62f200c498b4dded2e582493b4d5a425aa23dae522603a79e017"
+      "bytes": 3809,
+      "sha256": "9c26352480c34141c9b179e685ea8cacf35ca7d91651c655c04575abf8429d5a"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/references/teaching-examples.md",
+      "bytes": 7148,
+      "sha256": "a01ab42b6abf3b8a7ddc53e8a977e14f94c57eaa9ccd4374a14dbc79040446a1"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/references/template-workflow.md",
-      "bytes": 10532,
-      "sha256": "5fb0735a73bd6f33a3f553ebc0d8b65411ed97d4ba28b5dcb9ca1dca1ead72a9"
+      "bytes": 12211,
+      "sha256": "4625954800cb4884d9e42cda243cd4e1a144dbf3a776068b29ef9e41acbb790d"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/references/visual-system.md",
-      "bytes": 7724,
-      "sha256": "2cf3ad19c0e0494bc3737fb07cf9edc98b463bbc1a2222971fe8d1e2ed7326a1"
+      "bytes": 8109,
+      "sha256": "a0285f1989b1530e459e3cd11ab38b49906a48501efd4b3259c8526e781682f0"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/scripts/build_pdf_templates.py",
-      "bytes": 4674,
-      "sha256": "163123dfcb4580d4748db048ec2ba3a5fab2b89b68e3dd9c7bf12358ebbdb870"
+      "bytes": 4726,
+      "sha256": "7e247da4278f7b27769a36dcb242fd82250aa72b6315e33521ab3e994defe443"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/scripts/context_highlights.py",
-      "bytes": 4713,
-      "sha256": "c0f01277c0e8a4b8b7a5564efa7f6d02fa68a6e591695e1fd98b4c1857b087ed"
+      "bytes": 4804,
+      "sha256": "deaef36bfeddfecb09e31f8fa5f5a91864efc9486159c8dde71e804bfd874113"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/scripts/fill_template.py",
-      "bytes": 23524,
-      "sha256": "84612d3df82ea8cc2e6c72a77b0fab0ec4c822200162d4abbffb622a2a60a1e9"
+      "bytes": 23840,
+      "sha256": "e37cfdf6d00c84b231e00b12391f1f67556488c208bf3703541f29fc7d2b473f"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/scripts/pdf_template_layout.py",
-      "bytes": 3567,
-      "sha256": "fba76d11bbe9ebbaeaefee10daef576ce4ae0af38a36fe9b3a8ac6e727e849e4"
+      "bytes": 3638,
+      "sha256": "012b4cb26a4715b3afde405784cdba32c7fe1b7f13bdcd33ee4bebab821834b4"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/scripts/pick_fun_content.py",
-      "bytes": 11220,
-      "sha256": "a1b8e01860ef0748aba3f03cdca7007d00b0be299416817509f24916e0f51954"
+      "bytes": 11455,
+      "sha256": "44c6301e5bbbb9c47f9e5b15dbb37a3c67a3904a06cad1823b761ba36ee0d2da"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/scripts/prepare_fonts.py",
-      "bytes": 4006,
-      "sha256": "95c0c871c2454a58f600d88ae495e1383d72ba22d110f5a0282d6a381542acad"
+      "bytes": 4094,
+      "sha256": "21733ef393bcacc14d20c69f09ca0d5a701eb537e0ed63830699c96ad8100310"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/scripts/validate_book_plan.py",
-      "bytes": 10752,
-      "sha256": "5169a7ef0b85ba528b8a9bb72b3f413c6c99128b6be2f3d0aa60a6d24fcf2cd7"
+      "bytes": 10900,
+      "sha256": "afeb71dc0257b95da81656a5604d8bcb4581130b01e6bcbe2fabda995b9645be"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/tests/test_book_structure.py",
-      "bytes": 2764,
-      "sha256": "0ceeaa772c0a60984d77b16a20e959fd8a18bb26e21171d830bf2b8eda6c9a53"
+      "bytes": 2819,
+      "sha256": "9733b51cb1dd000f24f870cb431f6282b73770d7c8b82f199254ed10c3782131"
     },
     {
       "path": "skills/artifact-template-university-xueba-notes/tests/test_fun_content.py",
-      "bytes": 7378,
-      "sha256": "377b9fa149b4e6fcd4561d62c6b2194bb03dcac507709eb4649cbe369176e1b5"
+      "bytes": 7525,
+      "sha256": "86bee7d42129b1eb87872887c29b3bd864b2fdd7e26d973991a431b649013c93"
     }
   ]
 }
