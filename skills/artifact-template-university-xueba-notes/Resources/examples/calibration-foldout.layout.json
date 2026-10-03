@@ -14,6 +14,7 @@
   ],
   "chapters": [],
   "warnings": [],
+  "language_findings": [],
   "review_status": {
     "automatic_structure": "passed",
     "automatic_fields": "passed",

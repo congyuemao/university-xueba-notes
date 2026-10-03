@@ -8,7 +8,7 @@ content_schema_version=2；learning_mode为learning（默认）或revision；sou
 
 sources每项含id、title、locator。locator记录用户材料的版次、印刷页与PDF物理页规则；不把文件名当成内容已检查的证明。
 
-outline是独立知识树，不从分页标题推导。字段id、title、kind、level（1–4）、parent_id；可有ordinal_label。kind包括part、chapter、unit、section、lesson、feature、chapter_map、volume_map、appendix、glossary。目录节点有首个实际页锚点；父首子不能被拆到两栏。专题和导图作为正式节点。
+outline是独立知识树，不从分页标题推导。字段id、title、kind、level（1–4）、parent_id；可有ordinal_label。kind包括part、chapter、unit、section、lesson、feature、chapter_map、volume_map、appendix、glossary。目录节点有首个实际页锚点；父首子不能被拆到两栏。专题作为正式节点；独立导图仅在用户明确要求且通过教学价值评估时加入。
 
 ## 来源身份
 

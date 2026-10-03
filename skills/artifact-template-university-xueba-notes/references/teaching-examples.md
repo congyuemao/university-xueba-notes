@@ -91,3 +91,9 @@ P(D∣F) = (90/2000)/(280/2000) = 90/280 ≈ 32.14%。
 | 主栏定义前，漫画已出现D、F与条件概率算式 | 移动漫画或先完成主栏教学。 | 同页不代表已经按阅读顺序讲过。 |
 
 以上样例是编辑判断标尺，不能通过统计禁词命中数、句长或五项标签数量来替代真实阅读。
+
+## 本轮配套校准库
+
+首次定义、解释性复述与步骤节奏见[自编大学样例](../Resources/language-calibration/synthetic-examples.md)。同一知识点在四个区域的写法见[压缩等级](../Resources/language-calibration/compression-levels.md)。完整自足题干及分区解答见[例题写法](../Resources/language-calibration/example-writing.md)，多步压缩和前文依赖反例见[正反例](../Resources/language-calibration/contrastive-examples.md)。
+
+上面的质点示例是概念说明片段。若作为独立完整例题，须把求路程、算时间、解释差异分成独立steps，将公式独立排出，不把整段推理当作一个step。条件概率示例同理：给定群体、代入、计算、解释按主要动作分区。长段不因出现在本参考文件中就自动合格。

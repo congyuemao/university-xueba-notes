@@ -297,7 +297,7 @@ class Book(BookCompositor):
         metadata=self.content.get('metadata') or {};self.doc.set_metadata({key:metadata.get(key,'') for key in ('title','author','subject','keywords')})
         self.doc.rewrite_images(dpi_threshold=450,dpi_target=300,quality=94,bitonal=False)
         self.doc.save(self.a.output,garbage=4,deflate=True)
-        write_json(Path(self.a.output).with_suffix('.layout.json'),{'master_sha256':self.hash,'content_schema_version':self.content.get('content_schema_version',1),'fun_mode':self.a.fun_mode,'fun_seed':self.a.fun_seed,'pages':self.logs,'chapters':self.layout_metrics,'warnings':self.composition_warnings,'review_status':{'automatic_structure':'passed','automatic_fields':'passed','human_content':'not_run','human_visual':'not_run'}})
+        write_json(Path(self.a.output).with_suffix('.layout.json'),{'master_sha256':self.hash,'content_schema_version':self.content.get('content_schema_version',1),'fun_mode':self.a.fun_mode,'fun_seed':self.a.fun_seed,'pages':self.logs,'chapters':self.layout_metrics,'warnings':self.composition_warnings,'language_findings':getattr(self,'language_review',[]),'review_status':{'automatic_structure':'passed','automatic_fields':'passed','human_content':'not_run','human_visual':'not_run'}})
         if self.compiled:write_json(Path(self.a.output).with_suffix('.compiled.json'),self.content)
         assert hashlib.sha256(self.src.read_bytes()).hexdigest()==self.hash,'Master was modified'
         if self.fun_picker and self.history:self.history.commit(self.fun_picker.selected)

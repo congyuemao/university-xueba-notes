@@ -13,14 +13,6 @@
   ],
   "outline": [
     {
-      "id": "guide",
-      "title": "知识导览",
-      "level": 1,
-      "parent_id": null,
-      "kind": "volume_map",
-      "source_kind": "editorial_synthesis"
-    },
-    {
       "id": "lp",
       "title": "线性规划",
       "level": 1,
@@ -99,6 +91,13 @@
       "kind": "feature"
     },
     {
+      "id": "sx-specials",
+      "title": "单纯形的几种情形",
+      "level": 2,
+      "parent_id": "sx",
+      "kind": "section"
+    },
+    {
       "id": "dp",
       "title": "动态规划",
       "level": 1,
@@ -131,13 +130,6 @@
       "kind": "feature"
     },
     {
-      "id": "dp-map",
-      "title": "动态规划方法图",
-      "level": 2,
-      "parent_id": "dp",
-      "kind": "chapter_map"
-    },
-    {
       "id": "formula-page",
       "title": "模型与算法速查",
       "level": 2,
@@ -154,149 +146,16 @@
   ],
   "pages": [
     {
-      "id": "guide-page",
-      "title": "运筹学知识地图",
-      "type": "volume_map",
-      "chapter_id": "guide",
-      "number": 1,
-      "outline_ids": [
-        "guide"
-      ],
-      "blocks": [
-        {
-          "id": "b001",
-          "type": "knowledge_map",
-          "source_kind": "authored_example",
-          "tree": {
-            "label": "运筹学",
-            "children": [
-              {
-                "label": "建立模型",
-                "children": [
-                  {
-                    "label": "数量与资源",
-                    "formula": "x+y ≤ 4"
-                  },
-                  {
-                    "label": "可行域",
-                    "drawing": [
-                      {
-                        "kind": "polygon",
-                        "points": [
-                          [
-                            10,
-                            88
-                          ],
-                          [
-                            10,
-                            18
-                          ],
-                          [
-                            42,
-                            53
-                          ],
-                          [
-                            58,
-                            88
-                          ]
-                        ],
-                        "fill": "#EAF2D1"
-                      },
-                      {
-                        "kind": "arrow",
-                        "points": [
-                          [
-                            10,
-                            88
-                          ],
-                          [
-                            90,
-                            88
-                          ]
-                        ]
-                      },
-                      {
-                        "kind": "arrow",
-                        "points": [
-                          [
-                            10,
-                            88
-                          ],
-                          [
-                            10,
-                            5
-                          ]
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "label": "目标比较",
-                    "formula": "max 3x+2y"
-                  }
-                ]
-              },
-              {
-                "label": "移动顶点",
-                "children": [
-                  {
-                    "label": "入基与出基",
-                    "formula": "min {4/1,6/2}"
-                  },
-                  {
-                    "label": "更新与检验",
-                    "formula": "z=10−s₁−s₂"
-                  }
-                ]
-              },
-              {
-                "label": "阶段决策",
-                "children": [
-                  {
-                    "label": "阶段与容量",
-                    "formula": "(i,b)"
-                  },
-                  {
-                    "label": "收益与转移",
-                    "formula": "kvᵢ+Fᵢ₋₁(b−kwᵢ)"
-                  },
-                  {
-                    "label": "记录与回溯",
-                    "formula": "甲2件 + 乙1件"
-                  }
-                ]
-              }
-            ]
-          },
-          "height_rows": 27,
-          "caption": "从模型进入求解：线性规划描述资源限制；单纯形沿基本可行解迭代；动态规划记录阶段最优值。"
-        }
-      ],
-      "handwritten_layer": [],
-      "handwriting_reason": "知识地图以枝条关系组织，保留用户自行补注的位置。",
-      "sidebar": {
-        "items": []
-      },
-      "page_break": true
-    },
-    {
       "id": "lp-model",
       "title": "变量与约束",
       "type": "knowledge_dense",
       "chapter_id": "lp",
-      "number": 2,
+      "number": 1,
       "outline_ids": [
         "lp",
         "lp-model"
       ],
       "blocks": [
-        {
-          "id": "b002",
-          "type": "heading",
-          "source_kind": "authored_example",
-          "text": "生产计划",
-          "number": "1"
-        },
         {
           "id": "b003",
           "type": "paragraph",
@@ -311,13 +170,14 @@
           "source_section": "2.1",
           "title": "决策变量",
           "symbol": "x, y",
-          "text": "决策变量表示需要决定的数量。本例 x、y 分别是甲、乙的生产批数；可以按小数批生产。",
+          "text": "在决定生产方案时，我们首先需要表示两种混合料各生产多少。决策变量表示需要决定的数量；本例用x、y分别表示甲、乙的生产批数。\n\n因为混合料可以分割，生产量也可以取小数。例如x=1.5表示生产1.5批甲，而不是一种新的产品。",
+          "language_level": "L1",
           "highlights": [
             {
-              "start": 0,
-              "end": 13,
+              "start": 28,
+              "end": 41,
               "text": "决策变量表示需要决定的数量",
-              "reason": "定义突出由决策者选择的数量"
+              "reason": "本段正式教学的关键关系"
             }
           ]
         },
@@ -353,15 +213,6 @@
           ]
         },
         {
-          "id": "b006",
-          "type": "definition",
-          "source_kind": "textbook_core",
-          "source_id": "taha10",
-          "source_section": "2.1",
-          "title": "参数",
-          "text": "参数是在本次模型中给定的数值。表中的单位消耗、利润和可用量都是参数；x、y 是待选的数量。"
-        },
-        {
           "id": "b007",
           "type": "formula_group",
           "source_kind": "authored_example",
@@ -388,13 +239,14 @@
           "source_id": "taha10",
           "source_section": "2.1",
           "title": "可行解",
-          "text": "满足全部约束的变量取值称为可行解。选 x=1、y=2 时，原料用量为3吨和4吨，均未超过库存，所以该方案可行。",
+          "text": "生产方案只有同时满足全部资源限制，才可以执行。满足全部约束的变量取值称为可行解。\n\n例如取x=1、y=2时，两种原料分别消耗3吨和4吨，都没有超过库存；生产量也非负，因此这个方案可行。",
+          "language_level": "L1",
           "highlights": [
             {
-              "start": 0,
-              "end": 16,
+              "start": 23,
+              "end": 39,
               "text": "满足全部约束的变量取值称为可行解",
-              "reason": "突出全部约束同时成立"
+              "reason": "本段正式教学的关键关系"
             }
           ]
         },
@@ -407,7 +259,8 @@
             "原料Ⅰ需要3+2=5吨，超过4吨。",
             "原料Ⅱ需要2×3+2=8吨，超过6吨。"
           ],
-          "answer": "两种原料均不足，方案不可行。"
+          "answer": "两种原料均不足，方案不可行。",
+          "language_level": "L3"
         }
       ],
       "handwritten_layer": [
@@ -425,9 +278,10 @@
         "items": [
           {
             "anchor_block_id": "lp-feasible",
-            "text": "可行只表示做得到，尚未比较利润。",
+            "text": "可行表示做得到；最优还要比较目标值。",
             "source_kind": "editorial_synthesis",
-            "title": "概念辨析"
+            "title": "概念辨析",
+            "after_anchor": false
           }
         ]
       }
@@ -437,7 +291,7 @@
       "title": "可行域与最优解",
       "type": "knowledge_visual",
       "chapter_id": "lp",
-      "number": 3,
+      "number": 2,
       "outline_ids": [
         "lp-graph"
       ],
@@ -449,7 +303,8 @@
           "source_id": "taha10",
           "source_section": "2.2",
           "title": "可行域",
-          "text": "全部可行解组成可行域。把每条线性不等式画成半平面，再取它们与第一象限的交集。"
+          "text": "我们已经能逐个检验生产方案。为了同时观察所有可执行的方案，可以把x、y作为坐标，将全部可行解画在平面上；这些点组成的区域称为可行域。\n\n每条线性不等式对应一个半平面。取各半平面与第一象限的交集，就保留了同时满足全部约束的点。",
+          "language_level": "L1"
         },
         {
           "id": "lp-figure",
@@ -646,7 +501,8 @@
           "source_id": "taha10",
           "source_section": "2.2.1",
           "title": "最优解",
-          "text": "最优解是可行域中目标值最好的解。这里四个顶点中(2,2)利润最高，为10百元；目标等值线向利润增加的方向移动，最后接触该点。"
+          "text": "可行解只说明方案能够执行，我们还要比较各方案带来的利润。可行域中使目标值达到最好的方案，称为最优解。\n\n本例四个顶点中，(2,2)的利润最高，为10百元。将目标等值线向利润增加的方向平移时，它最后接触可行域的位置也是这个点。",
+          "language_level": "L1"
         },
         {
           "id": "b016",
@@ -655,13 +511,8 @@
           "source_id": "taha10",
           "source_section": "2.2",
           "boundary_level": "A",
-          "text": "本例可行域非空且有界，因此线性目标能在顶点取得最优值。无须逐一枚举区域内部的所有点。"
-        },
-        {
-          "id": "b017",
-          "type": "example_inline",
-          "source_kind": "authored_example",
-          "text": "原点利润为0；生产3批甲的利润为9百元；改为甲乙各2批，利润增加1百元。"
+          "text": "本例可行域非空且有界，因此线性目标能在顶点取得最优值。无须逐一枚举区域内部的所有点。",
+          "language_level": "L1"
         }
       ],
       "handwritten_layer": [
@@ -679,7 +530,8 @@
           "kind": "arrow_note",
           "side": "left",
           "text": "先筛可行，再比较目标。",
-          "source_kind": "editorial_synthesis"
+          "source_kind": "editorial_synthesis",
+          "after_anchor": false
         },
         {
           "type": "handwritten_annotation",
@@ -695,8 +547,8 @@
           "side": "inline",
           "anchor_block_id": "lp-region",
           "target_span": {
-            "start": 35,
-            "end": 37,
+            "start": 94,
+            "end": 96,
             "text": "交集"
           },
           "source_kind": "editorial_synthesis"
@@ -709,7 +561,8 @@
             "anchor_block_id": "lp-figure",
             "text": "在(0,0)代入不等式，可确定边界线的哪一侧满足约束。",
             "source_kind": "editorial_synthesis",
-            "title": "选侧方法"
+            "title": "选侧方法",
+            "after_anchor": false
           }
         ]
       }
@@ -719,32 +572,50 @@
       "title": "线性关系与约束翻译",
       "type": "comparison_page",
       "chapter_id": "lp",
-      "number": 4,
+      "number": 3,
       "outline_ids": [
         "lp-translate"
       ],
       "blocks": [
         {
-          "id": "lp-props",
-          "type": "property_list",
+          "id": "b006",
+          "type": "definition",
           "source_kind": "textbook_core",
           "source_id": "taha10",
           "source_section": "2.1",
-          "title": "线性结构",
-          "items": [
-            {
-              "label": "比例性",
-              "text": "生产量乘2，消耗和利润也乘2；每批系数保持不变。"
-            },
-            {
-              "label": "可加性",
-              "text": "甲乙的用量相加得到总用量，不含 xy 等相互作用项。"
-            },
-            {
-              "label": "可分性",
-              "text": "变量允许小数值。按整件计数时，需要另外规定整数性。"
-            }
-          ]
+          "title": "参数",
+          "text": "参数是在本次模型中给定的数值。表中的单位消耗、利润和可用量都是参数；x、y 是待选的数量。",
+          "language_level": "L1"
+        },
+        {
+          "id": "lp-props",
+          "type": "property",
+          "source_kind": "textbook_core",
+          "title": "比例性",
+          "text": "在模型适用范围内，每批产品的消耗和利润保持不变。因此，同一产品的产量增加一倍，消耗和利润也增加一倍。",
+          "language_level": "L1",
+          "source_id": "taha10",
+          "source_section": "2.1"
+        },
+        {
+          "id": "lp-props-1",
+          "type": "property",
+          "source_kind": "textbook_core",
+          "title": "可加性",
+          "text": "两种产品分别计算消耗，再相加得到总用量。例如原料Ⅱ的总消耗为2x+y，其中没有xy这样的相互作用项。",
+          "language_level": "L1",
+          "source_id": "taha10",
+          "source_section": "2.1"
+        },
+        {
+          "id": "lp-props-2",
+          "type": "property",
+          "source_kind": "textbook_core",
+          "title": "可分性",
+          "text": "本例的混合料可以分割，所以变量允许取小数。若数量只能按整件计算，则应另外加入整数限制。",
+          "language_level": "L1",
+          "source_id": "taha10",
+          "source_section": "2.1"
         },
         {
           "id": "lp-trans",
@@ -788,7 +659,8 @@
             "期初库存进入本期；本期生产 qₜ 加入库存。",
             "本期需求 dₜ 离开库存；余额成为期末库存 Iₜ。",
             "期末库存进入下一期，同一变量连接相邻两期。"
-          ]
+          ],
+          "language_level": "L3"
         },
         {
           "id": "b021",
@@ -841,17 +713,6 @@
           "type": "common_error",
           "source_kind": "authored_example",
           "text": "“至少”应写成下界。例如 x≥1，不能写成 x≤1；先检查变量单位，再判断不等号方向。"
-        },
-        {
-          "id": "b073",
-          "type": "worked_micro_example",
-          "source_kind": "authored_example",
-          "problem": "甲恰占总产量六成，总量为5批时各产多少？",
-          "steps": [
-            "x=0.6×5=3，y=5−3=2。",
-            "这是比例条件的一个解；仍须另查资源约束。"
-          ],
-          "answer": "比例成立，但它违反本例两种原料上限，所以不可行。"
         }
       ],
       "handwritten_layer": [
@@ -868,10 +729,11 @@
       "sidebar": {
         "items": [
           {
-            "anchor_block_id": "lp-error",
+            "anchor_block_id": "lp-props-2",
             "text": "整数限制属于另一类模型。图解得到小数时，直接四舍五入可能破坏约束。",
             "source_kind": "editorial_synthesis",
-            "title": "B级辨析"
+            "title": "B级辨析",
+            "after_anchor": true
           }
         ]
       }
@@ -881,237 +743,327 @@
       "title": "模型应用",
       "type": "application_page",
       "chapter_id": "lp",
-      "number": 5,
+      "number": 4,
       "outline_ids": [
         "lp-application"
       ],
       "blocks": [
         {
-          "id": "b023",
-          "type": "table",
-          "source_kind": "authored_example",
-          "headers": [
-            "资源",
-            "甲每批",
-            "乙每批",
-            "上限"
-          ],
-          "rows": [
-            [
-              "原料Ⅰ",
-              1,
-              1,
-              4
-            ],
-            [
-              "原料Ⅱ",
-              2,
-              1,
-              6
-            ]
-          ]
-        },
-        {
           "id": "lp-app-steps",
-          "type": "process_steps",
+          "type": "worked_example",
           "source_kind": "authored_example",
-          "steps": [
-            "令 x、y 为甲乙批数，利润为 z=3x+2y。",
-            "写出 x+y≤4、2x+y≤6，以及 x≥1、y≥0。",
-            "新顶点为(1,0)、(3,0)、(2,2)、(1,3)。",
-            "依次计算利润3、9、10、9百元，最大值为10百元。"
-          ]
-        },
-        {
-          "id": "b025",
-          "type": "formula_relation",
-          "source_kind": "authored_example",
-          "title": "结果核查",
-          "items": [
+          "problem_number": "01",
+          "problem": [
             {
-              "formula": "x=2, y=2; x+y=4; 2x+y=6",
-              "reason": "两个资源都用完，且甲产量满足最低订单1批。"
+              "id": "lang-007",
+              "type": "paragraph",
+              "source_kind": "authored_example",
+              "text": "工坊生产甲、乙两种混合料，允许按小数批生产。每批甲、乙的利润分别为300元、200元，原料消耗和库存如下。",
+              "language_level": "L3"
             },
             {
-              "formula": "z=3×2+2×2=10",
-              "reason": "利润为1000元。"
-            }
-          ]
-        },
-        {
-          "id": "lp-app-error",
-          "type": "common_error",
-          "source_kind": "authored_example",
-          "text": "加入 x≥1 后须重新确定可行域。本例原最优点恰好仍满足新增限制，所以最优值保持不变。"
-        },
-        {
-          "id": "b074",
-          "type": "concept_diagram",
-          "source_kind": "authored_example",
-          "drawing": [
-            {
-              "kind": "polygon",
-              "points": [
-                [
-                  26,
-                  88
-                ],
-                [
-                  26,
-                  35.5
-                ],
-                [
-                  42,
-                  53
-                ],
-                [
-                  58,
-                  88
-                ]
+              "id": "lp-order-data",
+              "type": "table",
+              "source_kind": "authored_example",
+              "headers": [
+                "每批消耗／吨",
+                "甲",
+                "乙",
+                "库存／吨"
               ],
-              "fill": "#EAF2D1"
-            },
-            {
-              "kind": "arrow",
-              "points": [
+              "rows": [
                 [
-                  10,
-                  88
+                  "原料Ⅰ",
+                  1,
+                  1,
+                  4
                 ],
                 [
-                  90,
-                  88
+                  "原料Ⅱ",
+                  2,
+                  1,
+                  6
                 ]
               ]
             },
             {
-              "kind": "arrow",
-              "points": [
-                [
-                  10,
-                  88
-                ],
-                [
-                  10,
-                  5
-                ]
-              ]
-            },
-            {
-              "kind": "polyline",
-              "points": [
-                [
-                  10,
-                  18
-                ],
-                [
-                  74,
-                  88
-                ]
-              ],
-              "color": "#B86A29"
-            },
-            {
-              "kind": "polyline",
-              "points": [
-                [
-                  17.771428571428572,
-                  0
-                ],
-                [
-                  58,
-                  88
-                ]
-              ],
-              "color": "#477BA9"
-            },
-            {
-              "kind": "label",
-              "x": 86,
-              "y": 98,
-              "text": "x"
-            },
-            {
-              "kind": "label",
-              "x": 2,
-              "y": 8,
-              "text": "y"
-            },
-            {
-              "kind": "label",
-              "x": 0,
-              "y": 98,
-              "text": "0"
-            },
-            {
-              "kind": "label",
-              "x": 12,
-              "y": 16,
-              "text": "(0,4)"
-            },
-            {
-              "kind": "label",
-              "x": 59,
-              "y": 97,
-              "text": "(3,0)"
-            },
-            {
-              "kind": "label",
-              "x": 44,
-              "y": 52,
-              "text": "(2,2)"
-            },
-            {
-              "kind": "label",
-              "x": 53,
-              "y": 16,
-              "text": "x+y=4"
-            },
-            {
-              "kind": "label",
-              "x": 58,
-              "y": 38,
-              "text": "2x+y=6"
-            },
-            {
-              "kind": "circle",
-              "x": 42,
-              "y": 53,
-              "r": 2,
-              "fill": "#B64930"
-            },
-            {
-              "kind": "polyline",
-              "points": [
-                [
-                  26,
-                  0
-                ],
-                [
-                  26,
-                  88
-                ]
-              ],
-              "color": "#945E91"
-            },
-            {
-              "kind": "label",
-              "x": 28,
-              "y": 12,
-              "text": "x=1"
+              "id": "lang-008",
+              "type": "paragraph",
+              "source_kind": "authored_example",
+              "text": "客户要求甲至少生产1批，乙的产量非负。求满足全部资源限制、使总利润最大的生产方案。",
+              "language_level": "L3"
             }
           ],
-          "height_rows": 5,
-          "caption": "x≥1 删去左侧一带；浅绿部分为新的可行域，保留最优点(2,2)。"
+          "analysis": "这是带最低订单的线性规划问题。先将资源与订单条件写成约束，再用图解法确定可行域，比较各顶点的利润。",
+          "steps": [
+            {
+              "label": "01",
+              "title": "定义变量",
+              "content": [
+                {
+                  "id": "lang-009",
+                  "type": "paragraph",
+                  "source_kind": "authored_example",
+                  "text": "设x、y分别为甲、乙的生产批数，z表示总利润，单位为百元。由于产品可以分割，x、y按连续量处理。",
+                  "language_level": "L3"
+                }
+              ]
+            },
+            {
+              "label": "02",
+              "title": "建立模型",
+              "content": [
+                {
+                  "id": "lang-010",
+                  "type": "formula_step",
+                  "source_kind": "authored_example",
+                  "reason": "利润按每批收益相加，资源消耗分别受库存限制：",
+                  "formula": "max z=3x+2y\nx+y≤4; 2x+y≤6\nx≥1; y≥0",
+                  "language_level": "L3"
+                }
+              ]
+            },
+            {
+              "label": "03",
+              "title": "确定可行域",
+              "content": [
+                {
+                  "id": "lang-011",
+                  "type": "paragraph",
+                  "source_kind": "authored_example",
+                  "text": "在两条资源约束的可行区域内，只保留x≥1的部分。新的四个顶点为(1,0)、(3,0)、(2,2)、(1,3)。",
+                  "language_level": "L3"
+                },
+                {
+                  "id": "lp-order-figure",
+                  "type": "concept_diagram",
+                  "source_kind": "authored_example",
+                  "drawing": [
+                    {
+                      "kind": "polygon",
+                      "points": [
+                        [
+                          26,
+                          88
+                        ],
+                        [
+                          26,
+                          35.5
+                        ],
+                        [
+                          42,
+                          53
+                        ],
+                        [
+                          58,
+                          88
+                        ]
+                      ],
+                      "fill": "#EAF2D1"
+                    },
+                    {
+                      "kind": "arrow",
+                      "points": [
+                        [
+                          10,
+                          88
+                        ],
+                        [
+                          90,
+                          88
+                        ]
+                      ]
+                    },
+                    {
+                      "kind": "arrow",
+                      "points": [
+                        [
+                          10,
+                          88
+                        ],
+                        [
+                          10,
+                          5
+                        ]
+                      ]
+                    },
+                    {
+                      "kind": "polyline",
+                      "points": [
+                        [
+                          10,
+                          18
+                        ],
+                        [
+                          74,
+                          88
+                        ]
+                      ],
+                      "color": "#B86A29"
+                    },
+                    {
+                      "kind": "polyline",
+                      "points": [
+                        [
+                          17.771428571428572,
+                          0
+                        ],
+                        [
+                          58,
+                          88
+                        ]
+                      ],
+                      "color": "#477BA9"
+                    },
+                    {
+                      "kind": "label",
+                      "x": 86,
+                      "y": 98,
+                      "text": "x"
+                    },
+                    {
+                      "kind": "label",
+                      "x": 2,
+                      "y": 8,
+                      "text": "y"
+                    },
+                    {
+                      "kind": "label",
+                      "x": 0,
+                      "y": 98,
+                      "text": "0"
+                    },
+                    {
+                      "kind": "label",
+                      "x": 12,
+                      "y": 16,
+                      "text": "(0,4)"
+                    },
+                    {
+                      "kind": "label",
+                      "x": 59,
+                      "y": 97,
+                      "text": "(3,0)"
+                    },
+                    {
+                      "kind": "label",
+                      "x": 44,
+                      "y": 52,
+                      "text": "(2,2)"
+                    },
+                    {
+                      "kind": "label",
+                      "x": 53,
+                      "y": 16,
+                      "text": "x+y=4"
+                    },
+                    {
+                      "kind": "label",
+                      "x": 58,
+                      "y": 38,
+                      "text": "2x+y=6"
+                    },
+                    {
+                      "kind": "circle",
+                      "x": 42,
+                      "y": 53,
+                      "r": 2,
+                      "fill": "#B64930"
+                    },
+                    {
+                      "kind": "polyline",
+                      "points": [
+                        [
+                          26,
+                          0
+                        ],
+                        [
+                          26,
+                          88
+                        ]
+                      ],
+                      "color": "#945E91"
+                    },
+                    {
+                      "kind": "label",
+                      "x": 28,
+                      "y": 12,
+                      "text": "x=1"
+                    }
+                  ],
+                  "height_rows": 5,
+                  "caption": "x≥1 删去左侧一带；浅绿部分为新的可行域，保留最优点(2,2)。"
+                }
+              ]
+            },
+            {
+              "label": "04",
+              "title": "比较利润",
+              "content": [
+                {
+                  "id": "lang-012",
+                  "type": "table",
+                  "source_kind": "authored_example",
+                  "headers": [
+                    "顶点",
+                    "(1,0)",
+                    "(3,0)",
+                    "(2,2)",
+                    "(1,3)"
+                  ],
+                  "rows": [
+                    [
+                      "利润／百元",
+                      3,
+                      9,
+                      10,
+                      9
+                    ]
+                  ]
+                },
+                {
+                  "id": "lang-013",
+                  "type": "paragraph",
+                  "source_kind": "authored_example",
+                  "text": "最大利润出现在(2,2)，因此甲、乙各生产2批。",
+                  "language_level": "L3"
+                }
+              ]
+            },
+            {
+              "label": "05",
+              "title": "回代核验",
+              "content": [
+                {
+                  "id": "lang-014",
+                  "type": "formula_step",
+                  "source_kind": "authored_example",
+                  "reason": "将生产量代回全部资源与订单条件：",
+                  "formula": "x+y=4; 2x+y=6\nx=2≥1; y=2≥0",
+                  "language_level": "L3"
+                },
+                {
+                  "id": "lp-app-error",
+                  "type": "paragraph",
+                  "source_kind": "authored_example",
+                  "text": "两种原料恰好用完，最低甲订单也得到满足。",
+                  "language_level": "L3"
+                }
+              ]
+            }
+          ],
+          "result": "甲、乙各生产2批，总利润为10百元，即1000元；两种原料均无剩余。",
+          "method": "先确定数量和单位，再逐条翻译限制。新增条件会改变可行域，求得最优点后仍须回代全部约束。",
+          "language_level": "L3"
         }
       ],
       "handwritten_layer": [
         {
           "type": "handwritten_annotation",
-          "anchor_block_id": "lp-app-steps",
-          "kind": "arrow_note",
+          "anchor_block_id": "lp-app-error",
+          "kind": "text",
           "side": "left",
-          "text": "新增限制先改可行域。",
+          "text": "先检验约束，再确认利润。",
           "source_kind": "editorial_synthesis"
         }
       ],
@@ -1120,24 +1072,20 @@
         "items": [
           {
             "anchor_block_id": "lp-app-error",
-            "text": "若最低甲订单改为3批，只剩(3,0)，利润降为9百元。",
+            "text": "甲若至少生产3批，就只剩(3,0)。",
             "source_kind": "editorial_synthesis",
-            "title": "参数变化"
+            "title": "参数变化",
+            "after_anchor": false
           }
         ]
-      },
-      "problem_number": "01",
-      "problem": "沿用混合料数据，客户要求甲至少生产1批。建立模型并求最优生产方案。",
-      "analysis": "先写两条资源约束，再加入订单下界，比较新可行域的顶点。",
-      "solution": "甲乙各生产2批，总利润1000元，两种原料均无剩余。",
-      "method": "确定数量和单位；逐条翻译限制；计算后回代全部约束。"
+      }
     },
     {
       "id": "sx-basis",
       "title": "基与基本可行解",
       "type": "knowledge_dense",
       "chapter_id": "sx",
-      "number": 6,
+      "number": 5,
       "outline_ids": [
         "sx",
         "sx-basis"
@@ -1150,7 +1098,8 @@
           "source_id": "taha10",
           "source_section": "3.1",
           "title": "松弛变量",
-          "text": "在“≤”资源约束中加入非负松弛变量，使不等式变成等式。s₁、s₂ 分别表示两种原料的剩余吨数。"
+          "text": "资源约束写成不等式时，左边是已经使用的数量，右边是可用总量。两者之差就是剩余资源。把这个非负差额写成松弛变量，便可将“≤”约束改写成等式。\n\n在本例中，s₁、s₂分别表示两种原料剩余的吨数。因此，消耗量加上剩余量，应当等于原来的库存。",
+          "language_level": "L1"
         },
         {
           "id": "b028",
@@ -1169,13 +1118,14 @@
           "source_id": "taha10",
           "source_section": "3.2",
           "title": "基",
-          "text": "从两行独立等式的系数矩阵中选择两列线性无关的列，构成一个基。对应变量称为基变量，其余称为非基变量。",
+          "text": "单纯形法需要在每一步选出一组变量，由方程组直接确定它们的值。对于本例的两个独立约束，我们从系数矩阵中选出两列线性无关的列，这两列组成一个基。\n\n与这两列对应的变量叫作基变量，其余变量叫作非基变量。选定基以后，将非基变量置零，就可以求出相应的基本解。",
+          "language_level": "L1",
           "highlights": [
             {
-              "start": 15,
-              "end": 23,
+              "start": 52,
+              "end": 60,
               "text": "两列线性无关的列",
-              "reason": "本例构成基的必要条件"
+              "reason": "本段正式教学的关键关系"
             }
           ]
         },
@@ -1242,7 +1192,8 @@
             "s₁=4，s₂=6。",
             "全部变量非负，因此得到基本可行解。"
           ],
-          "answer": "生产量为0，原料全部剩余，利润为0。"
+          "answer": "生产量为0，原料全部剩余，利润为0。",
+          "language_level": "L3"
         },
         {
           "id": "b032",
@@ -1251,7 +1202,8 @@
           "source_id": "taha10",
           "source_section": "3.2",
           "title": "基本解与基本可行解",
-          "text": "令非基变量为0并解出基变量，得到基本解。若所得全部变量都非负，该基本解也是基本可行解。"
+          "text": "令非基变量为0并解出基变量，得到基本解。若所得全部变量都非负，该基本解也是基本可行解。",
+          "language_level": "L1"
         },
         {
           "id": "b033",
@@ -1260,13 +1212,8 @@
           "source_id": "taha10",
           "source_section": "3.2",
           "boundary_level": "A",
-          "text": "选择的基矩阵必须可逆。不能任意选两列；线性相关的列无法唯一确定两个基变量。"
-        },
-        {
-          "id": "b034",
-          "type": "example_inline",
-          "source_kind": "authored_example",
-          "text": "s₁、s₂ 的列构成单位矩阵，因此本例容易得到初始基。单纯形法随后通过换基改进目标值。"
+          "text": "选择的基矩阵必须可逆。不能任意选两列；线性相关的列无法唯一确定两个基变量。",
+          "language_level": "L1"
         }
       ],
       "handwritten_layer": [
@@ -1284,9 +1231,10 @@
         "items": [
           {
             "anchor_block_id": "sx-basic-example",
-            "text": "基变量不保证严格大于0。等于0的基本可行解称为退化解。",
+            "text": "基变量可以等于0；此时的基本可行解称为退化解。",
             "source_kind": "editorial_synthesis",
-            "title": "B级辨析"
+            "title": "B级辨析",
+            "after_anchor": false
           },
           {
             "anchor_block_id": "sx-columns",
@@ -1320,7 +1268,8 @@
                 "text": "单位矩阵"
               }
             ],
-            "height_rows": 3
+            "height_rows": 3,
+            "after_anchor": false
           }
         ]
       }
@@ -1330,7 +1279,7 @@
       "title": "入基与出基",
       "type": "process_page",
       "chapter_id": "sx",
-      "number": 7,
+      "number": 6,
       "outline_ids": [
         "sx-pivot"
       ],
@@ -1342,7 +1291,8 @@
           "source_id": "taha10",
           "source_section": "3.3",
           "title": "入基选择",
-          "text": "从 z=3x+2y 开始，增加 x 能提高利润。本次选 x 入基；非基变量 y 保持0。"
+          "text": "当前解为x=y=0，目标函数为z=3x+2y。增加x能够提高利润，因此这一轮选择x作为入基变量，并暂时保持另一个非基变量y为0。\n\n这里的“入基”表示让x取代原来的一名基变量，成为由方程求解的变量。它能增加多少，还要由资源约束决定。",
+          "language_level": "L1"
         },
         {
           "id": "sx-ratios",
@@ -1373,35 +1323,40 @@
           "source_id": "taha10",
           "source_section": "3.3",
           "title": "出基选择",
-          "text": "x 最多增至3，此时 s₂ 首先变为0，所以 s₂ 出基。最小比值检验只考虑限制入基变量增加的正系数行。",
+          "text": "两行约束分别允许x增加到4和3。为了同时保持两个松弛变量非负，只能取较小的上界3；此时s₂先变为0，所以选择s₂出基。\n\n把约束写成左侧含入基变量的等式时，最小比值检验只考虑限制入基变量增加的正系数行。零系数或负系数行不会提供这种上界。",
+          "language_level": "L1",
           "highlights": [
             {
-              "start": 29,
-              "end": 51,
+              "start": 78,
+              "end": 100,
               "text": "最小比值检验只考虑限制入基变量增加的正系数行",
-              "reason": "保留比值筛选的适用条件"
+              "reason": "本段正式教学的关键关系"
             }
           ]
         },
         {
-          "id": "sx-dict",
-          "type": "formula_relation",
+          "id": "sx-dict-x",
+          "type": "formula_step",
           "source_kind": "authored_example",
-          "title": "一次字典更新",
-          "items": [
-            {
-              "formula": "x = 3 − 0.5y − 0.5s₂",
-              "reason": "由第二个约束解出入基变量 x。"
-            },
-            {
-              "formula": "s₁ = 1 − 0.5y + 0.5s₂",
-              "reason": "把 x 的表达式代入第一个约束。"
-            },
-            {
-              "formula": "z = 9 + 0.5y − 1.5s₂",
-              "reason": "把 x 代入目标函数并合并同类项。"
-            }
-          ]
+          "reason": "为了用新的非基变量表示x，先从第二条约束2x+y+s₂=6中解出x：",
+          "formula": "x=3−0.5y−0.5s₂",
+          "language_level": "L3"
+        },
+        {
+          "id": "sx-dict-s1",
+          "type": "formula_step",
+          "source_kind": "authored_example",
+          "reason": "将x的表达式代入第一条约束x+y+s₁=4，得到剩余原料Ⅰ：",
+          "formula": "s₁=1−0.5y+0.5s₂",
+          "language_level": "L3"
+        },
+        {
+          "id": "sx-dict-z",
+          "type": "formula_step",
+          "source_kind": "authored_example",
+          "reason": "把同一个表达式代入目标函数z=3x+2y，合并同类项：",
+          "formula": "z=9+0.5y−1.5s₂",
+          "language_level": "L3"
         },
         {
           "id": "b039",
@@ -1469,12 +1424,6 @@
           ],
           "height_rows": 5,
           "caption": "本轮从(0,0)移至(3,0)，利润由0增至9。下一轮沿另一条边到(2,2)。"
-        },
-        {
-          "id": "b040",
-          "type": "example_inline",
-          "source_kind": "authored_example",
-          "text": "令新非基变量 y=s₂=0，读出 x=3、s₁=1。新解依然可行，尚可增加 y 改善利润。"
         }
       ],
       "handwritten_layer": [
@@ -1488,7 +1437,7 @@
         },
         {
           "type": "handwritten_annotation",
-          "anchor_block_id": "sx-dict",
+          "anchor_block_id": "sx-dict-x",
           "kind": "arrow_note",
           "side": "left",
           "text": "解出入基变量，再代回其他行。",
@@ -1502,7 +1451,8 @@
             "anchor_block_id": "sx-leave",
             "text": "比值3比4小，所以第二行先耗尽。选择最大比值会使第一轮越过可行域。",
             "source_kind": "editorial_synthesis",
-            "title": "比值的含义"
+            "title": "比值的含义",
+            "after_anchor": false
           }
         ]
       }
@@ -1512,191 +1462,248 @@
       "title": "单纯形完整迭代",
       "type": "worked_example_page",
       "chapter_id": "sx",
-      "number": 8,
+      "number": 7,
       "outline_ids": [
         "sx-example"
       ],
       "blocks": [
         {
-          "id": "sx-pivot-table",
-          "type": "table",
+          "id": "sx-complete",
+          "type": "worked_example",
           "source_kind": "authored_example",
-          "headers": [
-            "基",
-            "x",
-            "y",
-            "s₁",
-            "s₂",
-            "右端"
-          ],
-          "rows": [
-            [
-              "s₁",
-              0,
-              "1/2",
-              1,
-              "−1/2",
-              1
-            ],
-            [
-              "x",
-              1,
-              "1/2",
-              0,
-              "1/2",
-              3
-            ],
-            [
-              "z",
-              0,
-              "−1/2",
-              0,
-              "3/2",
-              9
-            ]
-          ],
-          "cell_marks": [
+          "problem_number": "02",
+          "problem": [
             {
-              "row": 1,
-              "col": 2
+              "id": "lang-017",
+              "type": "paragraph",
+              "source_kind": "authored_example",
+              "text": "工坊生产可分割的甲、乙混合料，x、y表示生产批数。每批利润分别为300元、200元，两种原料的上限分别为4吨、6吨。",
+              "language_level": "L3"
+            },
+            {
+              "id": "lang-018",
+              "type": "formula",
+              "source_kind": "authored_example",
+              "text": "max z=3x+2y\nx+y≤4; 2x+y≤6; x,y≥0"
+            },
+            {
+              "id": "lang-019",
+              "type": "paragraph",
+              "source_kind": "authored_example",
+              "text": "z的单位为百元。使用单纯形法，从零生产方案开始求出最优生产量，并证明所得利润已达到最大。",
+              "language_level": "L3"
             }
-          ]
-        },
-        {
-          "id": "sx-finish",
-          "type": "process_steps",
-          "source_kind": "authored_example",
+          ],
+          "analysis": "资源约束均为“≤”，可用松弛变量构造初始基。每轮先选择能改进利润的变量，再由非负条件确定出基变量。",
           "steps": [
-            "目标行写成 z−0.5y+1.5s₂=9，因此选 y 入基。",
-            "比值为1÷0.5=2、3÷0.5=6，故 s₁ 出基。",
-            "第一行除以0.5，再消去其余两行的 y。"
-          ]
-        },
-        {
-          "id": "sx-final-table",
-          "type": "table",
-          "source_kind": "authored_example",
-          "headers": [
-            "基",
-            "x",
-            "y",
-            "s₁",
-            "s₂",
-            "右端"
-          ],
-          "rows": [
-            [
-              "y",
-              0,
-              1,
-              2,
-              "−1",
-              2
-            ],
-            [
-              "x",
-              1,
-              0,
-              "−1",
-              1,
-              2
-            ],
-            [
-              "z",
-              0,
-              0,
-              1,
-              1,
-              10
-            ]
-          ]
-        },
-        {
-          "id": "b075",
-          "type": "concept_diagram",
-          "source_kind": "authored_example",
-          "drawing": [
             {
-              "kind": "arrow",
-              "points": [
-                [
-                  10,
-                  77
-                ],
-                [
-                  75,
-                  77
-                ]
-              ],
-              "color": "#B86A29"
+              "label": "01",
+              "title": "构造初始基",
+              "content": [
+                {
+                  "id": "lang-020",
+                  "type": "formula_step",
+                  "source_kind": "authored_example",
+                  "reason": "引入剩余资源s₁、s₂，并令非基变量x=y=0：",
+                  "formula": "x+y+s₁=4; 2x+y+s₂=6\ns₁=4; s₂=6; z=0",
+                  "language_level": "L3"
+                }
+              ]
             },
             {
-              "kind": "arrow",
-              "points": [
-                [
-                  75,
-                  77
-                ],
-                [
-                  52,
-                  20
-                ]
-              ],
-              "color": "#B64930"
+              "label": "02",
+              "title": "确定第一轮换基",
+              "content": [
+                {
+                  "id": "lang-021",
+                  "type": "paragraph",
+                  "source_kind": "authored_example",
+                  "text": "增加x可以提高利润。保持y=0时，两个资源给出的x上界分别为4÷1=4和6÷2=3，所以x入基、s₂出基。",
+                  "language_level": "L3"
+                }
+              ]
             },
             {
-              "kind": "label",
-              "x": 3,
-              "y": 94,
-              "text": "(0,0)"
+              "label": "03",
+              "title": "解出入基变量",
+              "content": [
+                {
+                  "id": "lang-022",
+                  "type": "formula_step",
+                  "source_kind": "authored_example",
+                  "reason": "由第二条等式解出x，为消元准备表达式：",
+                  "formula": "x=3−0.5y−0.5s₂",
+                  "language_level": "L3"
+                }
+              ]
             },
             {
-              "kind": "label",
-              "x": 72,
-              "y": 94,
-              "text": "(3,0)"
+              "label": "04",
+              "title": "更新其余方程",
+              "content": [
+                {
+                  "id": "lang-023",
+                  "type": "formula_step",
+                  "source_kind": "authored_example",
+                  "reason": "将x代入第一条资源等式：",
+                  "formula": "s₁=1−0.5y+0.5s₂",
+                  "language_level": "L3"
+                },
+                {
+                  "id": "lang-024",
+                  "type": "formula_step",
+                  "source_kind": "authored_example",
+                  "reason": "将x代入目标函数，得到第一轮的新目标式：",
+                  "formula": "z=9+0.5y−1.5s₂",
+                  "language_level": "L3"
+                },
+                {
+                  "id": "sx-pivot-table",
+                  "type": "table",
+                  "source_kind": "authored_example",
+                  "headers": [
+                    "基",
+                    "x",
+                    "y",
+                    "s₁",
+                    "s₂",
+                    "右端"
+                  ],
+                  "rows": [
+                    [
+                      "s₁",
+                      0,
+                      "1/2",
+                      1,
+                      "−1/2",
+                      1
+                    ],
+                    [
+                      "x",
+                      1,
+                      "1/2",
+                      0,
+                      "1/2",
+                      3
+                    ],
+                    [
+                      "z",
+                      0,
+                      "−1/2",
+                      0,
+                      "3/2",
+                      9
+                    ]
+                  ],
+                  "cell_marks": [
+                    {
+                      "row": 1,
+                      "col": 2
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "kind": "label",
-              "x": 49,
-              "y": 15,
-              "text": "(2,2)"
+              "label": "05",
+              "title": "确定第二轮换基",
+              "content": [
+                {
+                  "id": "sx-finish",
+                  "type": "paragraph",
+                  "source_kind": "authored_example",
+                  "text": "新目标式中y的系数为正，因此选择y入基。两行给出的比值为1÷0.5=2和3÷0.5=6，较小比值使s₁先变为0，所以s₁出基。",
+                  "language_level": "L3"
+                }
+              ]
             },
             {
-              "kind": "label",
-              "x": 20,
-              "y": 67,
-              "text": "z: 0 → 9"
+              "label": "06",
+              "title": "完成枢轴消元",
+              "content": [
+                {
+                  "id": "lang-026",
+                  "type": "formula_step",
+                  "source_kind": "authored_example",
+                  "reason": "把第一行的y系数化为1，解出新的基变量y：",
+                  "formula": "y=2−2s₁+s₂",
+                  "language_level": "L3"
+                },
+                {
+                  "id": "lang-027",
+                  "type": "formula_step",
+                  "source_kind": "authored_example",
+                  "reason": "代回x行和目标行，消去y：",
+                  "formula": "x=2+s₁−s₂\nz=10−s₁−s₂",
+                  "language_level": "L3"
+                },
+                {
+                  "id": "sx-final-table",
+                  "type": "table",
+                  "source_kind": "authored_example",
+                  "headers": [
+                    "基",
+                    "x",
+                    "y",
+                    "s₁",
+                    "s₂",
+                    "右端"
+                  ],
+                  "rows": [
+                    [
+                      "y",
+                      0,
+                      1,
+                      2,
+                      "−1",
+                      2
+                    ],
+                    [
+                      "x",
+                      1,
+                      0,
+                      "−1",
+                      1,
+                      2
+                    ],
+                    [
+                      "z",
+                      0,
+                      0,
+                      1,
+                      1,
+                      10
+                    ]
+                  ]
+                }
+              ]
             },
             {
-              "kind": "label",
-              "x": 73,
-              "y": 43,
-              "text": "9 → 10"
+              "label": "07",
+              "title": "核验最优性",
+              "content": [
+                {
+                  "id": "lang-028",
+                  "type": "paragraph",
+                  "source_kind": "authored_example",
+                  "text": "所有可行解都有s₁、s₂≥0，所以目标式给出z≤10。令非基变量s₁=s₂=0，就得到x=y=2，恰好达到这个上界。",
+                  "language_level": "L3"
+                }
+              ]
             }
           ],
-          "height_rows": 5,
-          "caption": "两次换基的顶点轨迹，与图解法的最优点一致。"
-        },
-        {
-          "id": "b044",
-          "type": "formula_relation",
-          "source_kind": "authored_example",
-          "items": [
-            {
-              "formula": "z=10−s₁−s₂ ≤ 10",
-              "reason": "松弛变量非负，故任何可行解都不超过10；当前解达到10。"
-            }
-          ]
+          "result": "甲、乙各生产2批，两种资源均用完，最大利润为10百元，即1000元。",
+          "method": "每轮按目标式选入基变量，用最小比值保持可行，再通过枢轴消元更新字典。最后用非负性给出目标上界，并检查当前解是否达到。",
+          "language_level": "L3"
         }
       ],
       "handwritten_layer": [
         {
           "type": "handwritten_annotation",
           "anchor_block_id": "sx-finish",
-          "kind": "arrow_note",
+          "kind": "text",
           "side": "left",
-          "text": "枢轴行变成新基变量的表达式。",
+          "text": "最小比值定步长。",
           "source_kind": "editorial_synthesis"
         },
         {
@@ -1721,33 +1728,157 @@
             "title": "读表"
           }
         ]
-      },
-      "problem_number": "02",
-      "problem": "接上一轮字典，完成第二次迭代，证明结果已经最优。表中各约束均按等式移项。",
-      "analysis": "选择仍能增加目标值的 y，再用非负性限制决定谁出基。",
-      "solution": "x=y=2，s₁=s₂=0，最大利润10百元。",
-      "method": "读目标行；比值选出基；枢轴消元；以非负变量检验最优性。"
+      }
     },
     {
       "id": "sx-cases",
       "title": "特殊情形与两阶段法",
       "type": "core_problem_page",
       "chapter_id": "sx",
-      "number": 9,
+      "number": 8,
       "outline_ids": [
         "sx-cases"
       ],
       "blocks": [
         {
           "id": "sx-phase",
-          "type": "process_steps",
+          "type": "worked_example",
           "source_kind": "authored_example",
+          "problem_number": "03",
+          "problem": [
+            {
+              "id": "lang-030",
+              "type": "paragraph",
+              "source_kind": "authored_example",
+              "text": "给定无量纲的连续变量x、y，要求x≥0、y≥0，且x+y=2。求目标函数z=x+2y的最大值，并用两阶段法展示可行起点的构造。",
+              "language_level": "L3"
+            }
+          ],
+          "analysis": "等式约束没有现成的松弛变量基。先加入人工变量，求一个满足原约束的起点；找到可行基后，再优化原目标。",
           "steps": [
-            "引入人工变量 a≥0，写成 x+y+a=2。第一阶段最小化 w=a。",
-            "从 a=2 开始，可令 x 增至2、y=0，使 a=0；第一阶段最优值为0。",
-            "删除人工变量后，第二阶段最大化 x+2y=4−x。",
-            "由 x≥0，目标至多为4；取 x=0、y=2 达到4。"
-          ]
+            {
+              "label": "01",
+              "title": "引入人工变量",
+              "content": [
+                {
+                  "id": "lang-031",
+                  "type": "formula_step",
+                  "source_kind": "authored_example",
+                  "reason": "令a≥0补入等式，并在第一阶段最小化它：",
+                  "formula": "x+y+a=2; min w=a",
+                  "language_level": "L3"
+                },
+                {
+                  "id": "lang-032",
+                  "type": "paragraph",
+                  "source_kind": "authored_example",
+                  "text": "先取x=y=0，就有a=2，可用a作为初始基变量。",
+                  "language_level": "L3"
+                }
+              ]
+            },
+            {
+              "label": "02",
+              "title": "求原问题的可行起点",
+              "content": [
+                {
+                  "id": "lang-033",
+                  "type": "formula_step",
+                  "source_kind": "authored_example",
+                  "reason": "保持y=0，让x增加到2，就能使人工变量降到零：",
+                  "formula": "x=2; y=0; a=0; w=0",
+                  "language_level": "L3"
+                },
+                {
+                  "id": "lang-034",
+                  "type": "paragraph",
+                  "source_kind": "authored_example",
+                  "text": "因为a不能为负，w=0已是第一阶段的最小值；原约束因此存在可行解。",
+                  "language_level": "L3"
+                }
+              ]
+            },
+            {
+              "label": "03",
+              "title": "恢复原目标",
+              "content": [
+                {
+                  "id": "lang-035",
+                  "type": "formula_step",
+                  "source_kind": "authored_example",
+                  "reason": "删除人工变量，用y=2−x改写原目标：",
+                  "formula": "z=x+2(2−x)=4−x",
+                  "language_level": "L3"
+                }
+              ]
+            },
+            {
+              "label": "04",
+              "title": "核验最大值",
+              "content": [
+                {
+                  "id": "sx-special",
+                  "type": "paragraph",
+                  "source_kind": "authored_example",
+                  "text": "由x≥0可知z≤4。取x=0、y=2满足原约束，并使z=4，因此达到最大值。",
+                  "language_level": "L3"
+                }
+              ]
+            }
+          ],
+          "result": "最优解为x=0、y=2，最大目标值为4。变量与目标值均无量纲。",
+          "method": "第一阶段只负责寻找原约束的可行基。人工变量退出后，第二阶段才优化原目标；两个阶段的目标不能混用。",
+          "language_level": "L3"
+        },
+        {
+          "id": "sx-specials-heading",
+          "type": "heading",
+          "text": "单纯形的几种情形",
+          "number": "1",
+          "outline_ids": [
+            "sx-specials"
+          ],
+          "source_kind": "editorial_synthesis"
+        },
+        {
+          "id": "sx-degenerate",
+          "type": "property",
+          "title": "退化",
+          "text": "当基本可行解中至少有一个基变量等于0时，这个解称为退化解。它仍然满足全部约束，但一次换基可能不改变当前顶点。",
+          "source_kind": "textbook_core",
+          "source_id": "taha10",
+          "source_section": "3.3–3.5",
+          "language_level": "L1"
+        },
+        {
+          "id": "sx-multiple",
+          "type": "property",
+          "title": "多重最优",
+          "text": "若两个不同的可行方案都达到相同的最优目标值，问题就有多重最优解。比较方案时，可以再考虑模型之外已经明确的偏好。",
+          "source_kind": "textbook_core",
+          "source_id": "taha10",
+          "source_section": "3.3–3.5",
+          "language_level": "L1"
+        },
+        {
+          "id": "sx-unbounded",
+          "type": "property",
+          "title": "无界",
+          "text": "如果能够保持可行并让目标值不断改善，且没有有限的最优界，问题就是无界的。建模时应核对是否遗漏了资源上限。",
+          "source_kind": "textbook_core",
+          "source_id": "taha10",
+          "source_section": "3.3–3.5",
+          "language_level": "L1"
+        },
+        {
+          "id": "sx-infeasible",
+          "type": "property",
+          "title": "不可行",
+          "text": "如果没有任何变量取值能同时满足全部约束，问题就是不可行的。两阶段法中，第一阶段最小人工变量和大于0，是原约束不可行的判据。",
+          "source_kind": "textbook_core",
+          "source_id": "taha10",
+          "source_section": "3.3–3.5",
+          "language_level": "L1"
         },
         {
           "id": "b076",
@@ -1776,53 +1907,27 @@
           ]
         },
         {
-          "id": "b046",
-          "type": "comparison_table",
-          "source_kind": "authored_example",
-          "title": "四种情形",
-          "columns": [
-            "情形",
-            "识别线索"
-          ],
-          "rows": [
-            [
-              "退化",
-              "基本变量中存在0"
-            ],
-            [
-              "多重最优",
-              "最优面包含不同可行解"
-            ],
-            [
-              "无界",
-              "目标可持续改善且无有限界"
-            ],
-            [
-              "不可行",
-              "第一阶段最小人工变量和大于0"
-            ]
-          ]
-        },
-        {
-          "id": "sx-special",
-          "type": "common_error",
-          "source_kind": "authored_example",
-          "text": "退化不等于不可行。第一阶段检验原约束是否可满足；第二阶段才优化原来的目标。"
-        },
-        {
-          "id": "b077",
+          "id": "sx-infeasible-example",
           "type": "example_inline",
+          "text": "例如x+y=−2与x、y≥0不能同时成立，因为两个非负数的和不可能为负。这里没有可行方案，与利润高低无关。",
           "source_kind": "authored_example",
-          "text": "若原条件改为 x+y=−2 且 x、y≥0，则左边非负，原问题不可行。不可行性来自约束本身，不是“利润太小”。"
+          "language_level": "L1"
         }
       ],
       "handwritten_layer": [
         {
           "type": "handwritten_annotation",
-          "anchor_block_id": "sx-phase",
-          "kind": "arrow_note",
+          "anchor_block_id": "lang-033",
+          "kind": "text",
           "side": "left",
-          "text": "人工变量只为寻找起点。",
+          "text": "第一阶段只找可行起点。",
+          "source_kind": "editorial_synthesis"
+        },
+        {
+          "anchor_block_id": "sx-degenerate",
+          "kind": "text",
+          "side": "left",
+          "text": "退化仍然可行。",
           "source_kind": "editorial_synthesis"
         }
       ],
@@ -1831,24 +1936,20 @@
         "items": [
           {
             "anchor_block_id": "sx-special",
-            "text": "本例原约束 x+y=2 也可直接消元；这里用它展示两阶段法的两个目标。",
+            "text": "本例也可直接消元；两阶段法展示可行起点的构造。",
             "source_kind": "editorial_synthesis",
-            "title": "方法说明"
+            "title": "方法说明",
+            "after_anchor": false
           }
         ]
-      },
-      "problem_number": "03",
-      "problem": "最大化 x+2y，满足 x+y=2，x、y≥0。用两阶段法构造起点并求解。",
-      "analysis": "等式没有现成的松弛变量基，先加入人工变量寻找可行基。",
-      "solution": "第一阶段达到 a=0；第二阶段得到 x=0、y=2，最优值4。",
-      "method": "第一阶段求可行；人工变量退出后，再优化原目标。"
+      }
     },
     {
       "id": "dp-state",
       "title": "阶段与状态",
       "type": "knowledge_visual",
       "chapter_id": "dp",
-      "number": 10,
+      "number": 9,
       "outline_ids": [
         "dp",
         "dp-state"
@@ -1861,13 +1962,14 @@
           "source_id": "taha10",
           "source_section": "12.1",
           "title": "阶段与状态",
-          "text": "动态规划按顺序处理决策。阶段表示处理到哪一步；状态保存决定未来可行选择和收益所需的信息。",
+          "text": "有些问题需要连续作出几次决策，而且前一步的选择会影响后面的选择。动态规划把这样的决策过程分成若干阶段，每个阶段处理其中一步。\n\n为了判断下一步还能怎样选择，我们还需要记录当前留下来的关键信息，这些信息称为状态。阶段说明进行到哪一步，状态保留仍会影响后面决策的信息。",
+          "language_level": "L1",
           "highlights": [
             {
-              "start": 23,
-              "end": 43,
-              "text": "状态保存决定未来可行选择和收益所需的信息",
-              "reason": "突出状态的充分信息作用"
+              "start": 116,
+              "end": 131,
+              "text": "状态保留仍会影响后面决策的信息",
+              "reason": "本段正式教学的关键关系"
             }
           ]
         },
@@ -1875,7 +1977,8 @@
           "id": "dp-context",
           "type": "example_inline",
           "source_kind": "authored_example",
-          "text": "装载两类物品，容量7千克。甲每件重2千克、价值3；乙每件重3千克、价值4。每类可取任意非负整数件。按物品类别分阶段，以可用容量为状态。"
+          "text": "考虑容量为7千克的装载问题。甲每件重2千克、价值3元；乙每件重3千克、价值4元。每类可取任意非负整数件，允许不装满。\n\n按物品类别分阶段时，阶段i表示允许使用前i类物品；状态b表示这些物品可使用的容量。这样，每个子问题都有确定的物品范围与容量。",
+          "language_level": "L2"
         },
         {
           "id": "b050",
@@ -1963,7 +2066,8 @@
           "source_id": "taha10",
           "source_section": "12.1–12.3.1",
           "title": "决策与转移",
-          "text": "在处理第 i 类物品时，决策 k 是该类选取的件数。若每件重 wᵢ，则留给前 i−1 类的容量为 b−kwᵢ。"
+          "text": "处理第i类物品时，需要决定这一类选多少件。我们用k表示这次决策；若每件重wᵢ千克，那么这类物品占用kwᵢ千克。\n\n从容量b中扣除这部分重量，余下的b−kwᵢ千克就交给前i−1类物品。这个变化把当前问题连接到一个已经计算过的子问题。",
+          "language_level": "L1"
         },
         {
           "id": "b052",
@@ -2004,13 +2108,14 @@
           "source_id": "taha10",
           "source_section": "12.1",
           "boundary_level": "A",
-          "text": "状态必须包含影响未来的全部信息。若还有“甲最多两件”等限制，应限制决策集合；若收益依赖此前选择，还需补充状态。",
+          "text": "状态必须包含影响未来的全部信息。只有阶段、容量和后续限制相同的子问题，才可以共用同一个最优值。\n\n例如增加“甲最多两件”的规定时，要限制甲的可选件数。如果收益还取决于此前选过哪些物品，就需要在状态中记录相应的信息。",
+          "language_level": "L1",
           "highlights": [
             {
               "start": 0,
               "end": 15,
               "text": "状态必须包含影响未来的全部信息",
-              "reason": "明确合并历史的条件"
+              "reason": "本段正式教学的关键关系"
             }
           ]
         },
@@ -2023,7 +2128,8 @@
             "乙占3千克，容量由7变成4。",
             "剩余4千克交给只允许甲类的子问题。"
           ],
-          "answer": "转到 F₁(4)，并加上乙的价值4。"
+          "answer": "转到 F₁(4)，并加上乙的价值4。",
+          "language_level": "L3"
         }
       ],
       "handwritten_layer": [
@@ -2041,9 +2147,10 @@
         "items": [
           {
             "anchor_block_id": "dp-decision",
-            "text": "这里 k 可为0、1、2。若是每件只能选一次的0–1背包，决策集合和递推式需相应改变。",
+            "text": "本例可取多件。0–1背包每件最多选一次，决策集合不同。",
             "source_kind": "editorial_synthesis",
-            "title": "模型区别"
+            "title": "模型区别",
+            "after_anchor": false
           }
         ]
       }
@@ -2053,26 +2160,37 @@
       "title": "背包递推表",
       "type": "process_page",
       "chapter_id": "dp",
-      "number": 11,
+      "number": 10,
       "outline_ids": [
         "dp-table"
       ],
       "blocks": [
         {
           "id": "dp-recurrence",
-          "type": "formula_relation",
+          "type": "group",
           "source_kind": "textbook_core",
           "source_id": "taha10",
           "source_section": "12.3.1",
-          "title": "递推与边界",
-          "items": [
+          "blocks": [
             {
-              "formula": "Fᵢ(b)=max { k vᵢ + Fᵢ₋₁(b−k wᵢ) }",
-              "reason": "在整数 k=0,…,⌊b/wᵢ⌋ 中比较；vᵢ 是第 i 类单件价值。"
+              "id": "dp-recurrence-step",
+              "type": "formula_step",
+              "reason": "vᵢ表示第i类物品的单件价值（元）。对每个允许的件数k，先算本类物品的价值，再加上剩余容量的最优值；最大的候选值就是Fᵢ(b)。",
+              "formula": "Fᵢ(b)=maxₖ {kvᵢ+Fᵢ₋₁(b−kwᵢ)}\nk=0,…,⌊b/wᵢ⌋",
+              "source_kind": "textbook_core",
+              "source_id": "taha10",
+              "source_section": "12.3.1",
+              "language_level": "L1"
             },
             {
-              "formula": "F₀(b)=0;  Fᵢ(0)=0",
-              "reason": "无物品或无容量时，最大价值为0；允许不装满。"
+              "id": "dp-boundary-step",
+              "type": "formula_step",
+              "reason": "没有物品或没有容量时，可以不装入任何物品，最大价值为0：",
+              "formula": "F₀(b)=0; Fᵢ(0)=0",
+              "source_kind": "textbook_core",
+              "source_id": "taha10",
+              "source_section": "12.3.1",
+              "language_level": "L1"
             }
           ]
         },
@@ -2144,7 +2262,8 @@
             "k=2：8+F₁(1)=8。"
           ],
           "answer": "取最大值10，对应乙取1件。",
-          "note": "每格都在比较“本步收益 + 子问题最优值”。"
+          "note": "每格都在比较“本步收益 + 子问题最优值”。",
+          "language_level": "L3"
         },
         {
           "id": "b058",
@@ -2155,7 +2274,8 @@
             "从 F₂(7)=10 记录的 k=1，确定乙取1件。",
             "容量变为4，转到 F₁(4)=6，确定甲取2件。",
             "总重2×2+1×3=7，总价值2×3+1×4=10。"
-          ]
+          ],
+          "language_level": "L3"
         },
         {
           "id": "dp-read",
@@ -2267,120 +2387,183 @@
       "title": "资源分配实战",
       "type": "application_page",
       "chapter_id": "dp",
-      "number": 12,
+      "number": 11,
       "outline_ids": [
         "dp-application"
       ],
       "blocks": [
         {
-          "id": "dp-return",
-          "type": "table",
-          "source_kind": "authored_example",
-          "headers": [
-            "投入单位",
-            0,
-            1,
-            2,
-            3
-          ],
-          "rows": [
-            [
-              "项目A收益",
-              0,
-              4,
-              7,
-              8
-            ],
-            [
-              "项目B收益",
-              0,
-              3,
-              5,
-              9
-            ]
-          ]
-        },
-        {
           "id": "dp-allocation",
-          "type": "process_steps",
+          "type": "worked_example",
           "source_kind": "authored_example",
+          "problem_number": "04",
+          "problem": [
+            {
+              "id": "lang-038",
+              "type": "paragraph",
+              "source_kind": "authored_example",
+              "text": "机构有3万元预算，必须全部分配给项目A和B。投入以1万元为单位，只能取非负整数。各项目的预期收益如下，两个项目的收益可相加。",
+              "language_level": "L3"
+            },
+            {
+              "id": "dp-return",
+              "type": "table",
+              "source_kind": "authored_example",
+              "headers": [
+                "投入／万元",
+                0,
+                1,
+                2,
+                3
+              ],
+              "rows": [
+                [
+                  "A收益／万元",
+                  0,
+                  4,
+                  7,
+                  8
+                ],
+                [
+                  "B收益／万元",
+                  0,
+                  3,
+                  5,
+                  9
+                ]
+              ]
+            },
+            {
+              "id": "lang-039",
+              "type": "paragraph",
+              "source_kind": "authored_example",
+              "text": "求预期总收益最大的预算分配方案，并给出总收益。",
+              "language_level": "L3"
+            }
+          ],
+          "analysis": "按项目分阶段，用可分配预算作为状态。先记录只投A的收益，再枚举给B的预算，剩余预算交给A。",
           "steps": [
-            "先计算项目A：F₁(b)=rA(b)，b 为可用预算。",
-            "让项目B取 k 单位，项目A最多使用3−k单位。",
-            "比较 rB(k)+F₁(3−k)，k=0、1、2、3。"
-          ]
-        },
-        {
-          "id": "b062",
-          "type": "comparison_table",
-          "source_kind": "authored_example",
-          "columns": [
-            "B分配 k",
-            "A分配 3−k",
-            "总收益"
-          ],
-          "rows": [
-            [
-              0,
-              3,
-              8
-            ],
-            [
-              1,
-              2,
-              10
-            ],
-            [
-              2,
-              1,
-              9
-            ],
-            [
-              3,
-              0,
-              9
-            ]
-          ],
-          "cell_marks": [
             {
-              "row": 2,
-              "col": 0
+              "label": "01",
+              "title": "定义第一阶段",
+              "content": [
+                {
+                  "id": "lang-040",
+                  "type": "formula_step",
+                  "source_kind": "authored_example",
+                  "reason": "只考虑A时，将b万元全部投给A，收益就是表值：",
+                  "formula": "F₁(b)=rA(b), b=0,1,2,3",
+                  "language_level": "L3"
+                }
+              ]
             },
             {
-              "row": 2,
-              "col": 1
+              "label": "02",
+              "title": "列出第二阶段递推",
+              "content": [
+                {
+                  "id": "lang-041",
+                  "type": "formula_step",
+                  "source_kind": "authored_example",
+                  "reason": "若B获得k万元，A便获得3−k万元。将两个项目的收益相加：",
+                  "formula": "F₂(3)=maxₖ {rB(k)+F₁(3−k)}\nk=0,1,2,3",
+                  "language_level": "L3"
+                }
+              ]
             },
             {
-              "row": 2,
-              "col": 2
-            }
-          ]
-        },
-        {
-          "id": "b063",
-          "type": "formula_relation",
-          "source_kind": "authored_example",
-          "items": [
+              "label": "03",
+              "title": "比较全部分配",
+              "content": [
+                {
+                  "id": "lang-042",
+                  "type": "comparison_table",
+                  "source_kind": "authored_example",
+                  "headers": [
+                    "B投入／万元",
+                    "A投入／万元",
+                    "总收益／万元"
+                  ],
+                  "rows": [
+                    [
+                      0,
+                      3,
+                      8
+                    ],
+                    [
+                      1,
+                      2,
+                      10
+                    ],
+                    [
+                      2,
+                      1,
+                      9
+                    ],
+                    [
+                      3,
+                      0,
+                      9
+                    ]
+                  ],
+                  "cell_marks": [
+                    {
+                      "row": 2,
+                      "col": 0
+                    },
+                    {
+                      "row": 2,
+                      "col": 1
+                    },
+                    {
+                      "row": 2,
+                      "col": 2
+                    }
+                  ]
+                },
+                {
+                  "id": "lang-043",
+                  "type": "paragraph",
+                  "source_kind": "authored_example",
+                  "text": "四个候选值中最大的是10，对应k=1。",
+                  "language_level": "L3"
+                }
+              ]
+            },
             {
-              "formula": "F₂(3)=max {8,10,9,9}=10",
-              "reason": "最大值出现在 k=1，因此B分1单位，A分2单位。"
+              "label": "04",
+              "title": "回代核验",
+              "content": [
+                {
+                  "id": "lang-044",
+                  "type": "formula_step",
+                  "source_kind": "authored_example",
+                  "reason": "B分1万元、A分2万元，预算与收益分别为：",
+                  "formula": "1+2=3 万元\nrB(1)+rA(2)=3+7=10 万元",
+                  "language_level": "L3"
+                },
+                {
+                  "id": "dp-budget",
+                  "type": "paragraph",
+                  "source_kind": "authored_example",
+                  "text": "投入额均为非负整数，且预算恰好用完。收益按给定表值计算，无须假设收益与投入成正比。",
+                  "language_level": "L3"
+                }
+              ]
             }
-          ]
-        },
-        {
-          "id": "dp-budget",
-          "type": "common_error",
-          "source_kind": "authored_example",
-          "text": "两个项目的收益是给定表值，不要求与投入成正比。不能用单一“单位收益”替代整张收益表。"
+          ],
+          "result": "A投入2万元、B投入1万元，预期总收益最大，为10万元。",
+          "method": "枚举本阶段决策，用剩余预算连接前一阶段。比较总收益时保存达到最大值的决策，才能还原最优分配。",
+          "language_level": "L3"
         }
       ],
       "handwritten_layer": [
         {
           "type": "handwritten_annotation",
-          "anchor_block_id": "dp-allocation",
-          "kind": "arrow_note",
+          "anchor_block_id": "dp-budget",
+          "kind": "text",
           "side": "left",
-          "text": "决策是本项目分多少，状态是还可分多少。",
+          "text": "保存决策，才能还原方案。",
           "source_kind": "editorial_synthesis"
         }
       ],
@@ -2389,76 +2572,100 @@
         "items": [
           {
             "anchor_block_id": "dp-budget",
-            "text": "本表收益不减，可以用完预算；一般情形须允许余量。",
+            "text": "本题明确要求预算全部分配。若允许留下预算，要把未使用的金额纳入可行方案。",
             "source_kind": "editorial_synthesis",
             "title": "条件说明"
           }
         ]
-      },
-      "problem_number": "04",
-      "problem": "有3单位预算，按表投资A、B两个项目，投入为非负整数，求最大收益及分配。",
-      "analysis": "把预算作为状态，枚举最后一个项目的投入，余下预算交给前一阶段。",
-      "solution": "A分2单位、B分1单位，总收益10。",
-      "method": "列清阶段、状态、决策和收益；算最优值时记录选择，再回溯解释。"
+      }
     },
     {
-      "id": "dp-map",
-      "title": "动态规划方法图",
-      "type": "chapter_map",
+      "id": "formula-page",
+      "title": "模型与算法速查",
+      "type": "formula_summary",
       "chapter_id": "dp",
-      "number": 13,
+      "number": 12,
       "outline_ids": [
-        "dp-map"
+        "formula-page"
       ],
       "blocks": [
         {
-          "id": "b065",
-          "type": "knowledge_map",
+          "id": "methods-summary",
+          "type": "paragraph",
           "source_kind": "authored_example",
-          "tree": {
-            "label": "动态规划",
-            "children": [
-              {
-                "label": "定义子问题",
-                "children": [
-                  {
-                    "label": "阶段 i"
-                  },
-                  {
-                    "label": "状态 b"
-                  }
-                ]
-              },
-              {
-                "label": "枚举本步",
-                "children": [
-                  {
-                    "label": "决策 k"
-                  },
-                  {
-                    "label": "收益与转移",
-                    "formula": "b−kwᵢ"
-                  }
-                ]
-              },
-              {
-                "label": "计算与解释",
-                "children": [
-                  {
-                    "label": "边界 → 表格"
-                  },
-                  {
-                    "label": "保存选择 → 回溯"
-                  }
-                ]
-              }
-            ]
-          },
-          "height_rows": 18,
-          "caption": "先判断状态是否充分，再写递推。表格给出值，回溯还原决策；两者共同组成解答。"
+          "text": "线性规划描述资源限制，单纯形法沿基本可行解改进目标，动态规划通过阶段子问题计算最优值。",
+          "language_level": "L4"
         },
         {
-          "id": "b079",
+          "id": "b067",
+          "type": "formula_group",
+          "source_kind": "authored_example",
+          "title": "线性规划",
+          "items": [
+            {
+              "formula": "max cᵀx; Ax≤b; x≥0",
+              "reason": "参数 c、A、b 已给定，x 是决策向量。"
+            }
+          ],
+          "language_level": "L4"
+        },
+        {
+          "id": "b069",
+          "type": "formula_relation",
+          "source_kind": "authored_example",
+          "title": "单纯形终止说明",
+          "items": [
+            {
+              "formula": "z=10−s₁−s₂ ≤10",
+              "reason": "当前例中 s₁、s₂≥0，故10是可行解的目标上界。"
+            }
+          ],
+          "language_level": "L4"
+        },
+        {
+          "id": "formula-dp",
+          "type": "formula_group",
+          "source_kind": "authored_example",
+          "title": "整数件数背包",
+          "items": [
+            {
+              "formula": "Fᵢ(b)=maxₖ {kvᵢ+Fᵢ₋₁(b−kwᵢ)}",
+              "reason": "枚举0至⌊b/wᵢ⌋的整数 k；边界 F₀(b)=0。"
+            }
+          ],
+          "language_level": "L4"
+        },
+        {
+          "id": "b072",
+          "type": "comparison_table",
+          "source_kind": "authored_example",
+          "title": "贯穿例结果",
+          "columns": [
+            "问题",
+            "最优方案",
+            "最优值"
+          ],
+          "rows": [
+            [
+              "混合料",
+              "甲乙各2批",
+              "1000元"
+            ],
+            [
+              "整数背包",
+              "甲2件、乙1件",
+              "10元"
+            ],
+            [
+              "项目分配",
+              "A投2万、B投1万",
+              "10万元"
+            ]
+          ],
+          "language_level": "L4"
+        },
+        {
+          "id": "dp-applications-summary",
           "type": "comparison_table",
           "source_kind": "authored_example",
           "title": "同一方法，不同状态",
@@ -2487,139 +2694,15 @@
               "设备年龄",
               "保留或更换"
             ]
-          ]
+          ],
+          "language_level": "L4"
         },
         {
-          "id": "b066",
+          "id": "lang-048",
           "type": "memory_note",
           "source_kind": "authored_example",
-          "text": "状态相同且未来相同，历史才能合并。"
-        }
-      ],
-      "handwritten_layer": [],
-      "handwriting_reason": "知识地图以枝条关系组织，保留用户自行补注的位置。",
-      "sidebar": {
-        "items": []
-      },
-      "page_break": true
-    },
-    {
-      "id": "formula-page",
-      "title": "模型与算法速查",
-      "type": "formula_summary",
-      "chapter_id": "dp",
-      "number": 14,
-      "outline_ids": [
-        "formula-page"
-      ],
-      "blocks": [
-        {
-          "id": "b067",
-          "type": "formula_group",
-          "source_kind": "authored_example",
-          "title": "线性规划",
-          "items": [
-            {
-              "formula": "max cᵀx; Ax≤b; x≥0",
-              "reason": "参数 c、A、b 已给定，x 是决策向量。"
-            }
-          ]
-        },
-        {
-          "id": "b068",
-          "type": "comparison_table",
-          "source_kind": "authored_example",
-          "columns": [
-            "模型",
-            "先检查",
-            "再决定"
-          ],
-          "rows": [
-            [
-              "LP",
-              "变量能否连续取值",
-              "图解或单纯形"
-            ],
-            [
-              "背包",
-              "可选件数集合",
-              "阶段与容量状态"
-            ],
-            [
-              "资源分配",
-              "各项目收益表",
-              "预算状态与回溯"
-            ]
-          ]
-        },
-        {
-          "id": "b069",
-          "type": "formula_relation",
-          "source_kind": "authored_example",
-          "title": "单纯形终止说明",
-          "items": [
-            {
-              "formula": "z=10−s₁−s₂ ≤10",
-              "reason": "当前例中 s₁、s₂≥0，故10是可行解的目标上界。"
-            }
-          ]
-        },
-        {
-          "id": "formula-dp",
-          "type": "formula_group",
-          "source_kind": "authored_example",
-          "title": "整数件数背包",
-          "items": [
-            {
-              "formula": "Fᵢ(b)=maxₖ {kvᵢ+Fᵢ₋₁(b−kwᵢ)}",
-              "reason": "枚举0至⌊b/wᵢ⌋的整数 k；边界 F₀(b)=0。"
-            }
-          ]
-        },
-        {
-          "id": "b071",
-          "type": "method_card",
-          "source_kind": "authored_example",
-          "text": "公式回查时同时读变量、决策范围、边界和单位。求得数值后回到原情境，报告可执行的方案。"
-        },
-        {
-          "id": "b072",
-          "type": "comparison_table",
-          "source_kind": "authored_example",
-          "title": "贯穿例结果",
-          "columns": [
-            "问题",
-            "最优方案",
-            "最优值"
-          ],
-          "rows": [
-            [
-              "混合料",
-              "x=2、y=2",
-              "10百元"
-            ],
-            [
-              "整数背包",
-              "甲2件、乙1件",
-              10
-            ],
-            [
-              "项目分配",
-              "A取2、B取1",
-              10
-            ]
-          ]
-        },
-        {
-          "id": "b080",
-          "type": "process_steps",
-          "source_kind": "authored_example",
-          "title": "解答检查",
-          "steps": [
-            "模型单位一致，所有约束均满足。",
-            "目标值与原情境对应，收益或成本不混淆。",
-            "算法给出了方案；证明最优时同时给界或终止依据。"
-          ]
+          "text": "先判断状态是否充分，再写递推；表格求值，回溯还原方案。",
+          "language_level": "L4"
         }
       ],
       "handwritten_layer": [
@@ -2755,7 +2838,7 @@
   "cover": {
     "subject": "运筹学",
     "chapter": "线性规划 · 单纯形 · 动态规划",
-    "subtitle": "三章教学结构校准",
+    "subtitle": "语言与完整例题校准",
     "note": "依据 Taha 第十版相关章节组织；数值题与图为自编校准例。",
     "edition_labels": {
       "print": "打印版",
@@ -2765,72 +2848,8 @@
   "frontmatter": {
     "contents": {
       "title": "知识目录",
-      "last_page_min_density": 0.55,
+      "last_page_min_density": 0.45,
       "visuals": [
-        {
-          "outline_id": "guide",
-          "height_rows": 5,
-          "drawing": [
-            {
-              "kind": "arrow",
-              "points": [
-                [
-                  10,
-                  77
-                ],
-                [
-                  75,
-                  77
-                ]
-              ],
-              "color": "#B86A29"
-            },
-            {
-              "kind": "arrow",
-              "points": [
-                [
-                  75,
-                  77
-                ],
-                [
-                  52,
-                  20
-                ]
-              ],
-              "color": "#B64930"
-            },
-            {
-              "kind": "label",
-              "x": 3,
-              "y": 94,
-              "text": "(0,0)"
-            },
-            {
-              "kind": "label",
-              "x": 72,
-              "y": 94,
-              "text": "(3,0)"
-            },
-            {
-              "kind": "label",
-              "x": 49,
-              "y": 15,
-              "text": "(2,2)"
-            },
-            {
-              "kind": "label",
-              "x": 20,
-              "y": 67,
-              "text": "z: 0 → 9"
-            },
-            {
-              "kind": "label",
-              "x": 73,
-              "y": 43,
-              "text": "9 → 10"
-            }
-          ]
-        },
         {
           "outline_id": "lp",
           "height_rows": 6,
@@ -3150,7 +3169,8 @@
         "notes": [
           "状态保留必要历史",
           "边界给出计算起点",
-          "记录选择，回溯方案"
+          "记录选择，回溯方案",
+          "价值单位为元"
         ],
         "example": {
           "title": "背包格值与回溯",
@@ -3177,11 +3197,11 @@
         "example": {
           "title": "预算分配",
           "lines": [
-            "投入0、1、2、3单位时：",
-            "项目A收益为0、4、7、8；B为0、3、5、9。",
-            "给B的预算k依次为0、1、2、3。",
-            "总收益rB(k)+rA(3−k)为8、10、9、9。",
-            "最大收益10：A分2单位、B分1单位。"
+            "预算3万元，全部按整数万元分给A、B。",
+            "投入0、1、2、3万元时：",
+            "A收益0、4、7、8万元，B为0、3、5、9万元。",
+            "枚举B投入k=0、1、2、3，总收益为8、10、9、9万元。",
+            "最大收益10万元：A投2万元、B投1万元。"
           ]
         }
       }
@@ -3190,6 +3210,13 @@
   "metadata": {
     "title": "运筹学三章校准",
     "author": "",
-    "subject": "大学学霸笔记 v2 renderer calibration"
-  }
+    "subject": "L1–L4 language, semantic paragraphs and complete worked examples"
+  },
+  "standalone_map_policy": {
+    "user_requested": false,
+    "sufficient_information": false,
+    "summarises_taught_content": false,
+    "preserves_teaching_space": true
+  },
+  "language_calibration_version": "2026-10-04-language-round"
 }

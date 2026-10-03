@@ -42,6 +42,8 @@ def wrap_tokens(s):
     return grouped
 
 def wrap(s,w,base='Body',size=11.6):
+    if '\n' in s:
+        return [line for paragraph in s.split('\n') for line in (wrap(paragraph,w,base,size) or [''])]
     lines=[];line=''
     for t in wrap_tokens(s):
         if not line and t.isspace():continue

@@ -6,6 +6,23 @@ from pdf_template_layout import *
 from teaching_blocks import BlockEngine,LABELS
 from content_schema import PAGE_PROFILES,PROBLEM_PAGES,MAP_PAGES,validate_v2,walk_blocks
 from context_highlights import contextual_highlight_lines
+from example_structure import example_parts
+from language_review import language_findings
+
+def balanced_pages(groups,heights,capacity):
+    """Minimise page count, then uneven whitespace, at authored unit boundaries."""
+    best={0:((0,0),[])}
+    for end in range(1,len(groups)+1):
+        used=0;candidates=[]
+        for start in range(end-1,-1,-1):
+            used+=heights[start]
+            if used>capacity:break
+            if start in best:
+                (count,cost),parts=best[start]
+                candidates.append(((count+1,cost+(capacity-used)**2),parts+[(start,end)]))
+        if candidates:best[end]=min(candidates,key=lambda candidate:candidate[0])
+    if len(groups) not in best:raise ValueError('Indivisible teaching unit exceeds page; split at an explained step')
+    return [[block for group in groups[start:end] for block in group] for start,end in best[len(groups)][1]]
 
 def balanced_columns(items,capacity):
     """Contiguous DP partition; keep-with-next chains cannot straddle columns.
@@ -46,12 +63,16 @@ class BookCompositor:
         self.v2=self.content.get('content_schema_version',1)==2
         if not self.v2:return
         validate_v2(self.content,self.assets)
+        self.language_review=language_findings(self.content)
         if self.man.get('version',0)<7:raise ValueError('Schema v2 requires version 7 masters; rebuild templates')
         self.original_content=deepcopy(self.content);compiled=[];pending=[]
         # Adjacent knowledge sections of the same type flow together by default.
         for page in self.content['pages']:
             page=deepcopy(page)
             if page['blocks']:page['blocks'][0]['outline_ids']=list(dict.fromkeys(page['blocks'][0].get('outline_ids',[])+page.get('outline_ids',[])))
+            if any(b['type']=='worked_example' for b in page['blocks']):
+                page['_structured_example']=True
+                page['blocks']=[part for b in page['blocks'] for part in (example_parts(b) if b['type']=='worked_example' else [b])]
             if pending and not page.get('page_break',False) and page['type']==pending[-1]['type'] and page['chapter_id']==pending[-1]['chapter_id'] and page['type'] not in PROBLEM_PAGES|MAP_PAGES:
                 old=pending[-1];old['blocks']+=page['blocks'];old['handwritten_layer']+=page['handwritten_layer'];old.setdefault('sidebar',{}).setdefault('items',[]).extend(page.get('sidebar',{}).get('items',[]))
                 old['outline_ids']=list(dict.fromkeys(old.get('outline_ids',[])+page.get('outline_ids',[])))
@@ -64,7 +85,7 @@ class BookCompositor:
                 if not block.get('keep_with_next') and block['type']!='heading':groups.append(current);current=[]
             if current:groups.append(current)
             row=2;chunks=[];chunk=[]
-            if page['type'] in PROBLEM_PAGES:
+            if page['type'] in PROBLEM_PAGES and not page.get('_structured_example'):
                 row=self.problem_header(page,BlockEngine(self,False),self.g['main_x'],self.g['main_w'])
                 footer=len(wrap('结论　'+page['solution'],self.g['main_w'],'Body',11.6))+len(wrap('方法　'+page['method'],self.g['main_w'],'Body',11))
                 limit-=footer
@@ -75,14 +96,22 @@ class BookCompositor:
                 if size>limit-row:raise ValueError(page['id']+': indivisible teaching unit exceeds page; split at an explained step')
                 chunk+=group;row+=size
             if chunk:chunks.append(chunk)
-            if page['type'] in PROBLEM_PAGES and len(chunks)>1:raise ValueError(page['id']+': complete problem page overflow; create explicit linked solution pages')
+            if not (page['type'] in PROBLEM_PAGES and not page.get('_structured_example')):
+                heights=[sum(BlockEngine(self,False).measure(b,self.g['main_w']) for b in group) for group in groups]
+                chunks=balanced_pages(groups,heights,limit-2)
+            if page['type'] in PROBLEM_PAGES and not page.get('_structured_example') and len(chunks)>1:raise ValueError(page['id']+': complete problem page overflow; use worked_example with structured steps')
             for i,blocks in enumerate(chunks):
                 p=deepcopy(page);p['blocks']=blocks;p['id']=page['id']+(f'-cont-{i}' if i else '');p['number']=len(compiled)+1
                 ids={b['id'] for b in walk_blocks(blocks)}
                 p['handwritten_layer']=[a for a in page['handwritten_layer'] if a['anchor_block_id'] in ids]
                 p['sidebar']={'items':[a for a in page.get('sidebar',{}).get('items',[]) if a['anchor_block_id'] in ids]}
                 p['outline_ids']=list(dict.fromkeys(oid for b in walk_blocks(blocks) for oid in b.get('outline_ids',[])))
-                if i:p['title']=page['title']+'（续）'
+                if i:
+                    first=blocks[0]
+                    if first.get('example_id') and first.get('part')!='problem':
+                        p['title']='典例 '+str(first['problem_number']).zfill(2)+' 续 · '+page['title']
+                        p['continuation_of']=first['example_id']
+                    else:p['title']=page['title']+'（续）'
                 compiled.append(p)
         # Never silently discard annotations pointing to a different input page.
         expected=sum(len(p.get('handwritten_layer',[]))+len(p.get('sidebar',{}).get('items',[])) for p in pending)
@@ -148,9 +177,9 @@ class BookCompositor:
             for oid in page.get('outline_ids',[]):self.body_targets.setdefault(oid,len(self.doc))
             self.furniture(page['title'],page.get('humour',''),n)
             self.engine=BlockEngine(self);row=2
-            if ptype in PROBLEM_PAGES:row=self.problem_header(page,self.engine,self.g['main_x'],self.g['main_w'])
+            if ptype in PROBLEM_PAGES and not page.get('_structured_example'):row=self.problem_header(page,self.engine,self.g['main_x'],self.g['main_w'])
             end=self.engine.many(page['blocks'],row,self.g['main_x'],self.g['main_w'])
-            if ptype in PROBLEM_PAGES:
+            if ptype in PROBLEM_PAGES and not page.get('_structured_example'):
                 end=self.engine.lines('结论　'+page['solution'],self.g['main_x'],end,self.g['main_w'])
                 end=self.engine.lines('方法　'+page['method'],self.g['main_x'],end,self.g['main_w'],'Body',11,BLUE)
             if end>PAGE_PROFILES[ptype]['rows']:raise ValueError(f'{page["id"]}: {end} rows exceed capacity')
@@ -167,7 +196,7 @@ class BookCompositor:
             run=run+1 if ptype==last_type else 1;last_type=ptype
             if run==3:self.composition_warnings.append(page['id']+': review three repeated page structures')
             if m['body_density']<PAGE_PROFILES[ptype]['min_density'] and used/total<.25:self.composition_warnings.append(page['id']+': body and sidebar are both sparse')
-            self.vector_assets=self.engine.vectors;self.page_extra={'composition':m,'blocks':self.engine.boxes,'annotations':self.annotation_records};metrics.append(m);self.finish()
+            self.vector_assets=self.engine.vectors;self.page_extra={'composition':m,'blocks':self.engine.boxes,'annotations':self.annotation_records,'language_findings':self.engine.language_findings};metrics.append(m);self.finish()
         for cid in {m['chapter_id'] for m in metrics}:
             subset=[m for m in metrics if m['chapter_id']==cid];free=1-sum(m['annotation_used_mm2'] for m in subset)/sum(m['annotation_total_mm2'] for m in subset)
             target=self.content.get('annotation_policy',{}).get('chapter_min_free_fraction',.35)
@@ -206,7 +235,7 @@ class BookCompositor:
         intervals=self.sidebar_occupancy.setdefault(key,[])
         for old in intervals:
             if row<old['end']+.5 and row+nr>old['row']:row=old['end']+.5
-        if row+nr>33:raise ValueError(f'Page {self.no}: annotation overflows; shorten, move its anchor or allocate another page')
+        if row+nr>33:raise ValueError(f'Page {self.no}: annotation {item["anchor_block_id"]} overflows ({row}+{nr} rows); shorten, move its anchor or allocate another page')
         intervals.append({'row':row,'end':row+nr,'w':w})
         top=row
         if item.get('title'):self.say(item['title'],x,self.y(row),'Head',10,BLUE,grid=True);row+=1

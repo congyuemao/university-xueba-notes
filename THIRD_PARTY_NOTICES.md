@@ -14,7 +14,7 @@
 
 ## 漫画参考
 
-`Resources/reference-comics/` 的八幅裁片来自用户提供的数学、化学、物理、历史教辅，作为用户本地制作流程的图像参考保留。原书内容权利归原权利人。来源文件、页码、裁切区域与校验值见该目录的 `index.md` 和 `manifest.json`。本包不包含整本原书扫描。
+`Resources/reference-comics/` 的八幅裁片来自用户提供的数学、化学、物理、历史教辅，作为用户本地制作流程的图像参考保留。原书内容权利归原权利人。来源文件、页码、裁切区域与校验值见该目录的 `index.md` 和 `manifest.json`。公开分发 ZIP 不包含这八幅私人参考裁片或整本原书扫描，只保留索引与来源元数据。
 
 制作时将参考裁片作为生成输入，输出原创场景；裁片不直接置入新成品。私人参考裁片不属于可公开再分发的原创资源。
 
@@ -32,3 +32,7 @@
 - 其他冷知识核对 NASA、NOAA、USGS、NIST、英国皇家化学学会、自然历史博物馆、邱园与史密森尼的资料；计算机条目核对 Python Software Foundation 官方文档。只提炼事实并重新撰写中文，不复制网页图片或整段说明。Python文档版权归 Python Software Foundation；[文档许可](https://docs.python.org/3/license.html)。
 
 逐条出处及所用章节见 [sources.json](skills/artifact-template-university-xueba-notes/Resources/fun-content/sources.json) 和各语料的 `source` 字段。
+
+## 语言参考与校准
+
+`Resources/private-language-reference/` 保存用户本地的 40 条短摘录与观察，来自两本用户提供的数学教辅。该目录由 `.gitignore` 排除，不进入公开分发 ZIP；不附整本扫描书。`Resources/language-calibration/` 的五份文件为抽象语言规则、自编大学课程例子与正反例，用于写法校准，不替代教材知识来源。

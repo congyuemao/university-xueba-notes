@@ -1,7 +1,13 @@
 {
   "date": "2026-10-04",
-  "scope": "Skill v2 implementation and LP/simplex/DP calibration slices; not a full Taha book",
-  "content_sha256": "abca60ce3000ad8931d56837ec68640a484267d7cd0ce5075eafc521af4ab3eb",
+  "revision": "语言、例题、分段与参考语料库",
+  "scope": "Existing Skill and LP/simplex/DP calibration; existing fonts, Hand and version 7 masters preserved.",
+  "baseline_commit": "9a3437317acf764b74aa5b81aa67e4ff890b79a1",
+  "revision_plan": {
+    "file_name": "大学学霸笔记_Skill_本轮修改方案_语言例题分段与语料库.md",
+    "sha256": "79ad82df5cfc8e4d8782a81aaa83281bc5805b206418d672b50d0993c61252d0"
+  },
+  "content_sha256": "5bd3a6133b0759190f5647ed6b7b71b2b1c6c8bcb56ae3b7eb4c408e7b322f51",
   "reviewer": "Codex",
   "independent_human_review": false,
   "sources": {
@@ -26,38 +32,92 @@
       "sha256": "559b033838424662fb48e815d34121d263c7f87b9763eac903386380b7a96cc2"
     }
   },
+  "language_corpus": {
+    "private_records": 40,
+    "functions": [
+      "侧栏",
+      "公式引入",
+      "分析",
+      "图表解释",
+      "定义后的解释",
+      "性质与定理",
+      "手写/速查",
+      "推导过程",
+      "方法总结",
+      "易错辨析",
+      "普通小例题",
+      "概念首次定义",
+      "章节衔接",
+      "综合典例"
+    ],
+    "source_pages": {
+      "math": [
+        18,
+        60,
+        100,
+        160
+      ],
+      "math_b": [
+        18,
+        60,
+        160,
+        200
+      ]
+    },
+    "public_files": [
+      "style-guide.md",
+      "synthetic-examples.md",
+      "contrastive-examples.md",
+      "example-writing.md",
+      "compression-levels.md"
+    ],
+    "private_excluded_from_git_and_distribution": true
+  },
   "automatic_structure": {
     "status": "passed",
-    "tests": 35,
+    "tests": 46,
     "skipped": 0,
-    "details": "schema, sources, hierarchy, pagination and annotation-anchor regressions; official skill validator"
+    "details": "Schema and language findings, structured examples, pagination/anchors, real fonts/PDF rendering, math checks, v2 plan and official Skill validation."
   },
   "automatic_fields": {
     "status": "passed",
-    "details": "font preparation, all 12 page types, both editions, foldout, PDF dimensions/text bounds/annotation slots/links and v1 compatibility"
+    "details": "Print/digital/foldout geometry, missing glyphs, annotation slots, contents links; old v1 statistics fixture regenerated (6 pages)."
   },
   "human_content": {
     "status": "not_run",
-    "reason": "No external human/editor signoff; see separate agent review."
+    "reason": "No external human/editor signoff; agent review recorded separately."
   },
   "human_visual": {
     "status": "not_run",
-    "reason": "No external human/editor signoff; see separate agent review."
+    "reason": "No external human/editor signoff; agent review recorded separately."
   },
   "agent_content_review": {
     "status": "passed",
-    "coverage": "All 14 body pages, cover, contents, glossary and foldout; independent LP vertex enumeration, simplex pivot elimination, DP exhaustive enumeration and resource allocation check"
+    "coverage": "All 18 body pages, front/back matter and foldout; continuous reading of digital physical pages 3–5; four self-contained examples, step order, units and conclusions; independent numerical checks in tests."
   },
   "agent_visual_review": {
     "status": "passed",
-    "coverage": "Print 19 pages and digital 17 pages rendered as full-page images and contact sheets; close review of maps, ordinary pages, problem pages, handwritten circles/arrows, tables, contents and foldout. Original-reference comparison locations are in reference-observations.md."
+    "coverage": "All 23 print and 21 digital pages rendered/contact-sheet reviewed; full-size review of consecutive LP ordinary pages, complete examples/continuations, DP introduction/table and foldout. Final DP recurrence page separately re-rendered and inspected after the last content edit."
   },
+  "reviewed_warnings": [
+    {
+      "warning": "sx-example-cont-2: review three repeated page structures",
+      "editions": [
+        "print",
+        "digital"
+      ],
+      "decision": "accepted_after_agent_reading_and_visual_review",
+      "reason": "One complete simplex example intentionally spans three pages; the continuation keeps example number 02 and explicit 续. Different calculation stages remain independently locatable."
+    }
+  ],
   "pdfs": {
     "print": {
-      "pdf_pages": 19,
-      "sha256": "1e47fa4c218e216c8469145b08f6e512e2ecd673628ba29071c282d43d2837d9",
-      "size_bytes": 1567918,
-      "warnings": [],
+      "pdf_pages": 23,
+      "sha256": "06f4d5cc71411a347afd1a9b016076ff7039ee3eed56a4f9603387117ebf2627",
+      "size_bytes": 1873400,
+      "warnings": [
+        "sx-example-cont-2: review three repeated page structures"
+      ],
       "checks": [
         "page size",
         "text clipping/missing glyphs",
@@ -70,57 +130,52 @@
       ],
       "chapters": [
         {
-          "chapter_id": "guide",
-          "annotation_free_fraction": 1.0,
-          "page_type_counts": {
-            "volume_map": 1
-          }
-        },
-        {
           "chapter_id": "dp",
-          "annotation_free_fraction": 0.8625,
+          "annotation_free_fraction": 0.890625,
           "page_type_counts": {
-            "knowledge_visual": 1,
+            "knowledge_visual": 2,
+            "process_page": 1,
             "formula_summary": 1,
-            "application_page": 1,
-            "chapter_map": 1,
-            "process_page": 1
-          }
-        },
-        {
-          "chapter_id": "lp",
-          "annotation_free_fraction": 0.78125,
-          "page_type_counts": {
-            "comparison_page": 1,
-            "knowledge_dense": 1,
-            "knowledge_visual": 1,
-            "application_page": 1
+            "application_page": 2
           }
         },
         {
           "chapter_id": "sx",
-          "annotation_free_fraction": 0.75,
+          "annotation_free_fraction": 0.8571428571428572,
           "page_type_counts": {
-            "knowledge_dense": 1,
+            "worked_example_page": 3,
             "process_page": 1,
-            "core_problem_page": 1,
-            "worked_example_page": 1
+            "knowledge_dense": 1,
+            "core_problem_page": 2
+          }
+        },
+        {
+          "chapter_id": "lp",
+          "annotation_free_fraction": 0.83125,
+          "page_type_counts": {
+            "knowledge_visual": 1,
+            "comparison_page": 1,
+            "knowledge_dense": 1,
+            "application_page": 2
           }
         }
       ],
-      "body_pages": 14,
+      "body_pages": 18,
       "contents_column_rows": [
         [
-          19.05,
-          21.1
+          17.1,
+          16.8
         ]
-      ]
+      ],
+      "language_findings": []
     },
     "digital": {
-      "pdf_pages": 17,
-      "sha256": "304b8e265b6ed6ec809c267b873562cdc6e85b619a6ad52addf7c6bdf13b3059",
-      "size_bytes": 1565455,
-      "warnings": [],
+      "pdf_pages": 21,
+      "sha256": "3b8834e31abf2cc64456c34fe47f05e80416857c5f90f507b5b2eee597c0ffae",
+      "size_bytes": 1868455,
+      "warnings": [
+        "sx-example-cont-2: review three repeated page structures"
+      ],
       "checks": [
         "page size",
         "text clipping/missing glyphs",
@@ -133,56 +188,49 @@
       ],
       "chapters": [
         {
-          "chapter_id": "guide",
-          "annotation_free_fraction": 1.0,
-          "page_type_counts": {
-            "volume_map": 1
-          }
-        },
-        {
-          "chapter_id": "dp",
-          "annotation_free_fraction": 0.88046875,
-          "page_type_counts": {
-            "chapter_map": 1,
-            "formula_summary": 1,
-            "application_page": 1,
-            "knowledge_visual": 1,
-            "process_page": 1
-          }
-        },
-        {
           "chapter_id": "lp",
-          "annotation_free_fraction": 0.8359375,
+          "annotation_free_fraction": 0.872265625,
           "page_type_counts": {
-            "application_page": 1,
-            "knowledge_visual": 1,
             "knowledge_dense": 1,
+            "application_page": 2,
+            "knowledge_visual": 1,
             "comparison_page": 1
           }
         },
         {
           "chapter_id": "sx",
-          "annotation_free_fraction": 0.78564453125,
+          "annotation_free_fraction": 0.8850446428571429,
           "page_type_counts": {
-            "core_problem_page": 1,
+            "worked_example_page": 3,
+            "knowledge_dense": 1,
             "process_page": 1,
-            "worked_example_page": 1,
-            "knowledge_dense": 1
+            "core_problem_page": 2
+          }
+        },
+        {
+          "chapter_id": "dp",
+          "annotation_free_fraction": 0.9026692708333334,
+          "page_type_counts": {
+            "formula_summary": 1,
+            "process_page": 1,
+            "knowledge_visual": 2,
+            "application_page": 2
           }
         }
       ],
-      "body_pages": 14,
+      "body_pages": 18,
       "contents_column_rows": [
         [
-          19.05,
-          21.1
+          17.1,
+          16.8
         ]
-      ]
+      ],
+      "language_findings": []
     },
     "foldout": {
       "pdf_pages": 1,
-      "sha256": "6237d11ee5284022eabfb3b13dd22c9e31819cfaf58daf39320d9d15be63b4a1",
-      "size_bytes": 121525,
+      "sha256": "2745499bd050f2fd05515963d3da53e055866dd2959b5dd901b234f37f9c7244",
+      "size_bytes": 123047,
       "warnings": [],
       "checks": [
         "page size",
@@ -196,14 +244,41 @@
       ],
       "chapters": [],
       "body_pages": 0,
-      "contents_column_rows": []
+      "contents_column_rows": [],
+      "language_findings": []
     }
   },
+  "preserved_assets": [
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/templates/digital-master.pdf",
+      "sha256": "09da442cf6ad40975dfcf568c89f5a1a8a2fcef3b65a8d29c895eb7a3ee9e989",
+      "git_blob": "fe152519c324f6dbd8dd997e85b268717ca8f6bd"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/templates/print-master.pdf",
+      "sha256": "59090d753d1aeed6ecf157394db47e74d3fb722f7d199b605ee4482501da5fb8",
+      "git_blob": "83569dc11e6cba67141756ab726e300990307871"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/Resources/templates/template-manifest.json",
+      "sha256": "196d35a134732961e1c5c6e58fbda417dde5cdfbd45040b37ef99b4a65dbbf32",
+      "git_blob": "2ca9fe1ae7710b392aab714024e90b8ecf732c8c"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/scripts/prepare_fonts.py",
+      "sha256": "4d76fb50a5ee8ad3ffd08a271ff4fd27f1a77768cad8fd8429bfa81cc67b09fb",
+      "git_blob": "8959f17190a9dbccabdfcd38d8d2f6187e907143"
+    },
+    {
+      "path": "skills/artifact-template-university-xueba-notes/references/font-selection.md",
+      "sha256": "c88075eb6b258d0409b5e327e31689417c9ba4b39248df843831c848f2960f24",
+      "git_blob": "64edaedd0d6fc22da18fb72a76bbc1125362a0c1"
+    }
+  ],
   "limitations": [
-    "Calibration examples are selected teaching units, not complete textbook chapters.",
-    "Organic maps support at most four levels; long indivisible problems need editorial splitting.",
-    "Block occupancy is not pixel-based ink density.",
-    "New OR comics were not generated; the calibration focuses on working diagrams, while existing comic workflow/assets remain.",
-    "No independent learner/model benchmark or external human signoff."
+    "Selected teaching units, not a complete Taha textbook remake.",
+    "Long indivisible units still require editorial splitting.",
+    "Language heuristics identify candidates and do not prove pedagogy.",
+    "No independent learner benchmark, physical-print review or external human signoff."
   ]
 }

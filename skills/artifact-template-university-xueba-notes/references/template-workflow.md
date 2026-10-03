@@ -8,7 +8,7 @@
 | --- | --- |
 | 知识块 | 定义、性质、条件、例题、表格、步骤、公式组、图、方法有独立绘制逻辑 |
 | 测量 | 字体实际宽度换行；表格按最长单元格计行；图占指定槽；测量绘制共用逻辑 |
-| 分页 | 同章同页型相邻知识段默认流动；group和keep_with_next链不可拆；page_break强制新页；专题/导图独立 |
+| 分页 | 同章同页型相邻知识段默认流动；group和keep_with_next链不可拆；page_break强制新页；完整例题按题目、分析、单个step、结果与方法分区分页；续页保留题号；独立导图默认关闭 |
 | 混排 | paired左右组合，ratio设左栏比例，各栏独立测量，高度取较大值 |
 | 手写 | 独立Hand，红橙短句、曲箭头、圈画、下划线、波浪线、括号、打叉、小图槽 |
 | 侧栏 | anchor_block_id随实际分页；顺序分配避免侧栏碰撞，超高报错 |
@@ -25,17 +25,15 @@
 
 ```sh
 python scripts/prepare_fonts.py --output-dir /path/to/fonts --source-dir /path/to/offline-fonts
-python scripts/build_pdf_templates.py --fonts /path/to/fonts --output Resources/templates
-python scripts/build_calibration.py --output Resources/content/operations-research-calibration.json
 python scripts/validate_book_plan.py Resources/content/operations-research-calibration.json
 python scripts/fill_template.py --content Resources/content/operations-research-calibration.json --templates Resources/templates --fonts /path/to/fonts --assets Resources/illustrations --edition print --fun-seed 41 --output /path/to/print.pdf
 python scripts/fill_template.py --content Resources/content/operations-research-calibration.json --templates Resources/templates --fonts /path/to/fonts --assets Resources/illustrations --edition digital --fun-seed 41 --output /path/to/digital.pdf
 python scripts/fill_template.py --content Resources/content/operations-research-calibration.json --templates Resources/templates --fonts /path/to/fonts --assets Resources/illustrations --foldout-only --output /path/to/foldout.pdf
 ```
 
-母版一次构建并复用。几何以manifest为准：A4、Body 11.6 pt、首基线28.8 mm、行距7.2 mm、34槽；v2内容用页型规定的31/32槽，余量用于边界；趣味条275–285 mm、页码291 mm。目录无正文横线。
+语言修订沿用随包version 7母版；仅需要改变视觉时重建母版。build_calibration.py校验并导出Resources/content中的规范样稿，不再以旧的压缩文案覆盖已校准JSON。母版一次构建并复用。几何以manifest为准：A4、Body 11.6 pt、首基线28.8 mm、行距7.2 mm、34槽；v2内容用页型规定的31/32槽，余量用于边界；趣味条275–285 mm、页码291 mm。目录无正文横线。
 
-输出PDF、同名.layout.json、v2最终.compiled.json、地图.assets/*.svg。layout记录模板哈希、实际块坐标、批注位置、章节可写比例、目录栏高、图表统计、告警；人工审查默认not_run。目录链接/书签由最终页号生成。
+输出PDF、同名.layout.json、v2最终.compiled.json；显式启用地图时另存.assets/*.svg。layout记录模板哈希、实际块坐标、批注位置、章节可写比例、目录栏高、图表统计、告警；人工审查默认not_run。目录链接/书签由最终页号生成。
 
 ## 内容块
 
@@ -45,13 +43,15 @@ v2所有块需唯一id、type、source_kind。教材/课程块另需source_id与
 | --- | --- |
 | definition | title、symbol可选、text；蓝定义标题及Body |
 | property / rule / condition | title可选、text；condition需boundary_level |
-| paragraph | text、language可选；连续解释 |
+| paragraph | text、language/language_level可选；空行表示语义分段，自动折行只适配栏宽 |
 | property_list | title可选、items[{label,text}]；编号性质 |
 | example_inline | text；红色例标记 |
 | worked_micro_example | problem、steps、answer、note可选；完整短计算 |
 | comparison / comparison_table / table | columns或headers、rows；widths_mm、cell_marks可选；紧凑网格 |
 | process_steps | steps字符串或{label,text}列表；编号操作 |
-| formula | text；居中公式 |
+| formula | text；居中公式，换行符强制另行 |
+| formula_step | reason、formula；理由在前，公式独立成行，两者不跨页拆开 |
+| worked_example | problem_number、problem、analysis、steps、result、method；完整题分区渲染 |
 | formula_relation / formula_group | items字符串或{formula,reason}；公式与理由相邻 |
 | common_error / memory_note / method_card | text；易错标识、Hand、方法分隔线 |
 | concept_diagram | drawing或asset二选一、height_rows、caption |
@@ -83,4 +83,12 @@ text承载的知识块可给highlights：每项start、end是clean(text)的Unico
 
 outline节点含id、kind、level、parent_id、title，可有ordinal_label。页面outline_ids跟随首块重新分页。frontmatter.contents.visuals用outline_id绑定drawing或asset及height_rows；图参与栏平衡。
 
-专题页要求problem_number、problem、analysis、solution、method；blocks承载详细解答。整题溢出须改为有明确承接的解答页。glossary使用专用双栏，foldout为594×210 mm四栏，不能缩成A4纵页。
+新专题页在blocks顶层写worked_example。problem/analysis/result/method可为字符串或带ID与来源的块数组；steps每项有唯一label、title、content块数组。题目区可以包含数据表。每个step是不可拆教学单元，过高时须按推理动作细分；结果和方法保持相邻。编译器按分区平衡分页，自动标“典例 XX 续”，不重编号。旧页级problem_number/problem/analysis/solution/method仍兼容，但不支持自动跨页例题；新题使用新结构。glossary使用专用双栏，foldout为594×210 mm四栏，不能缩成A4纵页。
+
+## 语言复查与可选导图
+
+可选language_level为L1/L2/L3/L4，按教学任务设置。layout顶层language_findings记录前文依赖与多步压缩候选；pages[].language_findings记录实际栏宽下超过4行的连续文字，达到6行标manual_review。结构校验不自动宣布语言质量通过。
+
+chapter_map/volume_map要求standalone_map_policy中的user_requested、sufficient_information、summarises_taught_content、preserves_teaching_space均为true。前者依据用户明确请求，其余三项由编辑评估；缺项则拒绝生成。保留旧地图渲染能力，不默认生成独立地图。
+
+worked_example以页内顶层块提供；嵌套正文可以使用paragraph、formula_step、表格及工作图。显式续题可给continuation_of，指向先前同problem_number的例题；自动分页无需作者填写。problem文本依赖前文的检查仅对有有效续题引用的块豁免。

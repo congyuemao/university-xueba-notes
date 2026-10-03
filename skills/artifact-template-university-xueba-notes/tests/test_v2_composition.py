@@ -20,17 +20,23 @@ from build_calibration import build
 from content_schema import validate_v2,walk_blocks,PAGE_PROFILES
 from book_compositor import balanced_columns
 
+def find_block(data,identifier):
+    return next(b for p in data['pages'] for b in walk_blocks(p['blocks']) if b['id']==identifier)
+
+def find_note(data,key):
+    return next(n for p in data['pages'] for n in p['handwritten_layer'] if key in n)
+
 class SchemaTests(unittest.TestCase):
     def setUp(self):self.data=build()
     def test_calibration_fields_and_all_body_types(self):
         validate_v2(self.data)
-        self.assertEqual({p['type'] for p in self.data['pages']},set(PAGE_PROFILES)-{'glossary','foldout'})
+        self.assertEqual({p['type'] for p in self.data['pages']},set(PAGE_PROFILES)-{'glossary','foldout','chapter_map','volume_map'})
     def test_rejects_bad_block_table_source_and_problem(self):
         mutations=[
-            lambda d:d['pages'][1]['blocks'][0].update(type='unknown'),
-            lambda d:d['pages'][1]['blocks'][3]['rows'][0].append('extra'),
-            lambda d:d['pages'][1]['blocks'][2].update(source_id='missing'),
-            lambda d:d['pages'][4].pop('analysis'),
+            lambda d:find_block(d,'lp-vars').update(type='unknown'),
+            lambda d:find_block(d,'lp-data')['rows'][0].append('extra'),
+            lambda d:find_block(d,'lp-vars').update(source_id='missing'),
+            lambda d:find_block(d,'lp-app-steps').pop('analysis'),
             lambda d:d['pages'][1]['handwritten_layer'][0].update(anchor_block_id='absent'),
         ]
         for mutate in mutations:
@@ -48,24 +54,25 @@ class SchemaTests(unittest.TestCase):
         concept['first_use_role']='taught'
         with self.assertRaisesRegex(ValueError,'no definition evidence'):validate_v2(self.data)
     def test_rejects_stale_circle_and_invalid_cell(self):
-        circle=self.data['pages'][2]['handwritten_layer'][-1]
+        circle=find_note(self.data,'target_span')
         self.assertEqual(circle['target_span']['text'],'交集')
         circle['target_span']['text']='旧稿'
         with self.assertRaises(ValueError):validate_v2(self.data)
-        data=build();data['pages'][7]['handwritten_layer'][1]['target_cell']=[9,9]
+        data=build();find_note(data,'target_cell')['target_cell']=[9,9]
         with self.assertRaisesRegex(ValueError,'target_cell'):validate_v2(data)
     def test_authored_chapter_cannot_claim_textbook_number(self):
         self.data['outline'][0]['textbook_chapter_number']='22'
+        self.data['outline'][0]['source_kind']='editorial_synthesis'
         with self.assertRaisesRegex(ValueError,'authored material'):validate_v2(self.data)
     def test_prerequisite_cycles_and_outline_order(self):
         a,b=self.data['concepts'][:2];a['prerequisite_ids']=[b['id']];b['prerequisite_ids']=[a['id']]
         with self.assertRaisesRegex(ValueError,'cyclic'):validate_v2(self.data)
-        data=build();data['outline'][1],data['outline'][2]=data['outline'][2],data['outline'][1]
+        data=build();data['outline'][0],data['outline'][1]=data['outline'][1],data['outline'][0]
         with self.assertRaisesRegex(ValueError,'parent must precede'):validate_v2(data)
     def test_drawing_bounds_and_missing_map_height(self):
-        self.data['pages'][0]['blocks'][0].pop('height_rows')
+        find_block(self.data,'lp-figure').pop('height_rows')
         with self.assertRaisesRegex(ValueError,'height_rows'):validate_v2(self.data)
-        data=build();data['pages'][2]['blocks'][1]['drawing'][5]['x']=101
+        data=build();find_block(data,'lp-figure')['drawing'][5]['x']=101
         with self.assertRaisesRegex(ValueError,'normalized slot'):validate_v2(data)
 
 class MathematicsTests(unittest.TestCase):
@@ -77,7 +84,7 @@ class MathematicsTests(unittest.TestCase):
         for x,y in vertices:self.assertTrue(x>=0 and y>=0 and x+y<=4 and 2*x+y<=6)
         for primitive,a,limit in [(graph[3],1,4),(graph[4],2,6)]:
             for X,Y in primitive['points']:self.assertAlmostEqual(a*(X-10)/16+(88-Y)/17.5,limit)
-        new_graph=data['pages'][4]['blocks'][-1]['drawing']
+        new_graph=blocks['lp-order-figure']['drawing']
         self.assertTrue(all((X-10)/16>=1 for X,Y in new_graph[0]['points']))
     def test_simplex_pivot_matches_final_table(self):
         blocks={b['id']:b for p in build()['pages'] for b in walk_blocks(p['blocks'])}

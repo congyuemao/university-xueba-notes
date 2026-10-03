@@ -21,7 +21,7 @@ PAGE_PROFILES = {
 PROBLEM_PAGES={'worked_example_page','application_page','core_problem_page'}
 MAP_PAGES={'chapter_map','volume_map'}
 TEXT_TYPES={'paragraph','definition','property','rule','condition','example_inline','common_error','memory_note','diagram_explanation','method_card'}
-BLOCK_TYPES=TEXT_TYPES|{'heading','formula','formula_relation','formula_group','property_list','worked_micro_example','comparison','comparison_table','table','process_steps','concept_diagram','knowledge_map','paired','group','handwritten_annotation','comparison_bars'}
+BLOCK_TYPES=TEXT_TYPES|{'heading','formula','formula_step','worked_example','formula_relation','formula_group','property_list','worked_micro_example','comparison','comparison_table','table','process_steps','concept_diagram','knowledge_map','paired','group','handwritten_annotation','comparison_bars'}
 SOURCE_KINDS={'textbook_core','course_core','authored_example','supplement','editorial_synthesis'}
 HAND_KINDS={'text','arrow_note','circle','underline','wave','bracket','strike','sketch'}
 OUTLINE_KINDS={'part','chapter','unit','section','lesson','feature','appendix','glossary','chapter_map','volume_map'}
@@ -32,6 +32,12 @@ def walk_blocks(blocks):
         if b.get('type')=='group':yield from walk_blocks(b.get('blocks',[]))
         if b.get('type')=='paired':
             yield from walk_blocks(b.get('left',[]));yield from walk_blocks(b.get('right',[]))
+        if b.get('type')=='worked_example':
+            for key in ('problem','analysis','result','method'):
+                if isinstance(b.get(key),list):yield from walk_blocks(b[key])
+            for step in b.get('steps',[]):
+                if isinstance(step,dict):yield from walk_blocks(step.get('content',[]))
+        if b.get('type')=='_example_part':yield from walk_blocks(b.get('content',[]))
 
 def validate_v2(data, assets=None):
     """Fail before PDF creation on missing fields, orphan anchors or false sources."""
@@ -77,14 +83,20 @@ def validate_v2(data, assets=None):
         for ref in page.get('outline_ids',[]):need(ref in outline,f'{pid}: unknown outline anchor {ref}')
         need(isinstance(page.get('handwritten_layer'),list),f'{pid}: handwritten_layer assessment required (empty list is allowed with reason)')
         if not page.get('handwritten_layer'):need(bool(page.get('handwriting_reason')),f'{pid}: explain why handwriting is unnecessary')
-        if page.get('type') in PROBLEM_PAGES:
+        structured=any(b.get('type')=='worked_example' for b in page.get('blocks',[]))
+        if page.get('type') in PROBLEM_PAGES and not structured:
             for key in ('problem_number','problem','analysis','solution','method'):
                 need(bool(page.get(key)),f'{pid}: problem page requires {key}')
         blocks=list(walk_blocks(page.get('blocks',[])))
-        if page.get('type') in MAP_PAGES:need(any(b.get('type')=='knowledge_map' for b in blocks),f'{pid}: map page needs organic knowledge_map')
+        if page.get('type') in MAP_PAGES:
+            need(any(b.get('type')=='knowledge_map' for b in blocks),f'{pid}: map page needs organic knowledge_map')
+            policy=data.get('standalone_map_policy',{})
+            for flag in ('user_requested','sufficient_information','summarises_taught_content','preserves_teaching_space'):
+                need(policy.get(flag) is True,f'{pid}: standalone maps are disabled by default; {flag} required')
         for b in blocks:
             bid=b.get('id');need(bool(bid) and bid not in all_blocks,f'{pid}: missing or duplicate block ID {bid}');all_blocks[bid]=b
             typ=b.get('type');need(typ in BLOCK_TYPES,f'{bid}: unknown block type {typ}')
+            if 'language_level' in b:need(b['language_level'] in {'L1','L2','L3','L4'},f'{bid}: invalid language_level')
             need(b.get('source_kind') in SOURCE_KINDS,f'{bid}: source_kind required')
             if b.get('source_kind') in {'textbook_core','course_core'}:
                 need(b.get('source_id') in sources and bool(b.get('source_section')),f'{bid}: source_id and source_section required')
@@ -93,6 +105,26 @@ def validate_v2(data, assets=None):
             if typ=='process_steps':need(bool(b.get('steps')),f'{bid}: steps required')
             if typ=='worked_micro_example':
                 for key in ('problem','steps','answer'):need(bool(b.get(key)),f'{bid}: {key} required')
+            if typ=='formula_step':
+                for key in ('reason','formula'):need(isinstance(b.get(key),str) and bool(b[key].strip()),f'{bid}: {key} required')
+            if typ=='worked_example':
+                need(b in page.get('blocks',[]),f'{bid}: worked_example must be a top-level flow block')
+                need(bool(b.get('problem_number')),f'{bid}: problem_number required')
+                for key in ('problem','analysis','result','method'):
+                    value=b.get(key)
+                    need((isinstance(value,str) and bool(value.strip())) or (isinstance(value,list) and bool(value)),f'{bid}: {key} required')
+                steps=b.get('steps',[])
+                need(isinstance(steps,list) and bool(steps),f'{bid}: steps required')
+                labels=[]
+                for step in steps:
+                    need(isinstance(step,dict),f'{bid}: step must be an object')
+                    if not isinstance(step,dict):continue
+                    labels.append(step.get('label'))
+                    need(bool(step.get('label')) and bool(step.get('title')) and isinstance(step.get('content'),list) and bool(step['content']),f'{bid}: each step needs label, title and content')
+                need(len(set(labels))==len(labels),f'{bid}: step labels must be unique')
+                if b.get('continuation_of'):
+                    original=all_blocks.get(b['continuation_of'])
+                    need(original is not None and original is not b and original.get('type')=='worked_example' and original.get('problem_number')==b.get('problem_number'),f'{bid}: continuation needs an earlier example with the same problem_number')
             if typ in {'table','comparison','comparison_table'}:
                 headers=b.get('headers',b.get('columns',[]));rows=b.get('rows',[])
                 need(bool(headers) and bool(rows),f'{bid}: table headers and rows required')
@@ -158,7 +190,7 @@ def validate_v2(data, assets=None):
         for flag in ('requires_visual','requires_worked_example'):need(isinstance(c.get(flag),bool),f'{cid}: {flag} must be boolean')
         need(isinstance(c.get('preferred_representation'),list) and bool(c['preferred_representation']),f'{cid}: preferred_representation must be nonempty list')
         for ref in c.get('prerequisite_ids',[]):need(ref in concept_ids and ref!=cid,f'{cid}: invalid prerequisite {ref}')
-        for flag,field,types in [('requires_visual','visual_refs',{'concept_diagram','knowledge_map','table','comparison_table'}),('requires_worked_example','example_refs',{'worked_micro_example','process_steps'})]:
+        for flag,field,types in [('requires_visual','visual_refs',{'concept_diagram','knowledge_map','table','comparison_table'}),('requires_worked_example','example_refs',{'worked_example','worked_micro_example','process_steps'})]:
             if c.get(flag):
                 need(bool(c.get(field)),f'{cid}: {field} required')
                 for ref in c.get(field,[]):need(ref in all_blocks and all_blocks[ref]['type'] in types,f'{cid}: invalid {field} {ref}')

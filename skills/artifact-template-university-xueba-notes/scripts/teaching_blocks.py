@@ -1,11 +1,14 @@
 """Measured, composable knowledge blocks. Measurement and drawing share one path."""
 import math
+import re
 from html import escape
 from pathlib import Path
 from pdf_template_layout import *
 from context_highlights import contextual_highlight_lines
 from content_schema import TEXT_TYPES
 from knowledge_map import layout_tree,svg_text
+from example_structure import example_parts
+from language_review import paragraph_finding
 
 LABELS={'definition':'定义','property':'性质','rule':'法则','condition':'条件','example_inline':'例','common_error':'易错','memory_note':'记忆','diagram_explanation':'读图','method_card':'方法'}
 
@@ -21,7 +24,7 @@ def drawing_svg(items,x,y,w,h):
     out.append('</g>');return ''.join(out)
 
 class BlockEngine:
-    def __init__(self,book,draw=True):self.b=book;self.draw=draw;self.boxes={};self.types=[];self.vectors=[]
+    def __init__(self,book,draw=True):self.b=book;self.draw=draw;self.boxes={};self.types=[];self.vectors=[];self.language_findings=[]
     def say(self,s,x,y,font='Body',size=11.6,color=INK,align='left',grid=True):
         if self.draw:self.b.say(s,x,y,font,size,color,align,grid)
     def rectangle(self,x,y,w,h,fill,stroke=None):
@@ -37,10 +40,32 @@ class BlockEngine:
     def many(self,blocks,row,x,w):
         for block in blocks:row=self.block(block,row,x,w)
         return row
+    def prose(self,s,x,row,w,b,font='Body',size=11.6,color=INK):
+        s=clean(s)
+        offset=0
+        for i,paragraph in enumerate(re.split(r'\n\s*\n',s)):
+            start=s.index(paragraph,offset);offset=start+len(paragraph)
+            if i:row+=1
+            highlights=[]
+            for mark in b.get('highlights',[]):
+                left=max(start,mark['start']);right=min(offset,mark['end'])
+                if left<right:highlights.append({**mark,'start':left-start,'end':right-start,'text':s[left:right]})
+            count=len(wrap(paragraph,w,font,size))
+            finding=paragraph_finding(b.get('id'),i+1,count,row,b.get('language_level'))
+            if finding and self.draw:self.language_findings.append(finding)
+            row=self.lines(paragraph,x,row,w,font,size,color,highlights)
+        return row
     def measure(self,block,w):return BlockEngine(self.b,False).block(block,0,0,w)
     def block(self,b,row,x,w):
         start=row;t=b['type'];self.types.append(t);bid=b.get('id');title=b.get('title')
         if t=='group':row=self.many(b['blocks'],row,x,w)
+        elif t=='worked_example':row=self.many(example_parts(b),row,x,w)
+        elif t=='_example_part':
+            color=RED if b['part']=='problem' else BLUE
+            self.line(x,self.b.y(row)-4.8,x+w,self.b.y(row)-4.8,color,.45)
+            row=self.lines(b['title'],x,row,w,'Head',11.6,color)
+            row=self.many(b['content'],row,x,w)
+            row+=1
         elif t=='paired':
             ratio=b.get('ratio',.52);gap=5;left=(w-gap)*ratio;right=w-gap-left
             row=max(self.many(b['left'],row,x,left),self.many(b['right'],row,x+left+gap,right))
@@ -55,7 +80,12 @@ class BlockEngine:
                 font='Hand' if t=='memory_note' else 'Head'
                 if t=='method_card':self.line(x,self.b.y(row)-5,x+w,self.b.y(row)-5,BLUE,.65)
                 row=self.lines(label,x,row,w,font,11,color)
-            row=self.lines(b['text'],x,row,w,'Latin' if b.get('language')=='en' else 'Body',11 if b.get('language')=='en' else 11.6,INK,b.get('highlights'))
+            row=self.prose(b['text'],x,row,w,b,'Latin' if b.get('language')=='en' else 'Body',11 if b.get('language')=='en' else 11.6)
+            if t=='paragraph' and b.get('space_after',True):row+=1
+        elif t=='formula_step':
+            row=self.prose(b['reason'],x,row,w,b)
+            for s in wrap(b['formula'],w,'Math',10.4):self.say(s,x+w/2,self.b.y(row),'Math',10.4,INK,'center');row+=1
+            if b.get('space_after',True):row+=1
         elif t=='formula':
             for s in wrap(b['text'],w,'Math',10.4):self.say(s,x+w/2,self.b.y(row),'Math',10.4,INK,'center');row+=1
         elif t in {'formula_group','formula_relation','property_list'}:
