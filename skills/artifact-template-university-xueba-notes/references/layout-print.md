@@ -11,7 +11,7 @@ Use a left-bound double-sided A4 study book. Logical body page 1 is a right-hand
 | Outer margin, width 12 | x = 198–210 | x = 0–12 |
 | Page-number alignment | x = 198, y = 291, right aligned | x = 12, y = 291, left aligned |
 
-Merge the former two sidebars into one outer column. Provide one continuous “我的批注” area with compact teaching notes and illustrations above or alongside relevant material. Match annotation and page-number sides.
+Merge the former two sidebars into one outer column. Use the continuous outer column as a second teaching channel and writing area. Allocate notes, comparisons and diagrams by their anchors; assess free space over the chapter, not a fixed fraction on every page. Match annotation and page-number sides.
 
 Keep the complete 20 mm inner margin blank, including rules, backgrounds, bars, figures and running labels. Mirror the body as well as the annotation column. Use a subtle divider at x = 150.5 on odd pages and x = 59.5 on even pages.
 

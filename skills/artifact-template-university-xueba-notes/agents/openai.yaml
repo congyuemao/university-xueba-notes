@@ -1,7 +1,7 @@
 interface:
   display_name: "大学学霸笔记 University Xueba Notes"
-  short_description: "编写主栏讲透概念、例子逐项对应、表达直接且保留推导条件的大学学霸笔记"
-  default_prompt: "使用 $artifact-template-university-xueba-notes，依据课程材料和原书参考编写大学笔记：主栏首次讲清定义、直观含义、例子、对应关系和必要条件，解释推导与结果，删去作者辩护和无信息语句；按知识层级组织目录，书末列分章英中术语，并按指定批注版本输出。"
+  short_description: "制作含知识块、工作图、完整例题、自然手写批注与侧栏教学的大学学霸笔记"
+  default_prompt: "使用 $artifact-template-university-xueba-notes，依据课程材料和原书参考编写大学笔记：默认学习版，区分引入与正式教学，按先修关系组织定义、图表、例题和A/B/C级边界；正文用霞鹜文楷，独立手写层和侧栏补充教学；采用对应页型、树状地图、完整应用页和平衡目录，区分来源，书末列分章英中术语。按指定打印或电子版输出，分别完成自动检查和内容、视觉复核。"
   icon_small: "assets/icon.svg"
   icon_large: "assets/icon.svg"
 policy:

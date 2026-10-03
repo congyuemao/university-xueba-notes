@@ -210,7 +210,7 @@ def main():
             register_fonts(args.fonts)
             def counter(text):
                 try:
-                    return len(wrap(text, args.width_mm, 'Hand', 10))
+                    return len(wrap(text, args.width_mm, 'Body', 10))
                 except ValueError:
                     return 3
         elif args.width_mm != 172:

@@ -2,6 +2,7 @@
 """Validate Xueba teaching, outline, glossary and visual topology."""
 import argparse
 import json
+from content_schema import validate_v2,PAGE_PROFILES
 from pathlib import Path
 
 PAGE_TYPES={"cover","contents","overview","knowledge","visual_explanation","process","worked_example","synthesis","recap","glossary","references","answers","foldout","blank"}
@@ -11,6 +12,12 @@ VISUAL_KINDS={"microdiagram","working_diagram","sidebar_comic","overview"}
 OUTLINE_KINDS={"part","chapter","unit","section","lesson","feature","appendix"}
 
 def validate(data,base,stage="plan"):
+    if data.get('content_schema_version')==2:
+        try:
+            validate_v2(data)
+            return {'status':'passed','errors':[],'warnings':['Automatic structure/fields only; human content and visual review remain separate.'],'stage':stage}
+        except (ValueError,KeyError,TypeError) as exc:
+            return {'status':'failed','errors':[str(exc)],'warnings':[],'stage':stage}
     errors,warnings=[],[]
     def require(ok,message):
         if not ok:errors.append(message)
@@ -31,7 +38,8 @@ def validate(data,base,stage="plan"):
     require(data.get("body_format")=="teaching-units","Body must use teaching units")
     require(data.get("comic_style")=="reference-anchored-sidebar","Wrong default comic style")
     fraction=data.get("annotation_free_fraction")
-    require(isinstance(fraction,(int,float)) and not isinstance(fraction,bool) and .5<=fraction<=1,"Preserve at least half the chapter annotation area")
+    target=data.get('annotation_policy',{}).get('chapter_min_free_fraction',.35)
+    require(isinstance(fraction,(int,float)) and not isinstance(fraction,bool) and target<=fraction<=1,"Chapter-average annotation space is below its configured target")
 
     concepts=index("concepts");outline=index("outline");examples=index("worked_examples");visuals=index("visuals");pages=index("pages")
     questions=index("questions");answers=index("answers","question_id")

@@ -54,8 +54,8 @@ def validate_content_highlights(content):
     def visit(value, location):
         if isinstance(value, dict):
             if 'highlights' in value:
-                if value.get('type') != 'paragraph':
-                    raise ValueError(f'{location}: highlights are supported only on paragraph blocks')
+                if value.get('type') not in {'paragraph','definition','property','rule','condition','example_inline','common_error','memory_note','diagram_explanation','method_card'}:
+                    raise ValueError(f'{location}: highlights require a text-bearing knowledge block')
                 if not isinstance(value.get('text'), str):
                     raise ValueError(f'{location}: highlighted paragraphs require text')
                 validate_highlights(value['text'], value['highlights'], location)

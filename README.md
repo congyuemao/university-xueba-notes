@@ -1,161 +1,58 @@
 # 大学学霸笔记 · University Xueba Notes
 
-用课程讲义、教材、课堂笔记和习题制作大学学习笔记，输出适合打印或平板批注的 PDF。笔记采用白底蓝色横线、霞鹜文楷正文，配合分级知识目录、正文完整讲解、例题、教学漫画与书末分章专有词汇表。
+依据课程讲义、教材和课堂笔记制作可从零学习的大学教辅 PDF。正文使用霞鹜文楷，独立龙藏手写层配合知识块、工作图、表格、完整例题与侧栏教学。
 
-查看旧版排版示例：[打印版](skills/artifact-template-university-xueba-notes/Resources/examples/print-reference.pdf) · [电子版](skills/artifact-template-university-xueba-notes/Resources/examples/digital-reference.pdf) · [知识速查](skills/artifact-template-university-xueba-notes/Resources/examples/foldout.pdf)
+2026-10-04 已按《下一轮复刻修订方案 v2》同时更新设计规范、内容 schema、渲染器、母版和校准样稿。默认 `learning`；复习压缩版 `revision` 与打印/电子版是两组独立选择。
 
-2026年10月3日提示词修订重点：核心概念在主栏完成定义、解释、例子、逐项对应与必要边界；删除作者辩护、空泛提醒和循环释义，保留适用条件与真实不确定性。详见[内容与语言](skills/artifact-template-university-xueba-notes/references/content-and-language.md)及[完整改写样例](skills/artifact-template-university-xueba-notes/references/teaching-examples.md)。
+- [新版打印样稿](skills/artifact-template-university-xueba-notes/Resources/examples/calibration-print.pdf) · [电子样稿](skills/artifact-template-university-xueba-notes/Resources/examples/calibration-digital.pdf) · [知识折页](skills/artifact-template-university-xueba-notes/Resources/examples/calibration-foldout.pdf)
+- [修订与复核记录](skills/artifact-template-university-xueba-notes/references/calibration-review.md) · [字体对比](skills/artifact-template-university-xueba-notes/Resources/examples/font-comparison.pdf)
+- [Skill 入口](skills/artifact-template-university-xueba-notes/SKILL.md) · [接口说明](skills/artifact-template-university-xueba-notes/references/template-workflow.md)
 
-本轮更新提示词和审稿规范。现有脚本、内容JSON与PDF仍为原版；旧示例及验证记录不代表新版教学或目录形式已通过。当前正文读取 `pages[].blocks`，概念元数据不自动变成讲解。新目录母版、教学单元编译与侧栏自动锚定的实现要求见[模板工作流](skills/artifact-template-university-xueba-notes/references/template-workflow.md)。
+样稿以线性规划、单纯形法和动态规划三章的精选教学单元进行校准，含14页正文、目录和书末词汇表，另有折页。它不是 Taha 全书重制版。数值题与工作图为自编例，章节知识映射到用户提供的第十版教材；未把自编综合篇编号成教材第22章。旧统计学样稿与数据保留为 v1 兼容性资料。
 
-## 在 Codex 中使用
+## 使用
 
-### 1. 安装 skill
+将 `skills/artifact-template-university-xueba-notes` 文件夹放入你的 Codex skills 目录，再调用 `$artifact-template-university-xueba-notes`。本次文件修改不会自动替换其他位置的已安装副本。
 
-在 Codex 对话中发送：
-
-```text
-$skill-installer 请安装这个 skill：
-https://github.com/congyuemao/university-xueba-notes/tree/main/skills/artifact-template-university-xueba-notes
-```
-
-安装后可以在后续对话中通过名称调用。安装与调用方式见 [OpenAI Skills 文档](https://learn.chatgpt.com/docs/build-skills)。
-
-首次生成 PDF 时，让 Codex 根据本仓库根目录的 `requirements.txt` 安装 Python 依赖，并运行 skill 内的 `scripts/prepare_fonts.py` 准备字体。字体准备支持联网下载和本地字体目录，具体命令见下方。
-
-### 2. 提供课程资料
-
-上传讲义、教材章节、课堂笔记或习题，并说明：
-
-- **内容范围**：课程名称、章节或考试范围。
-- **阅读方式**：打印后手写批注，或在电脑、平板上批注。
-- **语言要求**：例如中文讲解、保留英文术语、英文作答。
-
-### 3. 直接描述要制作的笔记
-
-**打印版**
+示例请求：
 
 ```text
-使用 $artifact-template-university-xueba-notes，根据我上传的讲义制作条件概率章节笔记。
-采用打印批注版，中文讲解，保留英文术语。
-包括分级知识目录、知识讲解、推导、例题和教学漫画。
-核心概念第一次出现时给出定义、通俗解释、具体例子、逐项对应和必要条件；公式讲清符号、步骤理由及结果含义。
-删去作者辩护、空泛重要性和同义重复，保留实际适用条件与必要衔接。书末附分章英中专有词汇表。
-输出章节 PDF 和独立知识速查页。
+使用 $artifact-template-university-xueba-notes，依据我提供的教材制作线性规划学习版笔记。
+同时输出打印版和电子版，中文讲解并保留必要英文术语。
+用具体生产计划串起变量、约束、可行域和最优解，安排完整模型应用页。
+正文使用霞鹜文楷；手写批注、图表和侧栏承担各自的教学作用。
+附书末分章英中术语表和独立知识折页。
 ```
 
-**平板批注版**
+| 选择 | 含义 |
+| --- | --- |
+| `learning` | 默认，按先修关系展开，不把全书压成摘要 |
+| `revision` | 明确用于复习，允许压缩已学内容 |
+| `print` | A4；20 mm内侧空白装订区；外侧批注栏随奇偶页镜像 |
+| `digital` | A4；固定双侧批注栏 |
 
-```text
-使用大学学霸笔记，根据这些课程资料制作线性代数第一章笔记。
-我在平板上阅读，采用电子双侧批注版。
-重点讲解向量空间、线性无关和基，配合例题与图示，输出 PDF。
-```
+## 本地生成
 
-**接着编下一章**
-
-```text
-继续使用大学学霸笔记，依据新上传的资料编写下一章。
-沿用上一章的批注版本、术语译法和页面风格。
-```
-
-## 选择批注版本
-
-| 使用方式 | 版本 | 页面安排 |
-| --- | --- | --- |
-| 打印、装订后手写批注 | `print` | 外侧批注栏随奇偶页左右交替，内侧留出 20 mm 装订空间 |
-| 电脑或平板阅读、批注 | `digital` | 正文两侧固定批注栏 |
-
-需要两版时，在请求中写明“同时输出打印版和电子版”。两版使用同一份课程内容，分别排版。
-
-## 在本地生成示例 PDF
-
-下面的命令使用仓库附带的旧版统计学内容，复现旧排版示例；它们不会自动应用新版教学写作规范改写正文。
-
-### 1. 下载项目并准备字体
-
-安装 Python 和 Git 后，在终端运行：
+安装仓库根目录 `requirements.txt` 中的依赖后，进入 Skill 根目录运行：
 
 ```sh
-git clone https://github.com/congyuemao/university-xueba-notes.git
-cd university-xueba-notes
-python -m pip install -r requirements.txt
-cd skills/artifact-template-university-xueba-notes
-python -X utf8 scripts/prepare_fonts.py --output-dir .fonts
-mkdir output
+python scripts/prepare_fonts.py --output-dir .fonts
+python scripts/build_pdf_templates.py --fonts .fonts --output Resources/templates
+python scripts/build_calibration.py --output Resources/content/operations-research-calibration.json
+python scripts/validate_book_plan.py Resources/content/operations-research-calibration.json
+python scripts/fill_template.py --content Resources/content/operations-research-calibration.json --templates Resources/templates --fonts .fonts --assets Resources/illustrations --edition print --fun-seed 41 --output output/calibration-print.pdf
+python scripts/fill_template.py --content Resources/content/operations-research-calibration.json --templates Resources/templates --fonts .fonts --assets Resources/illustrations --edition digital --fun-seed 41 --output output/calibration-digital.pdf
+python scripts/fill_template.py --content Resources/content/operations-research-calibration.json --templates Resources/templates --fonts .fonts --assets Resources/illustrations --foldout-only --output output/calibration-foldout.pdf
 ```
 
-也可以从仓库页面选择 **Code → Download ZIP**，解压后进入项目根目录，从 `python -m pip install -r requirements.txt` 开始。
+离线字体目录须包含 `WenKai.ttf`、`LongCang.ttf`、`SansBold.ttf`、`DejaVuSans.ttf`、`DejaVuSerif.ttf`；用 `--source-dir /path/to/fonts` 传给字体脚本。独立目录可避免覆盖输入。字体与参考资源许可见 [第三方说明](THIRD_PARTY_NOTICES.md)。
 
-### 2. 生成需要的版本
+v2 支持实际测量分页、不可拆教学单元、左右混排、锚点批注、圈词圈单元格、有机知识树和目录栏平衡。PDF 同时输出 `.layout.json`、`.compiled.json` 和知识树 SVG。复杂图或过长内容超出槽位时会报错，需要编辑修改；程序不自动补写知识。
 
-以下命令均在 `skills/artifact-template-university-xueba-notes/` 目录运行。
-
-**打印版**
+## 检查
 
 ```sh
-python -X utf8 scripts/fill_template.py --content Resources/content/statistics-chapter.json --templates Resources/templates --fonts .fonts --assets Resources/illustrations --edition print --output output/print-notes.pdf
+python -m unittest discover -s skills/artifact-template-university-xueba-notes/tests -v
 ```
 
-**电子版**
-
-```sh
-python -X utf8 scripts/fill_template.py --content Resources/content/statistics-chapter.json --templates Resources/templates --fonts .fonts --assets Resources/illustrations --edition digital --output output/digital-notes.pdf
-```
-
-**独立知识速查页**
-
-```sh
-python -X utf8 scripts/fill_template.py --content Resources/content/statistics-chapter.json --templates Resources/templates --fonts .fonts --assets Resources/illustrations --edition print --foldout-only --output output/foldout.pdf
-```
-
-生成的 PDF 保存在 skill 目录下的 `output/` 文件夹中。
-
-### 使用已有字体
-
-将 `WenKai.ttf`、`SansBold.ttf`、`DejaVuSerif.ttf` 和 `DejaVuSans.ttf` 放在同一个目录，将下面的路径替换为该目录：
-
-```sh
-python -X utf8 scripts/prepare_fonts.py --output-dir .fonts --source-dir "/path/to/fonts"
-```
-
-## 页脚笑话、冷知识和名言
-
-内置 **953 条结构化短句**：356 条短笑话、145 条趣味冷知识、99 条学科知识、353 条名言名句。名句以有作品出处的古典诗文为主。每条保存类型、学科、正文和来源，名句另有作者与篇名。
-
-生成 PDF 时会自动随机抽取，优先一行，最长两行，署名也计入长度；同一份笔记的各页不重复。内容已按要求筛选，避开性别歧视、政治冒犯或政治敏感、种族主义内容。
-
-在对话中可以这样要求：
-
-```text
-页脚使用短笑话、统计学冷知识和名言，随机不重复，通常一行，最多两行。
-继续生成下一章时沿用这本书的已用语料记录。
-```
-
-在上面的 PDF 生成命令末尾加参数即可：
-
-```sh
---fun-seed 42 --fun-subject 统计学 --fun-include-general --fun-used-file output/book-used.json
-```
-
-单独抽取 20 条、保存为 JSON（在 skill 目录运行，只需 Python 标准库）：
-
-```sh
-python -X utf8 scripts/pick_fun_content.py --count 20 --seed 42 --used-file output/book-used.json --output output/fun-selection.json
-```
-
-只要笑话可加 `--types joke`；只要一行可加 `--max-lines 1`。跨章节复用同一个 `--used-file`；重新编一本书时换一个文件名。保留手写页脚时，给 PDF 生成命令加 `--fun-mode content`。
-
-[抽取参数与数据字段](skills/artifact-template-university-xueba-notes/references/fun-content.md) · [全部语料](skills/artifact-template-university-xueba-notes/Resources/fun-content/items.jsonl) · [来源目录](skills/artifact-template-university-xueba-notes/Resources/fun-content/sources.json)
-
-## 制作自己的章节
-
-在 Codex 中提供课程资料并调用 skill，即可让助手编写内容、准备插图和排版。手动运行脚本时，按下面的方式替换输入：
-
-1. 参考[统计学内容文件](skills/artifact-template-university-xueba-notes/Resources/content/statistics-chapter.json)的现有字段，另存章节JSON。先按新版语言规范写审定稿，再落实到 `pages[].blocks`；不要照搬旧第一页的概念密度，也不要只填写 `concepts`。逐项记录首次教学在正文中的位置，填写目录、典例与书末分章专有词汇表。
-2. 将本章插图放入一个文件夹，在内容 JSON 的 `sidebar.comic.asset` 中填写相对于该文件夹的图片路径。
-3. 将生成命令中的 `--content` 改为新 JSON 路径，`--assets` 改为插图目录，`--output` 改为目标 PDF 路径。
-
-目录由独立 `outline` 生成，不把每个分页标题机械列入目录。默认不生成统一自测、独立答案页或答案词汇；如确需练习册，可在具体请求中另行说明。`chapter_glossary` 位于全书最后，每个词条只保留 `term_en` 与 `meaning_zh`。
-
-内容字段、页型和高亮写法见 [模板填充说明](skills/artifact-template-university-xueba-notes/references/template-workflow.md)；调整笔记风格可从 [skill 主规范](skills/artifact-template-university-xueba-notes/SKILL.md) 进入对应说明。
+从仓库根目录执行。设置环境变量 `XUEBA_TEST_FONTS` 为准备好的字体目录，可运行实际字体、混排、知识树及分页回归；未设置时这4项明确跳过。自动字段/结构检查与人工内容/视觉复核分别记录，schema通过不能代表成书通过。本轮结果见复核记录及 `PACKAGE_MANIFEST.json`。

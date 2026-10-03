@@ -1,0 +1,209 @@
+{
+  "date": "2026-10-04",
+  "scope": "Skill v2 implementation and LP/simplex/DP calibration slices; not a full Taha book",
+  "content_sha256": "abca60ce3000ad8931d56837ec68640a484267d7cd0ce5075eafc521af4ab3eb",
+  "reviewer": "Codex",
+  "independent_human_review": false,
+  "sources": {
+    "math": {
+      "file_name": "学霸笔记高中数学.pdf",
+      "pages": 228,
+      "sha256": "7472d2fd639bf90fc524208974295df4b77bddf33f72dc720926b9a58173f5e8"
+    },
+    "math_b": {
+      "file_name": "学霸笔记高中数学人教B版.pdf",
+      "pages": 228,
+      "sha256": "a185f242a447c9e37e9a9df215ac9cb83ed3c9729b953ab55677719238de7a5c"
+    },
+    "current": {
+      "file_name": "统筹学学霸笔记-Taha第十版-打印版.pdf",
+      "pages": 81,
+      "sha256": "9061594192bed6463d6db3067e637cfb9998f7bbd86849a83aa09f1edbf42b16"
+    },
+    "taha": {
+      "file_name": "Operations Research An Introduction (Taha, Hamdy A) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+      "pages": 849,
+      "sha256": "559b033838424662fb48e815d34121d263c7f87b9763eac903386380b7a96cc2"
+    }
+  },
+  "automatic_structure": {
+    "status": "passed",
+    "tests": 35,
+    "skipped": 0,
+    "details": "schema, sources, hierarchy, pagination and annotation-anchor regressions; official skill validator"
+  },
+  "automatic_fields": {
+    "status": "passed",
+    "details": "font preparation, all 12 page types, both editions, foldout, PDF dimensions/text bounds/annotation slots/links and v1 compatibility"
+  },
+  "human_content": {
+    "status": "not_run",
+    "reason": "No external human/editor signoff; see separate agent review."
+  },
+  "human_visual": {
+    "status": "not_run",
+    "reason": "No external human/editor signoff; see separate agent review."
+  },
+  "agent_content_review": {
+    "status": "passed",
+    "coverage": "All 14 body pages, cover, contents, glossary and foldout; independent LP vertex enumeration, simplex pivot elimination, DP exhaustive enumeration and resource allocation check"
+  },
+  "agent_visual_review": {
+    "status": "passed",
+    "coverage": "Print 19 pages and digital 17 pages rendered as full-page images and contact sheets; close review of maps, ordinary pages, problem pages, handwritten circles/arrows, tables, contents and foldout. Original-reference comparison locations are in reference-observations.md."
+  },
+  "pdfs": {
+    "print": {
+      "pdf_pages": 19,
+      "sha256": "1e47fa4c218e216c8469145b08f6e512e2ecd673628ba29071c282d43d2837d9",
+      "size_bytes": 1567918,
+      "warnings": [],
+      "checks": [
+        "page size",
+        "text clipping/missing glyphs",
+        "print text binding margin",
+        "sidebar overlap and height",
+        "block vertical bounds",
+        "unique fun strips",
+        "embedded Body/Hand (books)",
+        "contents links (books)"
+      ],
+      "chapters": [
+        {
+          "chapter_id": "guide",
+          "annotation_free_fraction": 1.0,
+          "page_type_counts": {
+            "volume_map": 1
+          }
+        },
+        {
+          "chapter_id": "dp",
+          "annotation_free_fraction": 0.8625,
+          "page_type_counts": {
+            "knowledge_visual": 1,
+            "formula_summary": 1,
+            "application_page": 1,
+            "chapter_map": 1,
+            "process_page": 1
+          }
+        },
+        {
+          "chapter_id": "lp",
+          "annotation_free_fraction": 0.78125,
+          "page_type_counts": {
+            "comparison_page": 1,
+            "knowledge_dense": 1,
+            "knowledge_visual": 1,
+            "application_page": 1
+          }
+        },
+        {
+          "chapter_id": "sx",
+          "annotation_free_fraction": 0.75,
+          "page_type_counts": {
+            "knowledge_dense": 1,
+            "process_page": 1,
+            "core_problem_page": 1,
+            "worked_example_page": 1
+          }
+        }
+      ],
+      "body_pages": 14,
+      "contents_column_rows": [
+        [
+          19.05,
+          21.1
+        ]
+      ]
+    },
+    "digital": {
+      "pdf_pages": 17,
+      "sha256": "304b8e265b6ed6ec809c267b873562cdc6e85b619a6ad52addf7c6bdf13b3059",
+      "size_bytes": 1565455,
+      "warnings": [],
+      "checks": [
+        "page size",
+        "text clipping/missing glyphs",
+        "print text binding margin",
+        "sidebar overlap and height",
+        "block vertical bounds",
+        "unique fun strips",
+        "embedded Body/Hand (books)",
+        "contents links (books)"
+      ],
+      "chapters": [
+        {
+          "chapter_id": "guide",
+          "annotation_free_fraction": 1.0,
+          "page_type_counts": {
+            "volume_map": 1
+          }
+        },
+        {
+          "chapter_id": "dp",
+          "annotation_free_fraction": 0.88046875,
+          "page_type_counts": {
+            "chapter_map": 1,
+            "formula_summary": 1,
+            "application_page": 1,
+            "knowledge_visual": 1,
+            "process_page": 1
+          }
+        },
+        {
+          "chapter_id": "lp",
+          "annotation_free_fraction": 0.8359375,
+          "page_type_counts": {
+            "application_page": 1,
+            "knowledge_visual": 1,
+            "knowledge_dense": 1,
+            "comparison_page": 1
+          }
+        },
+        {
+          "chapter_id": "sx",
+          "annotation_free_fraction": 0.78564453125,
+          "page_type_counts": {
+            "core_problem_page": 1,
+            "process_page": 1,
+            "worked_example_page": 1,
+            "knowledge_dense": 1
+          }
+        }
+      ],
+      "body_pages": 14,
+      "contents_column_rows": [
+        [
+          19.05,
+          21.1
+        ]
+      ]
+    },
+    "foldout": {
+      "pdf_pages": 1,
+      "sha256": "6237d11ee5284022eabfb3b13dd22c9e31819cfaf58daf39320d9d15be63b4a1",
+      "size_bytes": 121525,
+      "warnings": [],
+      "checks": [
+        "page size",
+        "text clipping/missing glyphs",
+        "print text binding margin",
+        "sidebar overlap and height",
+        "block vertical bounds",
+        "unique fun strips",
+        "embedded Body/Hand (books)",
+        "contents links (books)"
+      ],
+      "chapters": [],
+      "body_pages": 0,
+      "contents_column_rows": []
+    }
+  },
+  "limitations": [
+    "Calibration examples are selected teaching units, not complete textbook chapters.",
+    "Organic maps support at most four levels; long indivisible problems need editorial splitting.",
+    "Block occupancy is not pixel-based ink density.",
+    "New OR comics were not generated; the calibration focuses on working diagrams, while existing comic workflow/assets remain.",
+    "No independent learner/model benchmark or external human signoff."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "master_sha256": "59090d753d1aeed6ecf157394db47e74d3fb722f7d199b605ee4482501da5fb8",
+  "content_schema_version": 2,
+  "fun_mode": "random",
+  "fun_seed": null,
+  "pages": [
+    {
+      "pdf_page": 1,
+      "logical_page": null,
+      "role": "foldout",
+      "texts": [],
+      "fun_content": null
+    }
+  ],
+  "chapters": [],
+  "warnings": [],
+  "review_status": {
+    "automatic_structure": "passed",
+    "automatic_fields": "passed",
+    "human_content": "not_run",
+    "human_visual": "not_run"
+  }
+}

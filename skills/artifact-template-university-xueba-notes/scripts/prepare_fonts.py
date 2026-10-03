@@ -10,6 +10,8 @@ import urllib.request
 KAI_URL = "https://raw.githubusercontent.com/lxgw/LxgwWenKai/main/fonts/TTF/LXGWWenKai-Regular.ttf"
 NOTO_URL = "https://raw.githubusercontent.com/google/fonts/main/ofl/notosanssc/NotoSansSC%5Bwght%5D.ttf"
 DEFAULT_BODY_FONT = "WenKai.ttf"
+HAND_URL = "https://raw.githubusercontent.com/google/fonts/main/ofl/longcang/LongCang-Regular.ttf"
+HAND_FONT = "LongCang.ttf"
 DEJAVU_URL = "https://github.com/dejavu-fonts/dejavu-fonts/releases/download/version_2_37/dejavu-fonts-ttf-2.37.tar.bz2"
 LATIN = ["DejaVuSans.ttf", "DejaVuSerif.ttf"]
 
@@ -28,12 +30,14 @@ def prepare(output, source=None):
     if source:
         if source.resolve() == output.resolve():
             raise ValueError("Choose a separate output directory.")
-        for name in [DEFAULT_BODY_FONT,"SansBold.ttf"] + LATIN:
+        for name in [DEFAULT_BODY_FONT,HAND_FONT,"SansBold.ttf"] + LATIN:
             file = source / name
             if file.is_file():
                 shutil.copy2(file, output / name)
     if not (output / "WenKai.ttf").exists():
         download(KAI_URL, output / "WenKai.ttf")
+    if not (output / HAND_FONT).exists():
+        download(HAND_URL, output / HAND_FONT)
     if not (output / "SansBold.ttf").exists():
         variable = output / "NotoSansSC.ttf"
         if not variable.exists() and source and (source / variable.name).is_file():
@@ -66,10 +70,10 @@ def prepare(output, source=None):
                     with fonts.extractfile(member) as source_file, (output/name).open("wb") as target:
                         shutil.copyfileobj(source_file,target)
     licences=Path(__file__).resolve().parents[1]/"assets/licenses"
-    for name in ["LXGW-WenKai-OFL.txt","NotoSansSC-OFL.txt","DejaVu-LICENSE.txt"]:
+    for name in ["LXGW-WenKai-OFL.txt","LongCang-OFL.txt","NotoSansSC-OFL.txt","DejaVu-LICENSE.txt"]:
         shutil.copy2(licences/name,output/name)
     from fontTools.ttLib import TTFont
-    for name in [DEFAULT_BODY_FONT,"SansBold.ttf"] + LATIN:
+    for name in [DEFAULT_BODY_FONT,HAND_FONT,"SansBold.ttf"] + LATIN:
         font=TTFont(output/name)
         if not font.getBestCmap():
             raise ValueError(f"Invalid font: {name}")

@@ -10,7 +10,8 @@ from reportlab.lib.utils import ImageReader
 from pdf_template_layout import *
 from context_highlights import validate_content_highlights,contextual_highlight_lines
 from pick_fun_content import DEFAULT_CATALOG,KINDS,FunPicker,UsageHistory,load_catalog,display_text,write_json
-class Book:
+from book_compositor import BookCompositor
+class Book(BookCompositor):
     def __init__(self,a,history=None):
         self.a=a;self.content=json.loads(Path(a.content).read_text(encoding='utf-8'));self.man=json.loads((Path(a.templates)/'template-manifest.json').read_text(encoding='utf-8'));self.src=Path(a.templates)/(a.edition+'-master.pdf');self.hash=hashlib.sha256(self.src.read_bytes()).hexdigest();self.master=fitz.open(self.src);self.doc=fitz.open();self.toc=[];self.logs=[];self.g=None;self.contents_links=[];self.body_targets={};self.contents_pdf_page=None;register_fonts(a.fonts)
         self.validate_schema()
@@ -20,6 +21,7 @@ class Book:
         if a.fun_mode=='random' and not a.foldout_only:
             self.fun_picker=FunPicker(load_catalog(a.fun_catalog),seed=a.fun_seed,subjects=a.fun_subject,
                 kinds=a.fun_types,include_general=a.fun_include_general,max_lines=a.fun_max_lines,history=history)
+        self.prepare_v2()
     def validate_schema(self):
         legacy=[key for key in ('terminology_extended','answer_vocabulary') if key in self.content]
         if legacy:raise ValueError('Remove legacy fields: '+', '.join(legacy))
@@ -59,11 +61,16 @@ class Book:
                 seen.add(key)
     def y(self,row):return self.first+row*self.pitch
     def start(self,role,number=None):
+        self.page_extra={};self.vector_assets=[]
         self.role=role;self.no=number;self.buf=BytesIO();self.h=210 if role=='foldout' else 297;self.w=594 if role=='foldout' else 210;self.c=canvas.Canvas(self.buf,pagesize=(self.w*MM,self.h*MM));LOG.clear()
         self.g=self.man['editions'][self.a.edition].get(role);self.fun_item=None
     def finish(self):
         self.c.showPage();self.c.save();overlay=fitz.open(stream=self.buf.getvalue(),filetype='pdf');p=self.doc.new_page(width=self.w*MM,height=self.h*MM);p.show_pdf_page(p.rect,self.master,self.man['roles'][self.role]);p.show_pdf_page(p.rect,overlay,0)
-        self.logs.append({'pdf_page':len(self.doc),'logical_page':self.no,'role':self.role,'texts':list(LOG),'fun_content':self.fun_item})
+        for asset,box in self.vector_assets:
+            source=fitz.open(asset)
+            if not source.is_pdf:source=fitz.open(stream=source.convert_to_pdf(),filetype='pdf')
+            p.show_pdf_page(fitz.Rect(*(v*MM for v in box)),source,0)
+        self.logs.append({'pdf_page':len(self.doc),'logical_page':self.no,'role':self.role,'texts':list(LOG),'fun_content':self.fun_item,**self.page_extra})
     def say(self,s,x,y,font='Body',size=11.6,color=INK,align='left',grid=False):
         if s is not None and str(s):return text(self.c,str(s),x,y,font,size,color,align,self.h,grid)
     def furniture(self,title,joke,logical=None,opening=False):
@@ -179,7 +186,7 @@ class Book:
         for node in self.content.get('outline') or []:
             if node.get('kind') in {'glossary','appendix'}:numbers.setdefault(node['id'],first_glossary)
         return numbers
-    def frontmatter(self):
+    def legacy_frontmatter(self):
         contents=((self.content.get('frontmatter') or {}).get('contents') or {});title=contents.get('title','目录');numbers=self.outline_numbers();r=3
         def begin():
             role='contents_odd' if (len(self.doc)+1)%2 else 'contents_even'
@@ -207,7 +214,7 @@ class Book:
             self.contents_links.append((page_index,node['id'],[self.g['main_x']+indent,top,right,self.y(r-1)+1]))
             r+=1
         self.finish()
-    def chapter(self):
+    def legacy_chapter(self):
         jokes=self.content.get('humour') or []
         for index,page in enumerate(self.content.get('pages') or []):
             n=page['number'];opening=n==1;role=('opening_'if opening else'')+('odd'if n%2 else'even')
@@ -258,6 +265,7 @@ class Book:
     def foldout(self):
         wide=self.content.get('wide_reference') or {};self.start('foldout');self.say(wide.get('title',self.content.get('chapter','')),14,21,'Head',23);self.say(wide.get('label','知识速查'),580,21,'Hand',14,BLUE,'right')
         cols=wide.get('columns') or []
+        if len(cols)>4:raise ValueError('Foldout supports at most four columns')
         for i,col in enumerate(cols):
             x=14+141.5*i;r=0;self.say(col['title'],x+2,38,'Head',14,BLUE);y=49.8
             for t in col.get('formulas') or []:
@@ -271,6 +279,7 @@ class Book:
                 if example.get('title'):self.say(example['title'],x+2,y,'Head',12,BLUE);y+=7.2
                 for t in example.get('lines') or []:
                     for s in wrap(t,131,'Body',11.5):self.say(s,x+2,y,'Body',11.5);y+=7.2
+            if y>202:raise ValueError(f'Foldout column {i+1} exceeds available height; shorten or split the reference')
         self.finish()
     def run(self):
         if self.a.foldout_only:self.foldout()
@@ -288,7 +297,8 @@ class Book:
         metadata=self.content.get('metadata') or {};self.doc.set_metadata({key:metadata.get(key,'') for key in ('title','author','subject','keywords')})
         self.doc.rewrite_images(dpi_threshold=450,dpi_target=300,quality=94,bitonal=False)
         self.doc.save(self.a.output,garbage=4,deflate=True)
-        write_json(Path(self.a.output).with_suffix('.layout.json'),{'master_sha256':self.hash,'fun_mode':self.a.fun_mode,'fun_seed':self.a.fun_seed,'pages':self.logs})
+        write_json(Path(self.a.output).with_suffix('.layout.json'),{'master_sha256':self.hash,'content_schema_version':self.content.get('content_schema_version',1),'fun_mode':self.a.fun_mode,'fun_seed':self.a.fun_seed,'pages':self.logs,'chapters':self.layout_metrics,'warnings':self.composition_warnings,'review_status':{'automatic_structure':'passed','automatic_fields':'passed','human_content':'not_run','human_visual':'not_run'}})
+        if self.compiled:write_json(Path(self.a.output).with_suffix('.compiled.json'),self.content)
         assert hashlib.sha256(self.src.read_bytes()).hexdigest()==self.hash,'Master was modified'
         if self.fun_picker and self.history:self.history.commit(self.fun_picker.selected)
 if __name__=='__main__':

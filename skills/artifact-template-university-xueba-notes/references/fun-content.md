@@ -43,7 +43,7 @@ python -X utf8 scripts/pick_fun_content.py --count 8 --types joke --used-file ou
 python -X utf8 scripts/pick_fun_content.py --count 8 --fonts .fonts --width-mm 100 --output output/narrow.json
 ```
 
-`--max-chars` 限制含署名的总字符数，默认70；`--max-lines` 默认2。独立脚本未指定字体时使用语料附带的测量值：10 pt `Hand` 文楷、172 mm可用宽度，对应当前打印版页脚。电子版当前可用宽度为180 mm。改变字体或宽度时，用 `--fonts` 重新测量。
+`--max-chars` 限制含署名的总字符数，默认70；`--max-lines` 默认2。独立脚本未指定字体时使用语料附带的测量值：10 pt 文楷、172 mm可用宽度，对应当前打印版页脚。v2页脚继续使用文楷，字体角色名为`Body`；`Hand`龙藏只用于批注。电子版当前可用宽度为180 mm。改变字体或宽度时，用 `--fonts` 重新测量。
 
 独立抽取的 `selection.json` 是完整选文结果，可交给内容作者放入每页的 `humour`，再使用 `--fun-mode content`；PDF默认随机模式会自行抽取。单独抽取时提供 `--used-file` 会将这批条目标记为已用，因此已经选好的一批应直接复用，不要再让随机模式重新抽同一批。
 

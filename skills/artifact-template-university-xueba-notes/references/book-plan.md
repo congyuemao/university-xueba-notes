@@ -1,86 +1,53 @@
-# 书稿计划与检查
+# 书稿、来源与教学调度
 
-较长书稿、多个批次或双版本使用JSON计划保存教学语义、知识目录、页面承载和视觉关系。短任务可以在内部保留同样记录。
+v2的权威字段校验为scripts/content_schema.py。以Resources/content/operations-research-calibration.json为可执行示例。填写字段只证明结构，不能证明教会读者。
 
-## 顶层字段
+## 顶层
 
-| 字段 | 内容 |
+content_schema_version=2；learning_mode为learning（默认）或revision；sources、outline、pages、concepts、chapter_glossary；annotation_policy.chapter_min_free_fraction默认.35。print/digital由填充命令选择，与学习/复习模式独立。封面、目录、页眉、趣味条和折页接口见[模板工作流](template-workflow.md)。
+
+sources每项含id、title、locator。locator记录用户材料的版次、印刷页与PDF物理页规则；不把文件名当成内容已检查的证明。
+
+outline是独立知识树，不从分页标题推导。字段id、title、kind、level（1–4）、parent_id；可有ordinal_label。kind包括part、chapter、unit、section、lesson、feature、chapter_map、volume_map、appendix、glossary。目录节点有首个实际页锚点；父首子不能被拆到两栏。专题和导图作为正式节点。
+
+## 来源身份
+
+每个正文块、嵌套子块、侧栏项和手写批注都记录source_kind：
+
+| 值 | 含义 |
 | --- | --- |
-| scope | `chapter`或`whole_book` |
-| edition | `print`或`digital`，双版本分别保存分页计划 |
-| body_format | 固定为`teaching-units` |
-| comic_style | 固定为`reference-anchored-sidebar` |
-| required_topics | 需要覆盖的topic ID列表 |
-| concepts | 教学概念对象列表 |
-| outline | 独立知识目录列表 |
-| worked_examples | 可选的典例与完整解答列表 |
-| visuals | 教学视觉对象列表 |
-| pages | 页面承载列表 |
-| chapter_glossary | 完整书末尾的分章专有词汇组 |
-| template_manifest | 实际使用的模板清单路径 |
-| content_data | 供填充脚本读取的独立内容JSON路径 |
-| source_comic_references | 实际查看并传入生图的原书裁片路径 |
-| annotation_free_fraction | 当前章或书的可书写批注面积比例，0至1 |
+| textbook_core | 指定教材范围内的知识；source_id与source_section必需 |
+| course_core | 课程讲义/大纲规定的知识；同样需来源定位 |
+| authored_example | 自编情境、数字题、工作图和解答，不伪装教材原题 |
+| supplement | 教材/课程之外的补充；在章节或专题入口向读者明确标识 |
+| editorial_synthesis | 作者整理的关系、总结、跨章综合 |
 
-## 核心概念
+不必每段打印来源，但编辑数据必须区分。直接引文、争议事实和补充知识的边界在读者页可见。自编综合篇不使用textbook_chapter_number；映射教材章时需source_id/source_section。Taha第十版纸本1–21章之后，companion目录另有Chapter 22；自编综合建模不可冒用22。Bellman-Ford不能因属于最短路就标作该教材相应节核心内容。
 
-每项至少包含`id`、`topic`、`core`、`prerequisite_ids`、`definition`、`plain_explanation`和`canonical_example`，编辑记录另明确`example_mapping`与必要的`boundary`。这些内容都须出现在正文首次教学位置。按学科需要增加`conditions`、`symbols`、`contrast_ids`、`derivation`、`evidence`或`causal_links`。`main_text`只记录教材稿或摘要；填写字段不能证明实际正文已经教会。
+## 概念调度
 
-概念仍可记录`visual_ids`；没有图时写`prose_reason`。视觉引用必须双向对应。
+concepts包含id、importance（core/supporting/extension）、first_use_role、preferred_representation列表、boundary_level（A/B/C）、requires_worked_example、requires_visual。先修关系用prerequisite_ids；正文块中可用concept_ids建立对应。
 
-## 知识目录
+- introduced：名称作为导航或分类出现，尚不代表学会；后续须安排正式教学位置。
+- taught：五项教学检查已有实际块证据；不是因为字段非空自动成立。
+- reused：调用已教知识，仅补当前推理所需回顾。
 
-`outline`每项包含：
+teaching_refs把definition、plain_explanation、canonical_example、example_mapping、boundary分别映射到真实块ID列表。五项可分布于不同载体，多个角色也可共用一个有证据的块；核心定义/主推理在主栏。A条件须同教学单元出现，B放后部或侧栏，C仅按课程要求进入主线。人工审查必须阅读引用位置，不能用无关块满足字段。
 
-| 字段 | 内容 |
-| --- | --- |
-| id | 稳定目录节点ID |
-| title | 真实知识名称或正式教学栏目名 |
-| level | 从1开始的层级 |
-| parent_id | 上级节点，顶层为`null` |
-| kind | `part`、`chapter`、`unit`、`section`、`lesson`、`feature`或`appendix` |
-| include_in_toc | 是否进入目录，默认`true` |
+第一处introduced和首次taught位置可分别记录在occurrences中；例如导图先提到“随机模型”，并不要求第一页同时完成全部模型分类。requires_visual和requires_worked_example提醒作者安排实际图例，校验器检查关联，人工检查其教学作用。
 
-页面使用`outline_ids`登记自己承载的节点。目录页码取节点第一次出现的页面。页面标题不自动成为目录条目；分页产生的“续页”“答案一”“答案二”等标题不得进入目录。书末分章词汇表使用一个`appendix`节点，词条本身不进入目录。
+## 页面及分页
 
-## 典例与题目
+pages含唯一id、title、type、chapter_id、outline_ids、blocks、handwritten_layer、sidebar.items。块含唯一id、type、source_kind及对应字段。页型见[page-types.md](page-types.md)。
 
-默认完整书不要求自测、闭书回忆、独立答案页或答案词汇。`worked_examples`只记录实际需要的典例，包含稳定ID、所用概念、题目、完整解答及承载页。用户明确要求独立练习册时，才增加`questions`与`answers`并检查一一对应。
+同章同类型相邻段默认合流；page_break=true保留独立页面；group与keep_with_next链保持完整；标题与后块自动同页。目录锚点跟随起始块，批注跟随anchor_block_id迁移。页码以compiled.json为最终依据；不要持有失效的手工页码。
 
-## 视觉与页面
+handwritten_layer必须评估，确实无必要时为空并写handwriting_reason。侧栏、手写、教学引用都必须能定位到实际输出。学习版按块完整性增加页数，不用大量首次定义填满章节概要页。
 
-visual kind可为`microdiagram`、`working_diagram`、`sidebar_comic`或`overview`。method可为`native`、`generated`或`source`。计划阶段status为`planned`，成品阶段为`embedded`；asset_path相对计划文件或绝对路径。精确图使用native或经核对的source。
+## 检查与交付
 
-page type可为`cover`、`contents`、`overview`、`knowledge`、`visual_explanation`、`process`、`worked_example`、`synthesis`、`recap`、`glossary`、`references`、`foldout`或`blank`。独立`answers`页只在用户明确要求练习系统时使用。完整书覆盖封面、分级目录、总览、知识、典例或方法、综合、书末词汇表和速查。页面包含`id`、`type`、`concept_ids`、`outline_ids`、`visual_ids`与可选`worked_example_ids`。
+validate_book_plan.py识别v2并检查字段、唯一ID、引用、来源、专题构件等；旧计划接口保留兼容。即使用--stage delivery，自动通过仍不意味着人工内容或视觉通过。
 
-除封面、空白页和独立折页外，成品页面的`humour_lines`为1或2，`humour_position`固定为`page-bottom`。物理页底趣味条属于页面家具，不属于正文blocks。
+分别保存automatic_structure、automatic_fields、human_content、human_visual，记录文件校验值、实际页和块ID；未执行为not_run。逐页语义检查数字所指对象、单位、符号和例题推理，尤其不能用“每期订为120”含混表达“三次开机费合计120元”。
 
-## 分章专有词汇表
-
-`chapter_glossary`按章分组。每组包含`chapter_id`、`chapter_title`和`entries`；每项只含`term_en`与`meaning_zh`。程序检查字段、空值、章节引用和重复项。人工检查每项是否为真正的学科专有词汇，并删除普通动词、连接语、句子碎片、题目措辞和答案表达。
-
-## 执行
-
-```sh
-python scripts/validate_book_plan.py /path/to/book-plan.json --stage plan
-python scripts/validate_book_plan.py /path/to/book-plan.json --stage delivery
-```
-
-检查教学字段、先修关系、目录父子关系、页面锚点、视觉双向引用、书末词汇表、趣味条位置和成品资产。连续三个普通知识页没有工作视觉或没有侧栏漫画时分别给出复查提醒。人工仍检查内容准确性、首次解释是否真正可懂、图像意义、目录层级和最终渲染。
-
-## 首次教学的编辑记录
-
-当前计划校验器不验证完整教学链是否真实进入PDF。另存 `teaching-review.json` 或等价编辑表，逐个记录以下信息；这是审稿数据，不宣称为填充器已实现的输入接口。
-
-- 稳定 `unit_id`、核心 `concept_id`、先修概念及首次教学位置。
-- 五项角色各自对应的实际正文位置与短摘录：`definition`、`plain_explanation`、`canonical_example`、`example_mapping`、`boundary`。同一段可完成多项任务，证据须可具体指认。
-- 优先用稳定块ID；现行内容没有块ID时，用 `pages`、`blocks` 的零起点数组位置加短摘录定位，并保存内容文件校验值。改稿后重建定位，不能仅凭旧数组索引通过。
-- 新符号出现与解释位置；所需先修可在同页更早的正文完成，不机械要求提前一整页。
-- 侧栏的 `anchor_block_id` 或等价位置、所需概念与符号、最终视觉阅读顺序。源JSON顺序不能代替实际页面位置。
-- 定义与例子的距离、关键推导理由、结果解释、遮住侧栏后的复读结论。
-
-评审概念状态可用 `unseen`、`introduced`、`taught`、`reused`：仅出现名称或符号时仍未教完；实际五项教学完成后才标 `taught`。必要边界尚未交代时不能以已有四个字段代替完成。侧栏或图注使用未教概念时，先改教学顺序或将必要解释移入主栏。
-
-## 后续结构改造的衔接
-
-方案中的 `content_schema_version`、`teaching_units`、`source_ref`、`ordinal_label`、`toc_visuals` 和自动侧栏锚定属于后续工程接口。在内容编译器、模板与校验器共同支持之前，不升级现行内容的版本号，不把这些字段交给旧填充器后宣称生效。当前以审定稿、编辑记录和真实 `pages[].blocks` 逐项核对；实现状态见[模板工作流](template-workflow.md)。
+chapter_glossary仍按章分组，每项只含term_en和meaning_zh。默认没有单独练习册；完整典例/综合应用直接嵌在教学正文。

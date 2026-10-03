@@ -6,6 +6,8 @@
 | --- | --- | --- |
 | LXGW WenKai | https://github.com/lxgw/LxgwWenKai | `LXGW-WenKai-OFL.txt` |
 | Noto Sans SC | https://github.com/google/fonts/tree/main/ofl/notosanssc | `NotoSansSC-OFL.txt` |
+| Long Cang（龙藏，Hand） | https://github.com/google/fonts/tree/main/ofl/longcang | `LongCang-OFL.txt` |
+| Ma Shan Zheng（马善政楷体，仅字体对比） | https://github.com/google/fonts/tree/main/ofl/mashanzheng | `MaShanZheng-OFL.txt` |
 | DejaVu | https://github.com/dejavu-fonts/dejavu-fonts | `DejaVu-LICENSE.txt` |
 
 许可文件位于 `skills/artifact-template-university-xueba-notes/assets/licenses/`。字体准备脚本支持获取字体或使用本地字体；示例 PDF 嵌入所需字形。
@@ -18,7 +20,7 @@
 
 ## 当前生成资源
 
-`Resources/illustrations/` 中三幅统计学漫画由图像生成工具制作；提示词、参考路径与修正记录保存在 `comic-prompts.json`。`Resources/templates/` 保存当前 PDF 母版，`Resources/examples/` 保存配套统计学示例与检查记录。
+`Resources/illustrations/` 中三幅统计学漫画由图像生成工具制作；提示词、参考路径与修正记录保存在 `comic-prompts.json`。`Resources/templates/` 保存当前 PDF 母版，`Resources/examples/` 保存统计学旧接口样例及v2运筹学三章校准样例、字体比较与检查记录。运筹学数值题和图为本项目自编，没有复制Taha例题或原书页面。
 
 ## 趣味语料
 

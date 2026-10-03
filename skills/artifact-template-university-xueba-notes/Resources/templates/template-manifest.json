@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "paper": "#FFFFFF",
   "page_mm": [
     210,
@@ -24,12 +24,14 @@
     ],
     "sidebar": [
       "Hand",
-      10
+      12
     ],
     "table": [
       "Body",
       9.5
-    ]
+    ],
+    "hand_file": "LongCang.ttf",
+    "hand_family": "Long Cang Regular"
   },
   "humour_strip": {
     "position": "page-bottom",
@@ -37,7 +39,7 @@
     "height_mm": 10,
     "background": "#F3F7E0",
     "foreground": "#252823",
-    "font": "Hand",
+    "font": "Body",
     "size_pt": 10,
     "padding_mm": 3,
     "max_lines": 2,
@@ -59,7 +61,27 @@
     "glossary_odd": 7,
     "glossary_even": 8,
     "foldout": 9,
-    "blank": 10
+    "blank": 10,
+    "knowledge_dense_odd": 11,
+    "knowledge_dense_even": 12,
+    "knowledge_visual_odd": 13,
+    "knowledge_visual_even": 14,
+    "comparison_page_odd": 15,
+    "comparison_page_even": 16,
+    "worked_example_page_odd": 17,
+    "worked_example_page_even": 18,
+    "application_page_odd": 19,
+    "application_page_even": 20,
+    "core_problem_page_odd": 21,
+    "core_problem_page_even": 22,
+    "chapter_map_odd": 23,
+    "chapter_map_even": 24,
+    "volume_map_odd": 25,
+    "volume_map_even": 26,
+    "process_page_odd": 27,
+    "process_page_even": 28,
+    "formula_summary_odd": 29,
+    "formula_summary_even": 30
   },
   "editions": {
     "print": {
@@ -142,6 +164,226 @@
         "start": 12,
         "end": 190,
         "dividers": []
+      },
+      "knowledge_dense_odd": {
+        "main_x": 20,
+        "main_w": 128,
+        "side_x": 153,
+        "side_w": 45,
+        "start": 20,
+        "end": 198,
+        "dividers": [
+          150
+        ]
+      },
+      "knowledge_dense_even": {
+        "main_x": 62,
+        "main_w": 128,
+        "side_x": 12,
+        "side_w": 45,
+        "start": 12,
+        "end": 190,
+        "dividers": [
+          59
+        ]
+      },
+      "knowledge_visual_odd": {
+        "main_x": 20,
+        "main_w": 128,
+        "side_x": 153,
+        "side_w": 45,
+        "start": 20,
+        "end": 198,
+        "dividers": [
+          150
+        ]
+      },
+      "knowledge_visual_even": {
+        "main_x": 62,
+        "main_w": 128,
+        "side_x": 12,
+        "side_w": 45,
+        "start": 12,
+        "end": 190,
+        "dividers": [
+          59
+        ]
+      },
+      "comparison_page_odd": {
+        "main_x": 20,
+        "main_w": 128,
+        "side_x": 153,
+        "side_w": 45,
+        "start": 20,
+        "end": 198,
+        "dividers": [
+          150
+        ]
+      },
+      "comparison_page_even": {
+        "main_x": 62,
+        "main_w": 128,
+        "side_x": 12,
+        "side_w": 45,
+        "start": 12,
+        "end": 190,
+        "dividers": [
+          59
+        ]
+      },
+      "worked_example_page_odd": {
+        "main_x": 22,
+        "main_w": 124,
+        "side_x": 153,
+        "side_w": 45,
+        "start": 20,
+        "end": 198,
+        "dividers": [
+          150
+        ]
+      },
+      "worked_example_page_even": {
+        "main_x": 64,
+        "main_w": 124,
+        "side_x": 12,
+        "side_w": 45,
+        "start": 12,
+        "end": 190,
+        "dividers": [
+          59
+        ]
+      },
+      "application_page_odd": {
+        "main_x": 22,
+        "main_w": 124,
+        "side_x": 153,
+        "side_w": 45,
+        "start": 20,
+        "end": 198,
+        "dividers": [
+          150
+        ]
+      },
+      "application_page_even": {
+        "main_x": 64,
+        "main_w": 124,
+        "side_x": 12,
+        "side_w": 45,
+        "start": 12,
+        "end": 190,
+        "dividers": [
+          59
+        ]
+      },
+      "core_problem_page_odd": {
+        "main_x": 22,
+        "main_w": 124,
+        "side_x": 153,
+        "side_w": 45,
+        "start": 20,
+        "end": 198,
+        "dividers": [
+          150
+        ]
+      },
+      "core_problem_page_even": {
+        "main_x": 64,
+        "main_w": 124,
+        "side_x": 12,
+        "side_w": 45,
+        "start": 12,
+        "end": 190,
+        "dividers": [
+          59
+        ]
+      },
+      "chapter_map_odd": {
+        "main_x": 20,
+        "main_w": 128,
+        "side_x": 153,
+        "side_w": 45,
+        "start": 20,
+        "end": 198,
+        "dividers": [
+          150
+        ]
+      },
+      "chapter_map_even": {
+        "main_x": 62,
+        "main_w": 128,
+        "side_x": 12,
+        "side_w": 45,
+        "start": 12,
+        "end": 190,
+        "dividers": [
+          59
+        ]
+      },
+      "volume_map_odd": {
+        "main_x": 20,
+        "main_w": 128,
+        "side_x": 153,
+        "side_w": 45,
+        "start": 20,
+        "end": 198,
+        "dividers": [
+          150
+        ]
+      },
+      "volume_map_even": {
+        "main_x": 62,
+        "main_w": 128,
+        "side_x": 12,
+        "side_w": 45,
+        "start": 12,
+        "end": 190,
+        "dividers": [
+          59
+        ]
+      },
+      "process_page_odd": {
+        "main_x": 20,
+        "main_w": 128,
+        "side_x": 153,
+        "side_w": 45,
+        "start": 20,
+        "end": 198,
+        "dividers": [
+          150
+        ]
+      },
+      "process_page_even": {
+        "main_x": 62,
+        "main_w": 128,
+        "side_x": 12,
+        "side_w": 45,
+        "start": 12,
+        "end": 190,
+        "dividers": [
+          59
+        ]
+      },
+      "formula_summary_odd": {
+        "main_x": 20,
+        "main_w": 128,
+        "side_x": 153,
+        "side_w": 45,
+        "start": 20,
+        "end": 198,
+        "dividers": [
+          150
+        ]
+      },
+      "formula_summary_even": {
+        "main_x": 62,
+        "main_w": 128,
+        "side_x": 12,
+        "side_w": 45,
+        "start": 12,
+        "end": 190,
+        "dividers": [
+          59
+        ]
       }
     },
     "digital": {
@@ -244,7 +486,423 @@
         "start": 12,
         "end": 198,
         "dividers": []
+      },
+      "knowledge_dense_odd": {
+        "main_x": 38,
+        "main_w": 128,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "knowledge_dense_even": {
+        "main_x": 38,
+        "main_w": 128,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "knowledge_visual_odd": {
+        "main_x": 38,
+        "main_w": 128,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "knowledge_visual_even": {
+        "main_x": 38,
+        "main_w": 128,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "comparison_page_odd": {
+        "main_x": 38,
+        "main_w": 128,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "comparison_page_even": {
+        "main_x": 38,
+        "main_w": 128,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "worked_example_page_odd": {
+        "main_x": 40,
+        "main_w": 124,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "worked_example_page_even": {
+        "main_x": 40,
+        "main_w": 124,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "application_page_odd": {
+        "main_x": 40,
+        "main_w": 124,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "application_page_even": {
+        "main_x": 40,
+        "main_w": 124,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "core_problem_page_odd": {
+        "main_x": 40,
+        "main_w": 124,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "core_problem_page_even": {
+        "main_x": 40,
+        "main_w": 124,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "chapter_map_odd": {
+        "main_x": 38,
+        "main_w": 128,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "chapter_map_even": {
+        "main_x": 38,
+        "main_w": 128,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "volume_map_odd": {
+        "main_x": 38,
+        "main_w": 128,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "volume_map_even": {
+        "main_x": 38,
+        "main_w": 128,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "process_page_odd": {
+        "main_x": 38,
+        "main_w": 128,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "process_page_even": {
+        "main_x": 38,
+        "main_w": 128,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "formula_summary_odd": {
+        "main_x": 38,
+        "main_w": 128,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
+      },
+      "formula_summary_even": {
+        "main_x": 38,
+        "main_w": 128,
+        "side_x": 171,
+        "side_w": 27,
+        "left_x": 12,
+        "left_w": 21,
+        "start": 12,
+        "end": 198,
+        "dividers": [
+          35,
+          168
+        ]
       }
+    }
+  },
+  "page_profiles": {
+    "knowledge_dense": {
+      "rows": 32,
+      "min_density": 0.65,
+      "slots": [
+        "knowledge",
+        "table",
+        "hand",
+        "sidebar"
+      ]
+    },
+    "knowledge_visual": {
+      "rows": 32,
+      "min_density": 0.6,
+      "slots": [
+        "figure",
+        "paired",
+        "hand",
+        "sidebar"
+      ]
+    },
+    "comparison_page": {
+      "rows": 32,
+      "min_density": 0.6,
+      "slots": [
+        "comparison",
+        "formula",
+        "hand",
+        "sidebar"
+      ]
+    },
+    "worked_example_page": {
+      "rows": 31,
+      "min_density": 0.6,
+      "slots": [
+        "problem_number",
+        "problem",
+        "analysis",
+        "solution",
+        "method",
+        "figure",
+        "hand",
+        "sidebar"
+      ]
+    },
+    "application_page": {
+      "rows": 31,
+      "min_density": 0.6,
+      "slots": [
+        "problem_number",
+        "problem",
+        "analysis",
+        "solution",
+        "method",
+        "table",
+        "hand",
+        "sidebar"
+      ]
+    },
+    "core_problem_page": {
+      "rows": 31,
+      "min_density": 0.6,
+      "slots": [
+        "problem_number",
+        "problem",
+        "analysis",
+        "solution",
+        "method",
+        "figure",
+        "hand",
+        "sidebar"
+      ]
+    },
+    "chapter_map": {
+      "rows": 32,
+      "min_density": 0.55,
+      "slots": [
+        "organic_map",
+        "formula_node",
+        "figure_node",
+        "hand",
+        "sidebar"
+      ]
+    },
+    "volume_map": {
+      "rows": 32,
+      "min_density": 0.55,
+      "slots": [
+        "organic_map",
+        "formula_node",
+        "figure_node",
+        "hand",
+        "sidebar"
+      ]
+    },
+    "process_page": {
+      "rows": 32,
+      "min_density": 0.6,
+      "slots": [
+        "steps",
+        "trace",
+        "table",
+        "hand",
+        "sidebar"
+      ]
+    },
+    "formula_summary": {
+      "rows": 32,
+      "min_density": 0.6,
+      "slots": [
+        "formula_group",
+        "conditions",
+        "table",
+        "hand",
+        "sidebar"
+      ]
+    },
+    "glossary": {
+      "rows": 31,
+      "min_density": 0.45,
+      "slots": [
+        "two_columns",
+        "chapter_labels"
+      ]
+    },
+    "foldout": {
+      "rows": 22,
+      "min_density": 0.55,
+      "slots": [
+        "four_columns",
+        "formula",
+        "notes",
+        "example"
+      ]
     }
   }
 }

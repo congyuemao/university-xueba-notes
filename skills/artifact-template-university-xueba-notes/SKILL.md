@@ -1,122 +1,76 @@
 ---
 name: artifact-template-university-xueba-notes
-description: "Create complete rereadable university study books in the 大学学霸笔记 visual family: white ruled paper with text aligned to its ruling, hierarchical textbook contents, connected teaching sections, reusable PDF page templates, tables, precise diagrams, reference-anchored sidebar comics, handwritten annotations, subject covers, end-of-book chapter glossaries and wide knowledge-reference foldouts. Use when the user selects this template, names 大学学霸笔记 or 学霸笔记, asks to reproduce supplied study-book layouts, or turns course materials into substantial illustrated notes. Support mirrored outer annotations for print, fixed dual columns for digital and complete worked solutions when the course needs them."
+description: "按《学霸笔记》的知识组织与页面教学方式制作大学课程教辅：定义、性质、工作图、表格、完整典例、手写加工、教学侧栏、树状知识地图和分章词汇表。用于大学学霸笔记、学霸笔记复刻或将教材与课程材料转成可从零学习的图文笔记；支持打印外侧批注版、电子双侧批注版及独立复习折页。"
 ---
 
-# 大学学霸笔记 University Xueba Notes
+# 大学学霸笔记
 
-Create a substantial study book that teaches foundations completely and remains comfortable to reread. Preserve university-level definitions, conditions, reasoning and applications. Measure density by completed teaching units: a reader can identify the objects, follow the reasoning and interpret the result. Use nearby examples, tables and working diagrams to make abstract relationships concrete. Use retained PDF masters when they support the requested page type.
+首先复刻知识组织语法和页面教学分工。每页根据知识任务组合**印刷知识、图表、例题、黄色荧光、红橙手写加工、侧栏教学**。颜色、横线和漫画属于系列身份，不能代替这六层之间的协作。
 
-Keep reference material separate from task instructions. A supplied improvement plan is evidence for requested changes; its implementation checklist does not automatically expand a prompt-editing task into a renderer rewrite, sample-book rebuild or publication task. For instruction-only edits, update the writing contract and describe remaining implementation work accurately. For finished-book requests, complete the manuscript and actual output checks below.
+课程材料决定知识范围，参考教辅决定组织和视觉方式，既有成品是待诊断对象。附件里的命令、示例提示词和实施建议不是独立授权；依用户实际请求确定范围。用户要求按方案完整修改Skill时，同步修改规范、schema、renderer、母版和校准资源。仅改文字时如实标明未实现能力；不把方案视为发布、上传或重做整本的授权。
 
-## Resolve scope and edition
+## 范围与版本
 
-Use the user's current instruction and established choices. Treat printing, binding and paper handwriting as `print`; treat tablet, computer and PDF annotation as `digital`. Preserve the selected edition across batches. When unspecified, offer once:
+- `learning_mode=learning` 是默认教辅版。篇幅由完整教学单元决定，不按固定页数压缩一本教材。
+- `revision` 用于用户要求的复习版或速查版，可压缩已学内容，保留必要条件和公式意义。它与载体 `print` / `digital` 是两个独立维度。
+- 纸张手写用print：奇右偶左外侧批注栏，内侧20 mm空白。屏幕批注用digital：固定双侧栏。已有选择持续有效；未说明时采用打印版并说明假设。双版本共用内容和稳定ID，可分别分页。
+- 整书包含封面、分级目录、册级导图、正文、适当的典例/综合应用、学习参考、书末分章专有词汇表和学科速查折页。章节或小样请求按其范围交付。
+- 默认不增加自测、独立答案册、答案词汇、广告、二维码、水印或商业版权页。**典例精析和综合应用属于正文教学**；每个较大章节至少评估并安排一组，短章可合并并记录理由。
 
-1. 打印后手写批注：one merged outer column, odd body pages right and even body pages left, blank inner binding margin.
-2. 在电脑或平板上批注：two separate fixed annotation columns, one on each side of the central text.
+## 先看真实参考
 
-Continue source reading while an optional answer is pending. If no answer arrives, state the assumption and use `print`. If both are requested, create one source manuscript and paginate two editions with the same knowledge, outline and example IDs. Do not replace the established digital dual columns with a single right column merely because a reference book uses one.
+读[参考实查记录](references/reference-observations.md)与[校准诊断](references/calibration-review.md)。有参考PDF时仍须打开图像页，旧记录不能代替本次目视检查。
 
-For a whole book, include the front cover, hierarchical navigable contents, a genuine visual volume overview, chapter pages, complete examples where useful, learning references, an end-of-book chapter glossary and a subject-specific wide knowledge-reference sheet. Do not add a default self-test, detached answer section or answer-vocabulary section. Create a separate exercise-and-answer system only when the user requests one or supplied course material requires it. For a chapter or sample request, respect the smaller scope. Omit copyright pages, advertisements, publisher brands, commercial slogans, ISBNs, QR codes and scan watermarks from learner deliverables. Retain dependency licences with production resources.
+两本数学参考各查看目录、册级导图、普通知识、核心素养提升、图表密集、函数/三角/向量、几何和统计页。记录物理页号、主栏比例、侧栏功能、手写与图表密度、例子距离、留白方式。比较同类页，不能只抽取文字。
 
-## Read the active references
+若提供当前《统筹学》成品，抽查目录、全书导览、第一章、LP、单纯形、运输、启发式、DP、随机系统和非线性页。保留讲清的贯穿例与计算；重新诊断组织、侧栏、地图、手写及节奏。Taha等教材用于核对章目和知识，不作为视觉范本。
 
-Read before drafting:
+## 教学调度
 
-- [Content and language](references/content-and-language.md): five-part first-use teaching, sentence-level information checks, direct expression and the compact final glossary.
-- [Teaching examples](references/teaching-examples.md): complete rewrites and cases that distinguish empty warnings from necessary conditions; read when drafting or repairing explanations.
-- [Series contract](references/series-contract.md): mandatory same-publisher identity and subject-specific variation.
-- [Visual system](references/visual-system.md): paper, colour, hierarchy, handwriting and reference interpretation.
-- [Page types and rhythm](references/page-types.md): overview, knowledge, visual explanation, experiments, worked problems and synthesis pages.
-- Selected [print layout](references/layout-print.md) or [digital layout](references/layout-digital.md).
-- [Production and verification](references/production.md): source mapping, assets, rendering and delivery.
-- [Template workflow](references/template-workflow.md): reusable PDF masters, separate content data and deterministic filling.
-- [Short fun content](references/fun-content.md): structured jokes, trivia, subject facts and attributed quotations; random selection without repetition.
+先读[内容与语言](references/content-and-language.md)、[书稿与来源接口](references/book-plan.md)。用[教学改写样例](references/teaching-examples.md)处理具体解释问题；运筹学章节重组读[学科工作图](references/subject-visuals.md)。
 
-Use [inspected reference observations](references/reference-observations.md) when calibrating against the supplied scans. Read [sidebar comic prompts](references/sidebar-comics.md) before designing or generating small comics. Read [subject visuals](references/subject-visuals.md) when planning diagrams and [cover and foldout](references/cover-and-foldout.md) for whole-book outputs or when either is requested. Read [book plan format](references/book-plan.md) when using the bundled plan validator.
+1. 建立独立知识outline、先修顺序和来源映射。每块区分 `textbook_core`、`course_core`、`authored_example`、`supplement`、`editorial_synthesis`。自编综合篇用附录或无数字标题，不冒用原教材章号。
+2. 概念初见可为 `introduced`：目录、分类、总览允许先出现名称，不要求当页展开。正式教学才安排 `taught`；第一次例子前通常只引入1–2个抽象术语。`reused` 补当前所需回顾。
+3. 定义、通俗解释、具体例子、对应说明、必要边界是**章节编辑检查**，可分布于定义块、工作图、例题、表格、箭头与侧栏。核心定义和主推理须在主栏成立；必要例子不可只藏在侧栏。先修与符号在使用前讲清。
+4. 条件分三级：A为当前结论和首次使用必需的前提，紧贴定义/公式；B为常见考试与使用辨析，放后部或侧栏；C为高级数值/工程条件，仅课程要求时进入主线，否则明确作为扩展或省略。不降低正确性，也不在每段平均堆放例外。
+5. **知识块优先，段落兜底**：关系用图，分类用表，运算用步骤，算法用轨迹，应用用完整例题；需连贯论证才写自然段。工作图 > 表格 > 公式组 > 漫画装饰。
+6. 定义附近安排具体对象和对应说明。公式交代符号、单位、前提、变形理由与结果意义。推导长则增加篇幅；不缩字塞页，不因小节结束留下半页空白。
 
-Inspect [the actual source-book crop index](Resources/reference-comics/index.md) and available images before designing comics; follow `Resources/reference-comics/manifest.json` for provenance. If private crops are absent from a public checkout, inspect the user-supplied PDF pages recorded in [reference observations](references/reference-observations.md); do not claim unavailable images were inspected. Pass selected local references to image generation. Use [print-master.pdf](Resources/templates/print-master.pdf), [digital-master.pdf](Resources/templates/digital-master.pdf) and their [template manifest](Resources/templates/template-manifest.json) for existing geometry. The PDFs in `Resources/examples/` and `Resources/content/statistics-chapter.json` are legacy layout and field references. Their old verification record does not establish compliance with the revised teaching or contents-design requirements. Do not copy their first-page concept density, late examples or sidebar keyword lists as writing models.
+每句话应增加事实、关系、条件、理由、步骤、例证或必要连接。删除写法辩护、空泛重要性、循环释义及重复警告。保留真实反例和前提，不用词语黑名单机械删技术条件。标题用真实知识名称和简短栏目名。中文默认保留标准英文术语；英语考试给完整英文解答，原创英文用澳式拼写。
 
-Keep the resource set current: retain only the active templates, content, illustrations, examples and their supporting scripts, references and licences. Replace obsolete versions when updating; do not bundle retired samples, duplicate previews or historical generators.
+书末词汇表按章和首次正式教学顺序排列，只含 `term_en` 与简明 `meaning_zh`。不列普通动词、句子碎片、题目措辞或答题套句，不能代替正文首次解释。
 
-## Plan knowledge and visuals together
+## 页面分工与系列身份
 
-1. Read the supplied syllabus, lectures, textbooks, exercises and examination material. Build a complete topic-and-prerequisite map; preserve named results, notation and standard translations.
-2. Separate source-supported knowledge from newly authored teaching examples. Verify uncertain or current facts with primary sources. Never fabricate source coverage or quotations.
-3. Plan an independent knowledge outline before pagination. Give every part, chapter, unit, section, lesson, teaching feature and appendix a stable outline ID and level. Map pages to outline IDs; never derive the contents by listing page titles.
-4. For each core concept specify prerequisites, definition, plain explanation, canonical example, explicit example-to-definition mapping and necessary conditions or contrasts. Bind these to actual body locations using the editorial record in [book plan format](references/book-plan.md). Metadata alone never establishes teaching coverage.
-5. Decide which relationship is easier to understand visually: spatial, temporal, quantitative, causal, comparative, classificatory, procedural or counterintuitive. Map each selected visual to the exact concept it explains.
-6. Use microdiagrams for local distinctions, working diagrams in explanations and solutions, small comics for memory and misconception cues, chapter maps for connections, and large volume scenes for orientation. Allocate generation effort across the teaching sequence.
+读[系列合同](references/series-contract.md)、[视觉系统](references/visual-system.md)、[页型与节奏](references/page-types.md)及所选[打印](references/layout-print.md)/[电子](references/layout-digital.md)几何。
 
-Plan small teaching comics throughout the chapter, alongside exact working diagrams. On ordinary knowledge pages, normally consider a relevant sidebar comic every one or two pages; investigate runs of three or more without one. Check comics separately from tables and diagrams so those do not conceal sparse sidebar illustration. Spread scenes across the learning sequence, with each tied to a nearby proposition, distinction, process or question. Keep reference-sized compact artwork and about half or more of the chapter's annotation space free. A couple of adjacent illustrated pages do not cover a substantial chapter. Adjust coverage to the knowledge and page type; do not insert irrelevant drawings or repeat the same scene to meet a count.
+- Body固定 **LXGW WenKai Regular / WenKai.ttf，11.6 pt**。Hand独立用 **Long Cang / LongCang.ttf**，短批注通常12 pt；正文不回退宋体，缺字体不静默替代。许可和比较见[字体记录](references/font-selection.md)。
+- 白纸、可见蓝横线、黑正文、深蓝编号、学科色小节条、局部黄荧光、红橙手写、青蓝侧栏提示。正文基线稳定；手写可轻微旋转和基线变化。
+- 每页评估 `handwritten_layer`：补式、代入、圈词、箭头、波浪线、小括号、错误写法打叉、局部补图。绑定真实块、文字范围或表格单元格，不重复主栏，不写鼓励口号。核心定义不可仅存在手写层。
+- 主栏承担主干；侧栏是第二教学通道，可放辨析、小图、局部推导、记忆关系、方法总结和条件提示。绑定主栏锚点，先修完成后阅读。
+- 批注留白按**章节面积加权平均**核算，默认最少35%是可调生产起点；每页不设固定比例。定义页可多留白，题型/图解页可充分教学，章末补足自由书写区。主栏空白不能冒充侧栏可写面积。
+- `knowledge_dense`、`knowledge_visual`、`comparison_page`、`worked_example_page`、`application_page`、`core_problem_page`、`chapter_map`、`volume_map`、`process_page`、`formula_summary`、`glossary`、`foldout` 有实际母版或组合区域，容量与图表槽见manifest。
+- 综合页有大题号、完整题目、分析、解答、方法总结和相关图表/侧栏。连续3–4页同结构时复查节奏，不以无关装饰凑页型。
+- 地图用多级彩色贝塞尔树枝，公式、小图与关键词挂枝；导出SVG，PDF保留可检索标签。不能用矩形框串联充当默认知识地图。
+- 目录独立白底无横线，kind决定册章、节、专题、导图、附录外观；测量高度、平衡两栏、父首子同栏、长标题按层级缩进、绘制点线。尾页偏空须再编辑；插图与附近知识组有关，不虚构节点填满。
+- 高亮由作者逐段阅读后指定局部span和理由，禁止全局关键词匹配。绘制器不决定重点；改文后重新验证。
 
-## Write complete, comfortable teaching units
+保留物理页底y=275 mm、高10 mm、#F3F7E0底与#252823字的趣味条，页码291 mm。它是页面家具，不是正文或章末栏目。按[趣味语料](references/fun-content.md)共享历史随机去重，署名算在最多两行内。封面、空白背页、独立折页例外。
 
-At each core concept's first substantive body occurrence, teach its definition, plain meaning, concrete example, example-to-definition mapping and necessary boundary or contrast. A short concrete context may come first; mathematical premises belong beside the statement they qualify. These are semantic requirements, not five compulsory headings. Explain prerequisites before use and symbols at first use. Keep the main text sufficient without sidebars, glossary or foldout.
+## 工作图与漫画
 
-Usually introduce no more than two new abstract terms before a concrete example or working diagram. Put the representative example adjacent to the definition or within two body blocks, and review any run of three abstract paragraphs. Explain which objects or numbers play each role, why each important step follows, and what the result means in the original setting. For non-numerical subjects, use concrete processes, documents, institutions or observations. Maintain evidence boundaries instead of inventing mechanisms.
+用原生矢量/精确绘图表达数值、图算法、状态表、几何及公式关系。图有可读标签和就地解释，通常紧凑2–5行，复杂结构按需扩大。漫画不能代替算法轨迹、DP状态表或网络流工作图。
 
-Give each paragraph one explanatory job. An ordinary page can contain related short teaching chains, or a longer derivation with a worked example and interpretation. Preserve the chain when paginating; do not squeeze first definitions together to meet a subsection count. Keep substantial proofs, while removing redundant paraphrases and abstract-noun piles. Compare like page types in the inspected references, allowing space for the actual university-level explanation.
+新漫画先读[侧栏漫画](references/sidebar-comics.md)，实际查看可用的[参考索引](Resources/reference-comics/index.md)。以原书裁片作生图参考：细灰黑线、平涂色、豆形/袋形概念角色、紧凑构图。对白另行排字。全章有意义地分布，但图表优先；无合适漫画时说明理由，不强加配额。私人扫描和裁片不进入公开包，不能声称看过不可用的图。
 
-Use genuine subject headings and established teaching columns, such as 条件概率, 乘法公式, 全概率公式, 贝叶斯公式, 典例精析 and 易错辨析. Use one knowledge term or a short phrase. Exclude 把-sentence titles, 从…到… titles, coaching slogans, questions, commas and colons. Prefer direct verbs and concrete subjects in the body; avoid 把 constructions and unnecessary nominalisation. Follow the observed source-book heading grammar and the detailed language rules.
+## 构建与验证
 
-**Make every teaching sentence do useful work.** Remove author self-defence and writing-process commentary. If a sentence mixes a defensive preface with a real condition, retain the condition and state it directly. Preserve genuine uncertainty, negation, counterexamples, theorem premises and model limits. Replace “不要混淆” with the actual distinction and “具体情况具体分析” with the variables and decision rule. Do not use a forbidden-word list to delete technical qualifications.
+按[模板工作流](references/template-workflow.md)生成v2内容。`concepts` 是编辑索引，不会自行展开成正文；`teaching_refs` 必须指向实际块。使用fill_template.py，不为一册复制另一套排版代码。
 
-Run a separate information check: does each sentence add a fact, relationship, condition, reason, action, example, interpretation or necessary connection? Remove empty importance claims and circular paraphrases. Keep useful transitions such as narrowing a counting population. Test this against the [worked rewrites](references/teaching-examples.md), then check the actual output, including captions, tables, dialogue and English solutions.
+renderer测量块高度，以不可拆group/keep-with-next链分页，更新目录及批注锚点。溢出时报错，不截断或缩字号。样式缺失先扩展renderer/母版并补实例，不能填一个未读取的字段后宣称生效。旧统计样本仅作v1兼容回归，新能力以三章校准资源为准。
 
-Bind each sidebar item to a specific main-text passage and position it after the required concepts and symbols have been explained. Same-page presence is insufficient. Move indispensable explanations into the main text. Default to omitting sidebar keyword lists; comics should express one concrete relationship rather than an unsupported mnemonic. See [current renderer limits](references/template-workflow.md) before assuming automatic anchoring exists.
+依[制作与四层检查](references/production.md)分开完成自动结构、自动字段、人工内容、人工视觉。自动通过不表示成品通过。保存输入/输出校验值、页号和块ID，未做检查为not_run。逐页语义复核实际文字，逐页渲染；手写、公式、密集图及数字窄栏放大查看。
 
-Keep the chapter learning sequence coherent. Use a subject-appropriate chapter synthesis when it helps: a relationship diagram, comparison table, timeline, causal chain, reaction network or algorithm trace accompanied by enough explanation to reconstruct the chapter's reasoning. Do not force an identical recap page into every chapter. Reintroduce prerequisites where later knowledge uses them. Do not repeat identical text to simulate repeated-reading support.
+大版本先做LP、单纯形、DP三种知识形态的校准，与两本原版的普通页、题型页、目录、地图并排比较。检查整章缩略图、阅读尺寸、局部、页型分布和翻页节奏，记录差异与修复。校准后再执行已授权的整书任务。本修改包的小样不代表整本Taha课程已重做。
 
-Use Chinese explanation and standard English terminology by default. Worked examples may retain an original English problem; provide full English solutions for English examinations, with method, intermediate steps, reasons, result, interpretation, units and conditions. Add Chinese intuition alongside as useful. Follow explicit user language policy and use Australian spelling for authored English.
-
-Do not place a terminology section before the body and do not repeat mini dictionaries in sidebars. Put one compact chapter-grouped specialist glossary at the end of a whole book. Each entry contains only the standard English term and a concise Chinese meaning, with at most one short disambiguating clause. Include genuine disciplinary concepts, abbreviations, institutions and fixed technical names. Exclude ordinary verbs, connective phrases, sentence fragments, question-specific wording, English examples, question IDs and answer-writing commentary. Order groups by chapter and entries by first substantive occurrence. The glossary supports lookup; it never satisfies the first-use teaching requirement.
-
-## Apply the notebook visual system
-
-- Use pure white, unfilled paper in both print and digital, including covers, foldouts and blank annotation areas. Never restore warm white, cream or yellow full-page tints.
-- Use clearly visible blue ruling and a shared baseline grid on body pages. Place each body text line at its template-defined position relative to a rule; use the same grid pitch for line leading and block heights. Headings, tables, formulas and diagrams occupy defined whole-row slots. Suppress rules inside non-text figure slots when they interfere. Contents pages require their own unruled white layout, as specified in [page types](references/page-types.md).
-- Use black for body text, deep blue for numbered knowledge headings, green or a chosen subject colour for chapter and section strips, yellow marker strokes for context-selected key statements and conditions, red-orange for handwriting, and cyan-blue for sidebar cues.
-- Restore the first-version Chinese body font: LXGW WenKai Regular (霞鹜文楷), registered as `Body` and `Hand` from `WenKai.ttf`. Use 11.6 pt body text and preserve the current shared baseline grid. Source-book observations about Song-style print do not override this explicit font choice. Distinguish teaching annotations with red-orange colour, modest baseline variation, circles, underlines and short curved arrows; keep labels and equations exact and legible.
-- Use the observed approximate 6:4 main/teaching-sidebar relationship as a compositional reference, not a mandatory coordinate ratio. Preserve usable writing margins and the edition's specified geometry. Teaching spreads may use a wider explanatory sidebar; ordinary annotation pages retain their writing area.
-- Use varied page types matched to the concept. Keep ordinary pages recognisably related while allowing overview, experiment and synthesis pages their own composition.
-- Use a black chapter heading at openings, a green or yellow-green brush-like section strip, and deep-blue knowledge numbering. Show the chapter opening block only once; extend usable content upwards on continuation pages. A section strip may reappear when a genuinely new section begins.
-- Use the actual subject for running labels. Alternate page numbers odd right / even left; in print, match the annotation side. Keep the 20 mm inner print margin completely blank.
-- Use a short joke, interesting fact, subject fact or attributed quotation from the bundled structured corpus in an independent pale green (`#F3F7E0`) strip at the physical bottom of the page, in dark (`#252823`) text, preferably one line and at most two. Restore its first-version position at y = 275 mm with 10 mm height, using the current pale-green/dark-text treatment and the exact template manifest coordinates. This strip is fixed page furniture outside the body grid: never place it at the top or treat it as a concluding knowledge section, body block or chapter subsection. Use `scripts/pick_fun_content.py` and the default random mode in `fill_template.py`. Select a different record for every eligible physical page, including continued contents and glossary pages; share `--fun-used-file` across chapters of the same book. Prefer one measured line and allow at most two, including the author's name. Record the selected ID and source in the layout JSON. Choose course tags when requested. Keep humour free from gender discrimination, racist content and political offence or sensitive political topics. Review meaning as well as wording when adding records. Facts retain their source; quotations retain their actual author and work. Preserve authentic quotations rather than inventing attributed slogans. Keep page numbers clear of its text and preserve print binding margins. Exempt covers, deliberate blank reverses and detached foldouts.
-- Leave about half or more of the annotation area free across a chapter. Place relevant teaching annotations near their anchors without consuming the user's writing column.
-
-**Select highlights by reading the specific passage and judging its teaching role.** Mark the locally important definition, condition, causal link, contrast or conclusion as a meaningful phrase or clause. The same term may be important in one passage and ordinary in another. Bind each selection to its exact paragraph and occurrence, with a brief editorial reason retained only in production data. Never create a global keyword list, search-and-highlight all matches, or replace editorial judgement with term frequency. The filler renders approved local spans, including selections that cross a line; it does not decide importance. Review highlighted text in its surrounding explanation and remove marks that do not guide understanding. See the contextual examples in [Visual system](references/visual-system.md).
-
-Avoid a repeated white-card interface, large rounded rectangles, shadows, glossy decorations or a uniform title-plus-paragraphs page. Compact blue frames for synthesis problems and small functional tables remain appropriate.
-
-Give contents pages their own hierarchy: part/module strips, strong chapter/unit headings, smaller section/lesson entries, attached teaching features, right-aligned page numbers and leader lines. Choose two columns or a main list with illustration sidebar according to the actual outline. Visuals relate to nearby knowledge groups; long titles use hanging indents. Keep parents with children across columns and pages, and simplify continuation-page headers. Node `kind` controls intended appearance; `level` records nesting. See [series contract](references/series-contract.md) and the documented implementation status before declaring reference-style contents complete.
-
-## Generate teaching comics and exact diagrams
-
-Use the available image-generation capability for original source-referenced educational sidebar comics. Read and inspect `Resources/reference-comics/`, select relevant original-book crops, and pass those local paths to the generation call. Follow [sidebar-comics.md](references/sidebar-comics.md): fine grey-black linework, flat printed colours, small white eyes with pupils and brows where visible in the selected references, and bean-shaped or bag-shaped concept characters. Match the specific crop’s proportions, expressions and compact sidebar composition. Do not substitute huge-headed infant chibi students, dot-eye kawaii characters, coloured-pencil haze, powdery pastel shading, or glossy rendering. Original source crops are reference inputs, not finished artwork to paste into the new book.
-
-Generate assets and actually embed them in relevant pages when a finished book is requested. A list of scripts or image prompts is an intermediate output. Request transparent backgrounds for cutout assets. Typeset dialogue, terms, symbols and formulas separately for accuracy and searchable text. Keep recurring characters consistent within a chapter.
-
-Use native vector drawing, plotting or exact typesetting for graphs, axes, Venn diagrams, force vectors, circuits, maps requiring precise positions, reaction structures and numerical relationships. Calibrate figure scale against the original book: ordinary working diagrams usually occupy 2–4 body rows, with complex trees or flows often 4–5 rows, adapting only for necessary detail. Place microdiagrams side by side where useful. Use compact tables with small padding and whole-row grid heights, and avoid excessive space above or below figures. Add generated characters beside these if helpful. Never entrust mathematical truth to decorative raster generation.
-
-Check every analogy's knowledge. Distinguish observation from causal inference, necessary from sufficient conditions, and independence from mutually exclusive events. A correct-looking character cannot compensate for an incorrect relationship.
-
-## Build, inspect and deliver
-
-Use the PDF skill and its rendering requirements. Fill the existing masters in `Resources/templates/` with a separate content JSON through the bundled filling script. Reuse the template PDF as the fixed page layer, with new searchable text, exact diagrams and referenced comic assets in defined slots. Do not rebuild paper, rules, margins, headings or page furniture on each run. Add a new master only for a genuinely missing page type, then retain and reuse it. See [template workflow](references/template-workflow.md).
-
-Render every output page and inspect it at full-page scale; inspect dense diagrams, sidebars, English solutions and foldouts at readable zoom. Check layout, teaching meaning and source completeness separately. Correct defects and repeat checks on affected pages.
-
-Before delivery confirm:
-
-1. Every requested topic and prerequisite is taught in the actual main body. Locate the definition, plain explanation, concrete example, explicit mapping and necessary boundary for each core concept; explain formula steps and results. Read the main body with sidebars and glossary hidden. A filled metadata field is not evidence of readable teaching.
-2. Page types vary for teaching reasons; the visual coverage audit separately checks working diagrams and sidebar comics, with meaningful comic scenes distributed across the chapter. Highlights were individually selected in context; repeated terms remain unmarked wherever they are not the local learning focus.
-3. Both editions are pure white; rules remain visible at ordinary reading size, and the rendered text follows the template baseline grid. Knowledge density matches the inspected source pages while preserving university depth. Titles and body language pass the current rules. Comics match the actual supplied crop references.
-4. Every final illustration is embedded and mapped to its concept; diagrams, labels and numerical relationships are accurate.
-5. The selected edition preserves writing space, page numbers and binding/dual-column rules; print front matter preserves recto parity.
-6. Cover and wide reference sheet are designed for the actual subject, when in scope. Omit promotional slogans. The reference sheet remains legible and print tiling is complete where supplied. The required short joke, trivia, subject-fact or quotation strip is fixed at the physical page bottom as an independent pale green (`#F3F7E0`) bar with one or two dark (`#252823`) text lines, separate from body sections and page numbers.
-7. The contents expresses the real knowledge hierarchy and ignores pagination-only titles. Check its reference appearance separately from links and bookmarks. The final glossary contains only specialist English terms and concise Chinese meanings. All navigation matches final pagination. No ads, watermarks or unintended commercial front matter remain.
-8. Record structural, teaching, language, contents-reference, visual, navigation, glossary and asset checks separately as described in [production](references/production.md). Mark unperformed checks as not run and defects as needing repair. Legacy sample verification cannot certify a newly authored manuscript.
-
-Deliver requested editions with subject and edition in filenames, plus foldout files when in scope. Save requested artifacts through the available persistent file capability, except externally Git-backed projects and installed skill resources. Report incomplete batches or unavailable generation accurately; do not describe an outline or partial book as complete.
+准确报告完成范围、文件位置、验证结果和具体限制；不要把schema检查、旧样本验证或提示词新增条文当作新版成书合格证明。

@@ -12,7 +12,7 @@ Use fixed dual sidebars for electronic reading and stylus or computer annotation
 | Right annotation column | x = 171–198 | 27 |
 | Right page margin | x = 198–210 | 12 |
 
-Keep these positions fixed on odd and even pages. Omit the asymmetric print binding offset. Put prerequisite or concise bilingual cues in the left sidebar and illustrations, interpretation or examination-language cues in the right, adapting to the concept. Provide a separate empty “我的批注” area in each sidebar.
+Keep these positions fixed on odd and even pages. Omit the asymmetric print binding offset. Put prerequisite or concise bilingual cues in the left sidebar and illustrations, interpretation or examination-language cues in the right, adapting to the concept. Keep both writing columns, while allocating teaching notes and small diagrams dynamically; assess writing space over the chapter.
 
 Wrap long sidebar headings rather than drawing them past an edge. Use dedicated full-width contents masters for a multi-level knowledge outline and dedicated full-width glossary masters at the end. The glossary contains only English terms and concise Chinese meanings. Core explanations stay in the body at first occurrence. Retain ample writing space in both margins on ordinary teaching pages.
 

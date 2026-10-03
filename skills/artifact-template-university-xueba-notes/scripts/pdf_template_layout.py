@@ -9,7 +9,7 @@ MM=72/25.4
 INK='#16191A'; BLUE='#135B82'; GREEN='#BBD76E'; RULE='#9ED5DE'; RED='#B64930'
 MAP={}; LOG=[]
 def register_fonts(folder):
-    for name,fn in [('Body','WenKai.ttf'),('Head','SansBold.ttf'),('Hand','WenKai.ttf'),('Latin','DejaVuSerif.ttf'),('Math','DejaVuSans.ttf')]:
+    for name,fn in [('Body','WenKai.ttf'),('Head','SansBold.ttf'),('Hand','LongCang.ttf'),('Latin','DejaVuSerif.ttf'),('Math','DejaVuSans.ttf')]:
         f=Font(str(Path(folder)/fn)); MAP[name]=set(f.getBestCmap())
         for n in f['name'].names:
             if n.nameID in (1,3,4,6):
@@ -30,7 +30,7 @@ def runs(s,base):
         else:out.append((f,ch))
     return out
 def width(s,base,size):return sum(pdfmetrics.stringWidth(t,f,size) for f,t in runs(s,base))/MM
-def wrap(s,w,base='Body',size=11.6):
+def wrap_tokens(s):
     tokens=re.findall(r"P\([^)]*\)|\([a-z]\)|[0-9]+(?:\.[0-9]+)?/[0-9]+(?:\.[0-9]+)?|[A-Za-z0-9ᵢ₁₂₃ₖₘᶜ²³]+(?:['’.-][A-Za-z0-9]+)*|\s+|.",clean(s))
     # Keep closing punctuation with its preceding token before line breaking.
     # Letting punctuation overhang can put ink in the blank print binding margin.
@@ -39,8 +39,11 @@ def wrap(s,w,base='Body',size=11.6):
     for token in tokens:
         if token in closers and grouped:grouped[-1]+=token
         else:grouped.append(token)
+    return grouped
+
+def wrap(s,w,base='Body',size=11.6):
     lines=[];line=''
-    for t in grouped:
+    for t in wrap_tokens(s):
         if not line and t.isspace():continue
         if width(t.lstrip(),base,size)>w:
             raise ValueError(f'Unbreakable text exceeds {w} mm: {t!r}; revise the text or its allocated slot')
